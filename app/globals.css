@@ -8,7 +8,8 @@
   --brand-muted: #7A7264;
   --brand-gold: #7A7264;
   --brand-light: #E0DAD0;
-  --brand-footer: #4A4840;
+  --brand-lighter: #EAE5DC;
+  --brand-footer: #404338;
   --brand-footer-text: #C5BAB0;
 }
 
@@ -18,8 +19,20 @@
   --font-serif: var(--font-noto-serif-tc), "Noto Serif TC", Georgia, serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-noto-serif-tc), "Noto Serif TC", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card-img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.card-wrap:hover .card-img {
+  transform: scale(1.04);
 }
