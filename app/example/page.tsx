@@ -35,6 +35,26 @@ function Bubble({ text, dark = false }: { text: string; dark?: boolean }) {
   );
 }
 
+const kolRow1 = [
+  { src: "/img/Page 11 KOL Reviews/Page \u200d11-1-1.png", alt: "KOL review 1" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-1-2.png",       alt: "KOL review 2" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-1-3.png",       alt: "KOL review 3" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-1-4.png",       alt: "KOL review 4" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-2-1.png",       alt: "KOL review 5" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-2-2.png",       alt: "KOL review 6" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-2-3.png",       alt: "KOL review 7" },
+];
+
+const kolRow2 = [
+  { src: "/img/Page 11 KOL Reviews/Page 11-2-4.png", alt: "KOL review 8" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-3-1.png", alt: "KOL review 9" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-3-2.png", alt: "KOL review 10" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-3-3.png", alt: "KOL review 11" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-3-4.png", alt: "KOL review 12" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-4-1.png", alt: "KOL review 13" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-4-2.png", alt: "KOL review 14" },
+];
+
 const baReviews = [
   { img: "/img/BAreview/Page 10-1.png", title: "韓式深層保養" },
   { img: "/img/BAreview/Page 10-2.png", title: "再生光" },
@@ -1050,6 +1070,136 @@ export default function Page() {
           </div>
 
         </div>
+      </section>
+
+
+      {/* ══════════════════════════════════════
+          SECTION 11 — KOL Reviews
+      ══════════════════════════════════════ */}
+      <section className="py-20 sm:py-24 lg:py-28 overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
+
+        {/* Header */}
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-16 sm:mb-20">
+
+          {/* Big heading */}
+          <div className="text-center mb-16 sm:mb-20">
+            <p className="text-[11px] lg:text-xs font-light tracking-[0.28em] uppercase mb-6" style={{ color: "var(--brand-muted)" }}>
+              KOL Reviews
+            </p>
+            <h2
+              className="text-[2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-light leading-tight mb-4"
+              style={{ letterSpacing: "0.04em", fontFamily: "Georgia, serif" }}
+            >
+              眞實口碑・看得見的改變
+            </h2>
+            <p className="text-sm lg:text-base font-light tracking-widest" style={{ color: "var(--brand-dark)", opacity: 0.45, letterSpacing: "0.18em" }}>
+              Real Testimonials, Visible Transformations.
+            </p>
+          </div>
+
+          {/* Featured block: 2 portrait cards + text */}
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+
+            {/* Left: 2 phone cards */}
+            <div className="flex gap-4 sm:gap-6 shrink-0">
+              {[kolRow2[5], kolRow2[6]].map((img, i) => (
+                <div
+                  key={i}
+                  className="overflow-hidden rounded-2xl shadow-md"
+                  style={{
+                    width: "160px",
+                    height: "284px",
+                    border: "1px solid rgba(56,50,42,0.08)",
+                    boxShadow: "0 8px 32px rgba(56,50,42,0.12)",
+                  }}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={160}
+                    height={284}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Right: text */}
+            <div className="flex-1 text-center lg:text-left">
+              <p className="text-base tracking-[0.4em] mb-5" style={{ color: "var(--brand-muted)", letterSpacing: "0.3em" }}>
+                · · · · · · ·
+              </p>
+              <h3
+                className="text-xl sm:text-2xl lg:text-[1.7rem] font-light mb-4"
+                style={{ letterSpacing: "0.05em" }}
+              >
+                KOL與顧客一致好評
+              </h3>
+              <div className="w-12 h-px mb-6 mx-auto lg:mx-0" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
+              <div className="space-y-4 mb-8">
+                <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                  許多美容部落客與KOL體驗後都給予高度評價，不只是因為立即的效果，更重視的是玖膚對肌膚健康的長期關注
+                </p>
+                <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                  超過5000位顧客的信任，來自於我們對每一位客人的用心照護。每一則好評都是我們持續進步的動力
+                </p>
+              </div>
+              <p className="text-[11px] font-light tracking-[0.2em] uppercase" style={{ color: "var(--brand-muted)", opacity: 0.7 }}>
+                Highly positive feedback from KOLs and customers
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-12">
+          <div className="h-px" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
+        </div>
+
+        {/* Marquee rows */}
+        <div className="marquee-outer flex flex-col gap-4">
+
+          {/* Row 1 — scrolls left */}
+          <div className="flex gap-4 marquee-track-left" style={{ width: "max-content" }}>
+            {[...kolRow1, ...kolRow1].map((img, i) => (
+              <div
+                key={i}
+                className="shrink-0 overflow-hidden rounded-xl"
+                style={{ height: "420px", width: "236px" }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={236}
+                  height={420}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Row 2 — scrolls right */}
+          <div className="flex gap-4 marquee-track-right" style={{ width: "max-content" }}>
+            {[...kolRow2, ...kolRow2].map((img, i) => (
+              <div
+                key={i}
+                className="shrink-0 overflow-hidden rounded-xl"
+                style={{ height: "420px", width: "236px" }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={236}
+                  height={420}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+        </div>
+
       </section>
 
     </div>
