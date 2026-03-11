@@ -35,6 +35,19 @@ function Bubble({ text, dark = false }: { text: string; dark?: boolean }) {
   );
 }
 
+const baReviews = [
+  { img: "/img/BAreview/Page 10-1.png", title: "韓式深層保養" },
+  { img: "/img/BAreview/Page 10-2.png", title: "再生光" },
+  { img: "/img/BAreview/Page 10-3.png", title: "草藥煥膚" },
+  { img: "/img/BAreview/Page 10-4.png", title: "玖式微針" },
+  { img: "/img/BAreview/Page 10-5.png", title: "韓式深層保養＋再生光" },
+  { img: "/img/BAreview/Page 10-6.png", title: "韓式深層保養＋草藥煥膚" },
+  { img: "/img/BAreview/Page 10-7.png", title: "無痕水光" },
+  { img: "/img/BAreview/Page 10-8.png", title: "童顏外泌體" },
+  { img: "/img/BAreview/Page 10-9.png", title: "脂肪神器" },
+  { img: "/img/BAreview/Page 10-10.png", title: "緊緻神槍" },
+];
+
 const skinCareItems = [
   { num: "01", title: "水飛梭", desc: "深層清潔毛孔，去除老廢角質與髒汙" },
   { num: "02", title: "手工針清", desc: "無痛感手法細膩，針對粉刺與痘痘清除，溫和不傷肌膚" },
@@ -979,6 +992,64 @@ export default function Page() {
 
         </div>
 
+      </section>
+
+
+      {/* ══════════════════════════════════════
+          SECTION 10 — Before & After Results
+      ══════════════════════════════════════ */}
+      <section className="py-20 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+        <div className="max-w-9xl mx-auto px-6 sm:px-10">
+
+          {/* Eyebrow with lines */}
+          <div className="flex items-center gap-4 mb-12 sm:mb-16">
+            <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.18)" }} />
+            <p className="text-[11px] lg:text-xs font-light tracking-[0.28em] uppercase shrink-0" style={{ color: "var(--brand-muted)" }}>
+              Before &amp; After
+            </p>
+            <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.18)" }} />
+          </div>
+
+          {/* Heading */}
+          <div className="text-center mb-14 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug mb-4" style={{ letterSpacing: "0.04em" }}>
+              顧客真實成效見證
+            </h2>
+            <p className="text-sm lg:text-[15px] font-light" style={{ color: "var(--brand-dark)", opacity: 0.55, letterSpacing: "0.05em" }}>
+              每一張照片，都是一段蛻變的故事
+            </p>
+          </div>
+
+          {/* Grid — 2 cols mobile / 4 cols tablet / 5 cols desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
+            {baReviews.map((item, i) => (
+              <div key={i} className="card-wrap flex flex-col group">
+                <div
+                  className="overflow-hidden rounded-sm"
+                  style={{ aspectRatio: "1 / 1" }}
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    width={400}
+                    height={400}
+                    className="card-img w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Footer note */}
+          <div className="mt-14 sm:mt-16 flex items-center gap-4">
+            <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
+            <p className="md:text-[18px] text-xs font-light tracking-[0.15em] shrink-0" style={{ color: "var(--brand-dark)", opacity: 0.4 }}>
+              以上均為顧客真實案例，效果因個人膚況而異
+            </p>
+            <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
+          </div>
+
+        </div>
       </section>
 
     </div>
