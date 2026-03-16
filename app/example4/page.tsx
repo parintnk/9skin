@@ -148,19 +148,34 @@ export default function Page() {
           </div>
 
           {/* Right */}
-          <div className="relative min-h-[60vw] lg:min-h-0">
-            <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover object-[center_12%]" priority />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(249,248,245,0.5) 100%)" }} />
-
-            {/* Stats overlay */}
-            <div className="absolute bottom-6 left-6 right-6 grid grid-cols-3 gap-3">
-              {[{ n: "500+", l: "滿意顧客" }, { n: "2", l: "門市據點" }, { n: "7", l: "護理步驟" }].map(s => (
-                <div key={s.l} className="rounded-2xl px-4 py-3.5 text-center"
-                  style={{ backgroundColor: "rgba(255,255,255,0.9)", backdropFilter: "blur(8px)" }}>
-                  <p className="text-lg font-light mb-0.5" style={{ color: C.green }}>{s.n}</p>
-                  <p className="text-[10px] font-light" style={{ color: C.muted }}>{s.l}</p>
-                </div>
-              ))}
+          <div className="relative">
+            {/* Mobile: rounded card */}
+            <div className="lg:hidden mx-6 mb-0 relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4/3" }}>
+              <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover" priority />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(22,22,20,0.45) 100%)" }} />
+              <div className="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2">
+                {[{ n: "500+", l: "滿意顧客" }, { n: "2", l: "門市據點" }, { n: "7", l: "護理步驟" }].map(s => (
+                  <div key={s.l} className="rounded-xl px-2 py-2.5 text-center"
+                    style={{ backgroundColor: "rgba(255,255,255,0.88)", backdropFilter: "blur(8px)" }}>
+                    <p className="text-sm font-light mb-0" style={{ color: C.green }}>{s.n}</p>
+                    <p className="text-[9px] font-light" style={{ color: C.muted }}>{s.l}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Desktop: full bleed */}
+            <div className="hidden lg:block absolute inset-0">
+              <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover" priority />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(249,248,245,0.5) 100%)" }} />
+              <div className="absolute bottom-6 left-6 right-6 grid grid-cols-3 gap-3">
+                {[{ n: "500+", l: "滿意顧客" }, { n: "2", l: "門市據點" }, { n: "7", l: "護理步驟" }].map(s => (
+                  <div key={s.l} className="rounded-2xl px-4 py-3.5 text-center"
+                    style={{ backgroundColor: "rgba(255,255,255,0.9)", backdropFilter: "blur(8px)" }}>
+                    <p className="text-lg font-light mb-0.5" style={{ color: C.green }}>{s.n}</p>
+                    <p className="text-[10px] font-light" style={{ color: C.muted }}>{s.l}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

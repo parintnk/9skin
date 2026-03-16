@@ -140,11 +140,18 @@ export default function Page() {
         </div>
 
         {/* Right — image */}
-        <div className="relative lg:flex-1 min-h-[60vw] lg:min-h-0">
-          <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover object-[center_12%]" priority />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(11,11,9,0.35) 0%, transparent 40%)" }} />
-          {/* Gold vertical accent */}
-          <div className="hidden lg:block absolute left-0 top-[15%] bottom-[15%] w-px" style={{ backgroundColor: C.goldBord }} />
+        <div className="relative lg:flex-1">
+          {/* Mobile: rounded card */}
+          <div className="lg:hidden mx-6 mb-10 relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4/3" }}>
+            <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover object-[center_12%]" priority />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(11,11,9,0.55) 0%, transparent 55%)" }} />
+          </div>
+          {/* Desktop: full bleed */}
+          <div className="hidden lg:block absolute inset-0">
+            <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover object-[center_12%]" priority />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(11,11,9,0.35) 0%, transparent 40%)" }} />
+            <div className="absolute left-0 top-[15%] bottom-[15%] w-px" style={{ backgroundColor: C.goldBord }} />
+          </div>
         </div>
       </section>
 
