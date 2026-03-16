@@ -684,11 +684,11 @@ export default function Page() {
             </div>
 
             {/* Images */}
-            <div className="lg:w-[46%] flex flex-col gap-4">
-              <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
+            <div className="lg:w-[46%] flex flex-col gap-4 px-6 sm:px-10 lg:px-0">
+              <div className="relative w-full rounded-3xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                 <Image src="/img/Page 8-1.JPG" alt="9skin 空間" fill className="object-cover" />
               </div>
-              <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: "16/7" }}>
+              <div className="relative w-full rounded-3xl overflow-hidden" style={{ aspectRatio: "16/7" }}>
                 <Image src="/img/Page 8-2.jpg" alt="9skin 創辦人" fill className="object-cover object-top" />
               </div>
             </div>
@@ -716,23 +716,52 @@ export default function Page() {
             </p>
           </div>
 
-          {/* Process steps */}
-          <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 sm:gap-3">
+          {/* Process steps — mobile: vertical timeline / desktop: horizontal circles */}
+          {/* Mobile */}
+          <div className="flex flex-col sm:hidden gap-0">
             {[
-              { num: "01", title: "肌膚檢測",    desc: "全面評估膚況" },
-              { num: "02", title: "方案規劃",    desc: "客製化護理計畫" },
-              { num: "03", title: "專業療程",    desc: "精準執行護理" },
-              { num: "04", title: "追蹤評估",    desc: "記錄改善進程" },
-              { num: "05", title: "居家維護",    desc: "延續療程效果" },
+              { num: "01", title: "肌膚檢測",  desc: "全面評估膚況" },
+              { num: "02", title: "方案規劃",  desc: "客製化護理計畫" },
+              { num: "03", title: "專業療程",  desc: "精準執行護理" },
+              { num: "04", title: "追蹤評估",  desc: "記錄改善進程" },
+              { num: "05", title: "居家維護",  desc: "延續療程效果" },
+            ].map((step, i, arr) => (
+              <div key={step.num} className="flex gap-4">
+                {/* Left: dot + line */}
+                <div className="flex flex-col items-center shrink-0">
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: i === 0 ? C.sage : "rgba(139,175,156,0.12)", border: `1px solid ${i === 0 ? C.sage : "rgba(139,175,156,0.3)"}` }}>
+                    <span className="text-[10px] font-light" style={{ color: i === 0 ? C.white : "rgba(139,175,156,0.7)" }}>{step.num}</span>
+                  </div>
+                  {i < arr.length - 1 && (
+                    <div className="w-px flex-1 my-1" style={{ backgroundColor: "rgba(139,175,156,0.2)", minHeight: 24 }} />
+                  )}
+                </div>
+                {/* Right: text */}
+                <div className="pb-6 pt-1">
+                  <p className="text-sm font-light text-white mb-0.5" style={{ letterSpacing: "0.06em" }}>{step.title}</p>
+                  <p className="text-[12px] font-light" style={{ color: "rgba(238,243,240,0.45)" }}>{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop */}
+          <div className="hidden sm:grid sm:grid-cols-5 gap-3">
+            {[
+              { num: "01", title: "肌膚檢測",  desc: "全面評估膚況" },
+              { num: "02", title: "方案規劃",  desc: "客製化護理計畫" },
+              { num: "03", title: "專業療程",  desc: "精準執行護理" },
+              { num: "04", title: "追蹤評估",  desc: "記錄改善進程" },
+              { num: "05", title: "居家維護",  desc: "延續療程效果" },
             ].map((step, i) => (
               <div key={step.num} className="relative flex flex-col items-center">
-                {/* Connector line */}
                 {i < 4 && (
-                  <div className="hidden sm:block absolute top-8 left-[60%] right-[-10%] h-px" style={{ backgroundColor: "rgba(139,175,156,0.25)" }} />
+                  <div className="absolute top-8 left-[60%] right-[-10%] h-px" style={{ backgroundColor: "rgba(139,175,156,0.25)" }} />
                 )}
-                <div className="w-16 h-16 rounded-full flex flex-col items-center justify-center mb-4 relative z-10"
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 relative z-10"
                   style={{ backgroundColor: i === 0 ? C.sage : "rgba(139,175,156,0.12)", border: `1px solid ${i === 0 ? C.sage : "rgba(139,175,156,0.25)"}` }}>
-                  <span className="text-[10px] font-light mb-0.5" style={{ color: i === 0 ? C.white : "rgba(139,175,156,0.6)" }}>{step.num}</span>
+                  <span className="text-[10px] font-light" style={{ color: i === 0 ? C.white : "rgba(139,175,156,0.6)" }}>{step.num}</span>
                 </div>
                 <p className="text-sm font-light text-center text-white mb-1" style={{ letterSpacing: "0.06em" }}>{step.title}</p>
                 <p className="text-[11px] font-light text-center" style={{ color: "rgba(238,243,240,0.45)" }}>{step.desc}</p>
