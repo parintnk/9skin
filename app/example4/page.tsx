@@ -505,12 +505,9 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="lg:w-[46%] flex flex-col gap-3 px-4 sm:px-10 lg:px-0">
+            <div className="lg:w-[46%] px-4 sm:px-10 lg:px-0">
               <div className="relative w-full rounded-3xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
                 <Image src="/img/Page 8-1.JPG" alt="9skin 空間" fill className="object-cover" />
-              </div>
-              <div className="relative w-full rounded-3xl overflow-hidden" style={{ aspectRatio: "16/7" }}>
-                <Image src="/img/Page 8-2.jpg" alt="9skin 創辦人" fill className="object-cover object-top" />
               </div>
             </div>
           </div>
