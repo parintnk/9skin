@@ -685,7 +685,7 @@ export default function Page() {
               {/* Founder story */}
               <div className="mt-8 rounded-2xl overflow-hidden" style={{ backgroundColor: C.sageMid, border: `1px solid ${C.sage}44` }}>
                 <div className="flex flex-col sm:flex-row">
-                  <div className="relative sm:w-[42%] shrink-0" style={{ minHeight: 220 }}>
+                  <div className="relative sm:w-[42%] shrink-0" style={{ minHeight: 320 }}>
                     <Image src="/img/Page 8-2.jpg" alt="玖膚創辦人" fill className="object-cover object-center" />
                   </div>
                   <div className="flex-1 p-6 flex flex-col gap-4">
