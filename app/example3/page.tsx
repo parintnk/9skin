@@ -241,9 +241,14 @@ export default function Page() {
       <section style={{ backgroundColor: C.bgMid }}>
         <div className="flex flex-col lg:flex-row">
           {/* Image */}
-          <div className="relative lg:w-[46%] min-h-[56vw] lg:min-h-0">
-            <Image src="/img/Page 4.png" alt="水煮蛋肌" fill className="object-cover" />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to right, transparent 60%, rgba(22,22,20,0.4) 100%)" }} />
+          <div className="relative lg:w-[46%]">
+            <div className="lg:hidden mx-6 mt-6 mb-0 relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4/3" }}>
+              <Image src="/img/Page 4.png" alt="水煮蛋肌" fill className="object-cover" />
+            </div>
+            <div className="hidden lg:block absolute inset-0">
+              <Image src="/img/Page 4.png" alt="水煮蛋肌" fill className="object-cover" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to right, transparent 60%, rgba(22,22,20,0.4) 100%)" }} />
+            </div>
           </div>
 
           {/* Content */}
@@ -310,9 +315,14 @@ export default function Page() {
       {/* ══ 06 KOREAN CARE ═══════════════════════════════════════ */}
       <section style={{ backgroundColor: C.bgMid }}>
         <div className="flex flex-col lg:flex-row-reverse">
-          <div className="relative lg:w-[44%] min-h-[56vw] lg:min-h-0">
-            <Image src="/img/Page 6.JPG" alt="韓式保養" fill className="object-cover" />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(22,22,20,0.5) 0%, transparent 50%)" }} />
+          <div className="relative lg:w-[44%]">
+            <div className="lg:hidden mx-6 mt-6 mb-0 relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4/3" }}>
+              <Image src="/img/Page 6.JPG" alt="韓式保養" fill className="object-cover" />
+            </div>
+            <div className="hidden lg:block absolute inset-0">
+              <Image src="/img/Page 6.JPG" alt="韓式保養" fill className="object-cover" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(22,22,20,0.5) 0%, transparent 50%)" }} />
+            </div>
           </div>
           <div className="flex-1 flex flex-col justify-center px-8 sm:px-12 lg:px-14 py-14 lg:py-16">
             <p className="text-[10px] tracking-[0.4em] uppercase mb-4 font-light" style={{ color: C.gold }}>Korean Deep Care</p>
