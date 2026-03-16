@@ -470,61 +470,61 @@ export default function Page() {
       </section>
 
       {/* ══ 09 SYSTEM ════════════════════════════════════════════ */}
-      <section className="py-20 sm:py-24" style={{ backgroundColor: C.white, borderTop: `1px solid ${C.border}` }}>
-        <div className="max-w-5xl mx-auto px-6 sm:px-10">
-          <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-5"
-              style={{ backgroundColor: C.greenSoft, border: `1px solid ${C.greenBord}` }}>
-              <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: C.green }} />
-              <span className="text-[10px] font-light tracking-[0.22em] uppercase" style={{ color: C.green }}>System · 皮膚管理系統</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-light" style={{ letterSpacing: "0.03em" }}>科學化肌膚管理系統</h2>
+      <section style={{ backgroundColor: C.green }}>
+        {/* Header */}
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 pt-16 sm:pt-20 pb-10 text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-5"
+            style={{ backgroundColor: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}>
+            <div className="w-1.5 h-1.5 rounded-full bg-white" />
+            <span className="text-[10px] font-light tracking-[0.22em] uppercase text-white/70">System · 皮膚管理系統</span>
           </div>
+          <h2 className="text-2xl sm:text-3xl font-light text-white" style={{ letterSpacing: "0.03em" }}>
+            科學化肌膚管理系統
+          </h2>
+        </div>
 
-          {/* Mobile */}
-          <div className="flex flex-col sm:hidden gap-0 mb-12">
-            {["肌膚檢測","方案規劃","專業療程","追蹤評估","居家維護"].map((t, i, arr) => (
-              <div key={t} className="flex gap-4">
-                <div className="flex flex-col items-center shrink-0">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-[10px] font-light shrink-0"
-                    style={{ backgroundColor: i === 0 ? C.green : C.bg, border: `1px solid ${i === 0 ? C.green : C.border}`, color: i === 0 ? C.white : C.muted }}>
-                    {String(i+1).padStart(2,"0")}
-                  </div>
-                  {i < arr.length - 1 && <div className="w-px flex-1 my-1" style={{ backgroundColor: C.border, minHeight: 24 }} />}
-                </div>
-                <p className="pb-6 pt-2 text-sm font-light" style={{ color: i === 0 ? C.green : C.muted }}>{t}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Desktop */}
-          <div className="hidden sm:flex justify-between mb-12">
-            {["肌膚檢測","方案規劃","專業療程","追蹤評估","居家維護"].map((t, i) => (
-              <div key={t} className="relative flex flex-col items-center flex-1">
-                {i < 4 && <div className="absolute top-[1.1rem] left-[55%] right-[-5%] h-px z-0" style={{ backgroundColor: C.greenBord }} />}
-                <div className="w-9 h-9 rounded-full flex items-center justify-center text-[10px] font-light relative z-10 mb-3"
-                  style={{ backgroundColor: i === 0 ? C.green : C.bg, border: `1px solid ${i === 0 ? C.green : C.border}`, color: i === 0 ? C.white : C.muted }}>
-                  {String(i+1).padStart(2,"0")}
-                </div>
-                <p className="text-xs font-light text-center" style={{ color: i === 0 ? C.green : C.muted }}>{t}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* 5 step cards */}
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 pb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
             {[
-              { title: "個人化檔案管理", desc: "建立每位顧客的完整肌膚檔案，記錄每次變化，確保護理方向持續優化" },
-              { title: "精準分區護理", desc: "不同肌膚區域有不同問題，針對各區域制定最適合的護理方式" },
-              { title: "長期膚況追蹤", desc: "定期回訪評估，確保肌膚改善效果持久，並隨膚況調整護理計畫" },
-            ].map((item, i) => (
-              <div key={item.title} className="rounded-2xl p-6"
-                style={{ backgroundColor: i === 1 ? C.greenMid : C.bg, border: `1px solid ${i === 1 ? C.greenBord : C.border}` }}>
-                <div className="w-8 h-1 rounded-full mb-4" style={{ backgroundColor: i === 1 ? C.green : C.subtle }} />
-                <h3 className="text-sm font-light mb-2" style={{ letterSpacing: "0.06em", color: i === 1 ? C.green : C.dark }}>{item.title}</h3>
-                <p className="text-xs font-light leading-[2]" style={{ color: C.muted }}>{item.desc}</p>
+              { num: "01", title: "肌膚檢測", desc: "全面評估膚況，了解真正需求" },
+              { num: "02", title: "方案規劃", desc: "客製化護理計畫，精準設計" },
+              { num: "03", title: "專業療程", desc: "科技手法並用，精準執行" },
+              { num: "04", title: "追蹤評估", desc: "記錄改善進程，動態調整" },
+              { num: "05", title: "居家維護", desc: "延續療程效果，鞏固成果" },
+            ].map((step, i) => (
+              <div key={step.num} className="rounded-2xl p-5 flex flex-col gap-3"
+                style={{
+                  backgroundColor: i === 0 ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.07)",
+                  border: `1px solid ${i === 0 ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.12)"}`,
+                }}>
+                <span className="text-2xl font-light leading-none"
+                  style={{ color: i === 0 ? C.white : "rgba(255,255,255,0.3)", fontFamily: "Georgia, serif" }}>
+                  {step.num}
+                </span>
+                <div>
+                  <p className="text-sm font-light mb-1 text-white" style={{ letterSpacing: "0.06em" }}>{step.title}</p>
+                  <p className="text-xs font-light leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{step.desc}</p>
+                </div>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* 3 features strip */}
+        <div className="grid grid-cols-1 sm:grid-cols-3" style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+          {[
+            { title: "個人化檔案管理", desc: "建立每位顧客的完整肌膚檔案，記錄每次變化，確保護理方向持續優化" },
+            { title: "精準分區護理",   desc: "不同肌膚區域有不同問題，針對各區域制定最適合的護理方式" },
+            { title: "長期膚況追蹤",   desc: "定期回訪評估，確保肌膚改善效果持久，並隨膚況調整護理計畫" },
+          ].map((item, i) => (
+            <div key={item.title} className="px-8 sm:px-10 py-8 sm:py-10"
+              style={{ borderRight: i < 2 ? "1px solid rgba(255,255,255,0.12)" : "none" }}>
+              <div className="w-6 h-0.5 rounded-full mb-4" style={{ backgroundColor: "rgba(255,255,255,0.35)" }} />
+              <p className="text-sm font-light text-white mb-2" style={{ letterSpacing: "0.06em" }}>{item.title}</p>
+              <p className="text-xs font-light leading-[2]" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
