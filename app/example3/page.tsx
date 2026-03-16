@@ -420,8 +420,8 @@ export default function Page() {
               </div>
             </div>
             <div className="lg:w-[46%] px-4 sm:px-10 lg:px-0">
-              <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/3", borderRadius: 4 }}>
-                <Image src="/img/Page 8-1.JPG" alt="9skin 空間" fill className="object-cover" />
+              <div className="overflow-hidden" style={{ borderRadius: 4 }}>
+                <Image src="/img/Page 8-1.JPG" alt="9skin 空間" width={900} height={1200} className="w-full h-auto" />
               </div>
             </div>
           </div>
