@@ -181,7 +181,7 @@ export default function Page() {
         </div>
 
         {/* Location bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-16 px-7 py-4"
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-16 px-7 py-4 mt-8 md:mt-0" 
           style={{ backgroundColor: C.greenMid, borderTop: `1px solid ${C.greenBord}` }}>
           {["台北 · 松江南京站步行 3 分鐘", "高雄 · 巨蛋站步行 6 分鐘"].map(loc => (
             <div key={loc} className="flex items-center gap-2">
