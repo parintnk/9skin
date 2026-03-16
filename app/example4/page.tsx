@@ -483,18 +483,25 @@ export default function Page() {
               </div>
 
               {/* Founder story */}
-              <div className="mt-8 rounded-2xl p-6" style={{ backgroundColor: C.white, border: `1px solid ${C.greenBord}` }}>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-3.5 py-1.5 rounded-full text-xs font-light tracking-widest"
-                    style={{ backgroundColor: C.green, color: C.white }}>
-                    創辦人的故事
-                  </span>
-                  <span className="text-xs font-light tracking-[0.14em]" style={{ color: C.muted }}>The founder&apos;s story</span>
-                </div>
-                <div className="space-y-3">
-                  <p className="text-sm font-light leading-loose" style={{ color: C.muted }}>小時候的我，是同學眼中的「小黑妹」，因外在曾在學校被取笑。那段經歷讓我深刻感受到自信的重要，也激發我投入保養研究。</p>
-                  <p className="text-sm font-light leading-loose" style={{ color: C.muted }}>經過努力與學習，我找到了屬於自己的美，也下定決心：把這項專業技術傳承下去，幫助更多人看見自己最美的一面。</p>
-                  <p className="text-sm font-light leading-loose" style={{ color: C.muted }}>正是曾經的低谷，造就了現在的玖膚。因為這段經歷，我知道如何改變自己，也希望每一位走進玖膚的人，都能看見肌膚的改變、重拾自信，活出最美好的自己。</p>
+              <div className="mt-8 rounded-2xl overflow-hidden" style={{ backgroundColor: C.white, border: `1px solid ${C.greenBord}` }}>
+                <div className="flex flex-col sm:flex-row">
+                  <div className="relative sm:w-[42%] shrink-0" style={{ minHeight: 220 }}>
+                    <Image src="/img/Page 8-2.jpg" alt="玖膚創辦人" fill className="object-cover object-center" />
+                  </div>
+                  <div className="flex-1 p-6 flex flex-col gap-4">
+                    <div className="flex items-center justify-between">
+                      <span className="px-3.5 py-1.5 rounded-full text-xs font-light tracking-widest"
+                        style={{ backgroundColor: C.green, color: C.white }}>
+                        創辦人的故事
+                      </span>
+                      <span className="text-xs font-light tracking-[0.14em]" style={{ color: C.muted }}>The founder&apos;s story</span>
+                    </div>
+                    <div className="space-y-3">
+                      <p className="text-sm font-light leading-loose" style={{ color: C.muted }}>小時候的我，是同學眼中的「小黑妹」，因外在曾在學校被取笑。那段經歷讓我深刻感受到自信的重要，也激發我投入保養研究。</p>
+                      <p className="text-sm font-light leading-loose" style={{ color: C.muted }}>經過努力與學習，我找到了屬於自己的美，也下定決心：把這項專業技術傳承下去，幫助更多人看見自己最美的一面。</p>
+                      <p className="text-sm font-light leading-loose" style={{ color: C.muted }}>正是曾經的低谷，造就了現在的玖膚。因為這段經歷，我知道如何改變自己，也希望每一位走進玖膚的人，都能看見肌膚的改變、重拾自信，活出最美好的自己。</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
