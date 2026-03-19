@@ -85,8 +85,6 @@ const baReviews = [
   { img: "/img/BAreview/Page 10-6.png", title: "韓式深層保養＋草藥煥膚" },
   { img: "/img/BAreview/Page 10-7.png", title: "無痕水光" },
   { img: "/img/BAreview/Page 10-8.png", title: "童顏外泌體" },
-  { img: "/img/BAreview/Page 10-9.png", title: "脂肪神器" },
-  { img: "/img/BAreview/Page 10-10.png", title: "緊緻神槍" },
 ];
 
 const skinCareItems = [
@@ -181,22 +179,22 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 1 — Hero / About
       ══════════════════════════════════════ */}
-      <section className="min-h-screen flex flex-col">
+      <section className="sm:min-h-screen flex flex-col">
         <main className="flex-1 flex flex-col lg:flex-row">
 
           {/* Left */}
-          <div className="flex flex-col px-6 sm:px-12 lg:px-14 pt-8 pb-10 lg:pt-14 lg:pb-14 flex-1">
+          <div className="flex flex-col px-6 sm:px-12 lg:px-14 pt-5 pb-5 sm:pt-8 sm:pb-10 lg:pt-14 lg:pb-14 flex-1">
 
             {/* Logo */}
-            <div className="mb-8 lg:mb-20">
+            <div className="mb-4 lg:mb-20">
               <Image src="/img/9skin logo.png" alt="9skin 玖膚" width={220} height={80} className="w-[160px] lg:w-[200px] h-auto" style={{ mixBlendMode: "multiply", filter: "brightness(0.40)" }} />
             </div>
 
             {/* Heading block */}
-            <div className="mb-10 sm:mb-12">
-              <p data-reveal data-reveal-delay="1" className="text-[11px] lg:text-[13px] tracking-[0.3em] uppercase mb-4 font-light" style={{ color: "var(--brand-gold)" }}>
+            <div className="mb-5 sm:mb-12">
+              {/* <p data-reveal data-reveal-delay="1" className="text-[11px] lg:text-[13px] tracking-[0.3em] uppercase mb-4 font-light" style={{ color: "var(--brand-gold)" }}>
                 Brand Introduction
-              </p>
+              </p> */}
               <h1 data-reveal data-reveal-delay="2" className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-light leading-tight mb-8" style={{ letterSpacing: "0.04em" }}>
                 「关于我们」
               </h1>
@@ -207,14 +205,15 @@ export default function Page() {
             </div>
 
             {/* Body */}
-            <div className="flex flex-col gap-8 lg:gap-10 lg:flex-1 lg:justify-center">
+            <div className="flex flex-col gap-4 lg:gap-10 lg:flex-1 lg:justify-center">
               <div data-reveal data-reveal-delay="3" className="space-y-3">
                 <p className="text-base lg:text-[20px] font-light leading-loose">養膚，是一件更深、更長遠的事</p>
                 <p className="text-base lg:text-[20px] font-light leading-loose">我們像管理資產一樣，陪你管理『顏值』</p>
                 <p className="text-base lg:text-[20px] font-light leading-loose">替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
               </div>
-              <div className="w-8 h-px" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
+              
               <div data-reveal data-reveal-delay="4" className="space-y-3">
+                <div className="w-20 h-px" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
                 <p className="text-base lg:text-[20px] font-light leading-loose">我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
                 <p className="text-base lg:text-[20px] font-light leading-loose">以暖色調營造放鬆有溫度的環境</p>
                 <p className="text-base lg:text-[20px] font-light leading-loose">讓每位顧客都能享有專屬的私密與安心感</p>
@@ -224,7 +223,8 @@ export default function Page() {
 
           {/* Right — image */}
           <div className="lg:hidden w-full">
-            <Image src="/img/Page 1.JPG" alt="9skin" width={1206} height={2130} className="w-full h-[500px] object-cover" priority />
+            <Image src="/img/Page 1.JPG" alt="9skin" width={1206} height={2130} className="w-full h-[300px] sm:h-[360px] object-cover  object-[cent
+          -er_15%]" priority />
           </div>
           <div className="hidden lg:block relative lg:w-[32%] xl:w-[34%]">
             <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover object-[center_15%]" priority />
@@ -254,10 +254,10 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 2 — Skin Concerns
       ══════════════════════════════════════ */}
-      <section className="py-20 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-lighter)" }}>
         <div className="max-w-5xl mx-auto px-6 sm:px-0">
 
-          <div data-reveal className="text-center mb-16 sm:mb-20">
+          <div data-reveal className="text-center mb-6 sm:mb-20">
             <p className="text-[11px] lg:text-[13px] tracking-[0.3em] uppercase mb-5 font-light" style={{ color: "var(--brand-gold)" }}>
               Skin Concerns
             </p>
@@ -274,7 +274,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-12 sm:gap-y-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5 sm:gap-y-16">
             {concerns.map((c, i) => (
               <div key={i} data-reveal data-reveal-delay={i + 1} className="flex flex-col gap-5">
                 <div className="card-wrap relative w-full overflow-hidden" style={{ aspectRatio: "543/209", borderRadius: "2px" }}>
@@ -314,7 +314,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 3 — Skin Problems / Chat Bubbles
       ══════════════════════════════════════ */}
-      <section className="py-20 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
         <div className="max-w-5xl mx-auto px-6 sm:px-8">
 
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-5">
@@ -327,7 +327,7 @@ export default function Page() {
           </div>
           <div className="w-full h-px mb-16" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
 
-          <div className="flex flex-col gap-4 sm:gap-7 mb-16 sm:mb-20">
+          <div className="flex flex-col gap-4 sm:gap-7 mb-6 sm:mb-20">
             {/* Row 1 — center-left */}
             <div data-reveal="left" className="flex justify-start sm:pl-[12%]">
               <Bubble text="保養品越買越多，毛孔卻沒有變細，反而更明顯" align="left" />
@@ -385,7 +385,7 @@ export default function Page() {
       <section className="flex flex-col" style={{ backgroundColor: "var(--brand-light)" }}>
 
         {/* Header */}
-        <div className="px-8 sm:px-12 lg:px-14 pt-14 sm:pt-16 pb-8 sm:pb-10">
+        <div className="px-8 sm:px-12 lg:px-14 pt-7 sm:pt-16 pb-8 sm:pb-10">
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-20">
             <h2
               data-reveal
@@ -452,11 +452,11 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 5 — Why Choose 玖膚
       ══════════════════════════════════════ */}
-      <section className="py-20 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
         <div className="px-6 sm:px-10 lg:px-14">
 
           {/* Heading */}
-          <div data-reveal className="text-center mb-14 sm:mb-16">
+          <div data-reveal className="text-center mb-6 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-[3rem] font-light mb-3" style={{ letterSpacing: "0.04em" }}>
               為什麼選擇玖膚？
             </h2>
@@ -658,7 +658,7 @@ export default function Page() {
           </div>
 
           {/* Main heading */}
-          <h2 data-reveal className="text-[2.8rem] sm:text-[3.4rem] lg:text-[4rem] font-light mb-3" style={{ fontFamily: "Georgia, serif", letterSpacing: "0.08em" }}>
+          <h2 data-reveal className="text-[2.8rem] sm:text-[3.4rem] lg:text-[4rem] font-light mb-3" style={{letterSpacing: "0.08em" }}>
             SKIN CARE
           </h2>
 
@@ -733,7 +733,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 7 — 玖膚水煮蛋肌養成術
       ══════════════════════════════════════ */}
-      <section className="py-16 sm:py-20 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section className="py-8 sm:py-20 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
 
         {/* Header block */}
         <div className="px-8 sm:px-12 lg:px-14 mb-14 lg:mb-18">
@@ -972,7 +972,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 9 — Skin Care Management System
       ══════════════════════════════════════ */}
-      <section className="py-16 sm:py-20 lg:py-24 px-8 sm:px-12 lg:px-14" style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section className="py-8 sm:py-20 lg:py-24 px-8 sm:px-12 lg:px-14" style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Eyebrow with lines */}
         <div className="flex items-center gap-4 mb-12">
@@ -1043,7 +1043,7 @@ export default function Page() {
             <div key={i} className="flex gap-4">
               <div className="w-2 h-2 rounded-full mt-2 shrink-0" style={{ backgroundColor: "#404338" }} />
               <div>
-                <p className="text-[11px] tracking-widest font-light mb-1" style={{ color: "var(--brand-gold)" }}>{s.label}</p>
+                <p className="inline-block text-[11px] tracking-widest font-light mb-1 px-2.5 py-0.5 rounded-full" style={{ color: "var(--brand-footer-text)", backgroundColor: "#404338" }}>{s.label}</p>
                 <p className="text-base font-normal mb-1.5" style={{ letterSpacing: "0.03em" }}>{s.title}</p>
                 <p className="text-sm font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.86 }}>{s.desc}</p>
               </div>
@@ -1057,7 +1057,7 @@ export default function Page() {
           {/* STEP 1-2: top center */}
           <div className="flex justify-center mb-6">
             <div className="text-center max-w-[260px]">
-              <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 1–2</p>
+              <p className="inline-block text-[11px] tracking-[0.28em] font-light mb-1.5 px-2.5 py-0.5 rounded-full" style={{ color: "var(--brand-footer-text)", backgroundColor: "#404338" }}>STEP 1–2</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>美容師專業肌膚檢測</p>
               <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>深度分析膚況，了解肌膚耐受度與潛在問題，搭配溫和洗卸，徹底清潔表面贓汙，保護肌膚屏障，不造成刺激</p>
               <div className="w-2.5 h-2.5 rounded-full mx-auto mt-5" style={{ backgroundColor: "#404338" }} />
@@ -1067,7 +1067,7 @@ export default function Page() {
           {/* Middle: STEP 5-6 | circle | STEP 3-4 */}
           <div className="flex items-center gap-10 max-w-5xl mx-auto">
             <div className="flex-1 text-right">
-              <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 5–6</p>
+              <p className="inline-block text-[11px] tracking-[0.28em] font-light mb-1.5 px-2.5 py-0.5 rounded-full" style={{ color: "var(--brand-footer-text)", backgroundColor: "#404338" }}>STEP 5–6</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>專業手工針清</p>
               <p className="text-[15px] font-light mb-2" style={{ letterSpacing: "0.03em", color: "var(--brand-muted)" }}>→ 韓國醫美級護膚</p>
               <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>溫柔無痛清除粉刺與塞塞毛孔，搭配高濃度營養護理，立即補充肌膚所需，提升水潤與光澤感</p>
@@ -1091,7 +1091,7 @@ export default function Page() {
             </div>
 
             <div className="flex-1">
-              <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 3–4</p>
+              <p className="inline-block text-[11px] tracking-[0.28em] font-light mb-1.5 px-2.5 py-0.5 rounded-full" style={{ color: "var(--brand-footer-text)", backgroundColor: "#404338" }}>STEP 3–4</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>毛孔軟化</p>
               <p className="text-[15px] font-light mb-2" style={{ letterSpacing: "0.03em", color: "var(--brand-muted)" }}>→ 水飛梭深層清潔</p>
               <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>軟化角質與毛孔，搭配水飛梭去除深層贓污與老廢角質，改善毛孔塞塞，使肌膚呼吸更順暢</p>
@@ -1102,7 +1102,7 @@ export default function Page() {
           <div className="flex gap-10 max-w-5xl mx-auto mt-6">
             <div className="flex-1 text-right">
               <div className="w-2.5 h-2.5 rounded-full ml-auto mb-5" style={{ backgroundColor: "#404338" }} />
-              <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 7–8</p>
+              <p className="inline-block text-[11px] tracking-[0.28em] font-light mb-1.5 px-2.5 py-0.5 rounded-full" style={{ color: "var(--brand-footer-text)", backgroundColor: "#404338" }}>STEP 7–8</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>冰導舒緩</p>
               <p className="text-[15px] font-light mb-2" style={{ letterSpacing: "0.03em", color: "var(--brand-muted)" }}>→ 兩道修護面膜</p>
               <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>使用冰導舒緩精華，鎮靜、降低泛紅；接著兩道修護面膜深度保濕、修復肌膚屏障，使肌膚穩定、柔嫩有彈性</p>
@@ -1110,7 +1110,7 @@ export default function Page() {
             <div className="shrink-0" style={{ width: 300 }} />
             <div className="flex-1">
               <div className="w-2.5 h-2.5 rounded-full mb-5" style={{ backgroundColor: "#404338" }} />
-              <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 9–10</p>
+              <p className="inline-block text-[11px] tracking-[0.28em] font-light mb-1.5 px-2.5 py-0.5 rounded-full" style={{ color: "var(--brand-footer-text)", backgroundColor: "#404338" }}>STEP 9–10</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>PDT照光 → 完成</p>
               <p className="text-[15px] font-light mb-2" style={{ letterSpacing: "0.03em", color: "var(--brand-muted)" }}>→ 韓國醫美級護膚</p>
               <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>專業光療促進修護，搭配最後一輪醫美級護膚精華加強肌膚吸收與修護。療程結束後，肌膚即刻展現健康光澤，平滑透亮、穩定有彈性</p>
@@ -1125,7 +1125,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 10 — Before & After Results
       ══════════════════════════════════════ */}
-      <section className="py-20 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
         <div className="max-w-9xl mx-auto px-6 sm:px-10">
 
           {/* Eyebrow with lines */}
@@ -1138,7 +1138,7 @@ export default function Page() {
           </div>
 
           {/* Heading */}
-          <div data-reveal="fade" className="text-center mb-14 sm:mb-16">
+          <div data-reveal="fade" className="text-center mb-6 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug mb-4" style={{ letterSpacing: "0.04em" }}>
               顧客真實成效見證
             </h2>
@@ -1148,7 +1148,7 @@ export default function Page() {
           </div>
 
           {/* Grid — 2 cols mobile / 4 cols tablet / 5 cols desktop */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
+          <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-5">
             {baReviews.map((item, i) => (
               <div
                 key={i}
@@ -1189,7 +1189,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           BOOK NOW CTA
       ══════════════════════════════════════ */}
-      <section className="py-16 sm:py-20" style={{ backgroundColor: "var(--brand-footer)" }}>
+      <section className="py-8 sm:py-20" style={{ backgroundColor: "var(--brand-footer)" }}>
         <div className="flex flex-col items-center gap-6 px-6 text-center">
           <p className="text-[11px] tracking-[0.35em] uppercase font-light" style={{ color: "var(--brand-footer-text)", opacity: 0.6 }}>
             開始你的肌膚之旅
@@ -1216,13 +1216,13 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 11 — KOL Reviews
       ══════════════════════════════════════ */}
-      <section className="py-20 sm:py-24 lg:py-28 overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section className="py-8 sm:py-24 lg:py-28 overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Header */}
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-16 sm:mb-20">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-6 sm:mb-20">
 
           {/* Big heading */}
-          <div data-reveal className="text-center mb-16 sm:mb-20">
+          <div data-reveal className="text-center mb-6 sm:mb-20">
             <p className="text-[11px] lg:text-[13px] font-light tracking-[0.28em] uppercase mb-6" style={{ color: "var(--brand-muted)" }}>
               KOL Reviews
             </p>
@@ -1300,30 +1300,8 @@ export default function Page() {
           <div className="h-px" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
         </div>
 
-        {/* Mobile: swipeable KOL gallery */}
-        <div className="sm:hidden overflow-x-auto scroll-smooth px-4 pb-4" style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
-          <div className="flex gap-3" style={{ width: "max-content" }}>
-            {[...kolRow1, ...kolRow2].map((img, i) => (
-              <div
-                key={i}
-                className="shrink-0 overflow-hidden rounded-xl cursor-zoom-in"
-                style={{
-                  height: "clamp(220px, 65vw, 320px)",
-                  width: "clamp(124px, 37vw, 180px)",
-                  backgroundColor: "#F5F0E8",
-                  padding: "2px",
-                  boxShadow: "0 4px 16px rgba(56,50,42,0.1)",
-                }}
-                onClick={() => setLightbox(img.src)}
-              >
-                <Image src={img.src} alt={img.alt} width={180} height={320} className="h-full w-full object-cover rounded-lg" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Marquee rows — desktop only */}
-        <div className="marquee-outer hidden sm:flex flex-col gap-4">
+        {/* Marquee rows */}
+        <div className="marquee-outer flex flex-col gap-4">
 
           {/* Row 1 — scrolls left */}
           <div className="flex gap-3 sm:gap-4 marquee-track-left" style={{ width: "max-content" }}>
