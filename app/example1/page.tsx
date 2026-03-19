@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import { LuClipboardList, LuLeaf, LuSparkles, LuFlaskConical } from "react-icons/lu";
 
@@ -135,6 +136,23 @@ const steps = [
 ];
 
 export default function Page() {
+  useEffect(() => {
+    const els = document.querySelectorAll("[data-reveal]");
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-revealed"); obs.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    els.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("is-revealed");
+      } else {
+        obs.observe(el);
+      }
+    });
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <div style={{ backgroundColor: "var(--brand-cream)", color: "var(--brand-dark)" }}>
 
@@ -149,22 +167,15 @@ export default function Page() {
 
             {/* Logo */}
             <div className="mb-8 lg:mb-20">
-              <div className="flex items-baseline gap-2.5">
-                <span className="text-[1.6rem] lg:text-[1.9rem] font-light tracking-wider" style={{ fontFamily: "Georgia, serif" }}>
-                  9skin
-                </span>
-                <span className="text-xs lg:text-sm font-light tracking-[0.18em]" style={{ color: "var(--brand-gold)" }}>
-                  玖膚
-                </span>
-              </div>
+              <Image src="/img/9skin logo.png" alt="9skin 玖膚" width={220} height={80} className="w-[160px] lg:w-[200px] h-auto" style={{ mixBlendMode: "multiply", filter: "brightness(0.40)" }} />
             </div>
 
             {/* Heading block */}
             <div className="mb-10 sm:mb-12">
-              <p className="text-[11px] lg:text-xs tracking-[0.3em] uppercase mb-4 font-light" style={{ color: "var(--brand-gold)" }}>
+              <p data-reveal data-reveal-delay="1" className="text-[11px] lg:text-[13px] tracking-[0.3em] uppercase mb-4 font-light" style={{ color: "var(--brand-gold)" }}>
                 Brand Introduction
               </p>
-              <h1 className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-light leading-tight mb-8" style={{ letterSpacing: "0.04em" }}>
+              <h1 data-reveal data-reveal-delay="2" className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-light leading-tight mb-8" style={{ letterSpacing: "0.04em" }}>
                 「关于我们」
               </h1>
               <div className="flex items-center gap-4">
@@ -175,16 +186,16 @@ export default function Page() {
 
             {/* Body */}
             <div className="flex flex-col gap-8 lg:gap-10 lg:flex-1 lg:justify-center">
-              <div className="space-y-3">
-                <p className="text-base lg:text-[17px] font-light leading-loose">養膚，是一件更深、更長遠的事</p>
-                <p className="text-base lg:text-[17px] font-light leading-loose">我們像管理資產一樣，陪你管理『顏值』</p>
-                <p className="text-base lg:text-[17px] font-light leading-loose">替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
+              <div data-reveal data-reveal-delay="3" className="space-y-3">
+                <p className="text-base lg:text-[18px] font-light leading-loose">養膚，是一件更深、更長遠的事</p>
+                <p className="text-base lg:text-[18px] font-light leading-loose">我們像管理資產一樣，陪你管理『顏值』</p>
+                <p className="text-base lg:text-[18px] font-light leading-loose">替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
               </div>
               <div className="w-8 h-px" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
-              <div className="space-y-3">
-                <p className="text-base lg:text-[17px] font-light leading-loose">我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
-                <p className="text-base lg:text-[17px] font-light leading-loose">以暖色調營造放鬆有溫度的環境</p>
-                <p className="text-base lg:text-[17px] font-light leading-loose">讓每位顧客都能享有專屬的私密與安心感</p>
+              <div data-reveal data-reveal-delay="4" className="space-y-3">
+                <p className="text-base lg:text-[18px] font-light leading-loose">我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
+                <p className="text-base lg:text-[18px] font-light leading-loose">以暖色調營造放鬆有溫度的環境</p>
+                <p className="text-base lg:text-[18px] font-light leading-loose">讓每位顧客都能享有專屬的私密與安心感</p>
               </div>
             </div>
           </div>
@@ -203,14 +214,14 @@ export default function Page() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-20">
             <div className="flex items-center gap-3">
               <PinIcon />
-              <span className="text-sm lg:text-[15px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
+              <span className="text-sm lg:text-[16px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
                 台北店：位於松江南京站步行3分鐘
               </span>
             </div>
             <div className="hidden sm:block w-px h-4" style={{ backgroundColor: "rgba(197,186,176,0.2)" }} />
             <div className="flex items-center gap-3">
               <PinIcon />
-              <span className="text-sm lg:text-[15px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
+              <span className="text-sm lg:text-[16px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
                 高雄店：位於巨蛋站步行6分鐘
               </span>
             </div>
@@ -224,14 +235,14 @@ export default function Page() {
       <section className="py-20 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-lighter)" }}>
         <div className="max-w-5xl mx-auto px-6 sm:px-8">
 
-          <div className="text-center mb-16 sm:mb-20">
-            <p className="text-[11px] lg:text-xs tracking-[0.3em] uppercase mb-5 font-light" style={{ color: "var(--brand-gold)" }}>
+          <div data-reveal className="text-center mb-16 sm:mb-20">
+            <p className="text-[11px] lg:text-[13px] tracking-[0.3em] uppercase mb-5 font-light" style={{ color: "var(--brand-gold)" }}>
               Skin Concerns
             </p>
             <h2 className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug mb-4" style={{ letterSpacing: "0.04em" }}>
               常見的肌膚困擾，你中了幾項？
             </h2>
-            <p className="text-sm lg:text-[15px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
+            <p className="text-sm lg:text-[16px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
               How many of these common skin concerns do you struggle with?
             </p>
             <div className="flex items-center justify-center gap-3 mt-8">
@@ -243,7 +254,7 @@ export default function Page() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-12 sm:gap-y-16">
             {concerns.map((c, i) => (
-              <div key={i} className="flex flex-col gap-5">
+              <div key={i} data-reveal data-reveal-delay={i + 1} className="flex flex-col gap-5">
                 <div className="card-wrap relative w-full overflow-hidden" style={{ aspectRatio: "543/209", borderRadius: "2px" }}>
                   <Image src={c.img} alt={c.title} fill className="card-img object-cover" />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, rgba(20,16,12,0.1) 0%, rgba(20,16,12,0.55) 100%)" }} />
@@ -252,7 +263,7 @@ export default function Page() {
                     <p className="text-white/60 text-[11px] tracking-widest font-light">{c.subtitle}</p>
                   </div>
                 </div>
-                <p className="text-sm lg:text-[15px] font-light leading-[1.95]" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>
+                <p className="text-sm lg:text-[16px] font-light leading-[1.95]" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
                   {c.desc}
                 </p>
               </div>
@@ -269,7 +280,7 @@ export default function Page() {
 
           <div className="mt-10">
             <div className="rounded-full px-8 sm:px-12 py-4 sm:py-5 text-center" style={{ backgroundColor: "var(--brand-footer)", boxShadow: "0 4px 24px rgba(30,24,18,0.12)" }}>
-              <p className="text-sm lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-footer-text)", letterSpacing: "0.05em" }}>
+              <p className="text-sm lg:text-[16px] font-light leading-relaxed" style={{ color: "var(--brand-footer-text)", letterSpacing: "0.05em" }}>
                 這些問題看似獨立，實際上都指向同一個核心：肌膚缺乏正確的深層調理與系統化管理
               </p>
             </div>
@@ -288,33 +299,33 @@ export default function Page() {
             <h2 className="text-2xl sm:text-3xl lg:text-[2.4rem] font-light leading-snug" style={{ letterSpacing: "0.03em" }}>
               變美的路上，你也正在經歷這些嗎？
             </h2>
-            <span className="text-sm lg:text-[15px] font-light shrink-0" style={{ color: "var(--brand-gold)", letterSpacing: "0.18em" }}>
+            <span className="text-sm lg:text-[16px] font-light shrink-0" style={{ color: "var(--brand-gold)", letterSpacing: "0.18em" }}>
               Skin Problems
             </span>
           </div>
           <div className="w-full h-px mb-16" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
 
           <div className="flex flex-col gap-4 sm:gap-7 mb-16 sm:mb-20">
-            <div className="flex justify-start sm:justify-start sm:pl-[12%]">
+            <div data-reveal="left" className="flex justify-start sm:justify-start sm:pl-[12%]">
               <Bubble text="保養品越買越多，毛孔卻沒有變細，反而更明顯" />
             </div>
-            <div className="flex justify-end sm:hidden">
+            <div data-reveal="right" className="flex justify-end sm:hidden">
               <Bubble dark text="痘痘藥、A 酸都試過，皮膚卻始終反覆、不穩定" />
             </div>
-            <div className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between gap-5">
+            <div data-reveal className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between gap-5">
               <Bubble text="一到換季就泛紅、刺癢、脫皮，怎麼保養都不安心" />
               <Bubble dark text="痘痘藥、A 酸都試過，皮膚卻始終反覆、不穩定" />
             </div>
-            <div className="flex justify-start sm:hidden">
+            <div data-reveal="left" className="flex justify-start sm:hidden">
               <Bubble text="一到換季就泛紅、刺癢、脫皮，怎麼保養都不安心" />
             </div>
-            <div className="flex justify-end sm:hidden">
+            <div data-reveal="right" className="flex justify-end sm:hidden">
               <Bubble dark text="明明用的是高價保養，肌膚卻還是黯淡、沒精神" />
             </div>
-            <div className="flex justify-start sm:hidden">
+            <div data-reveal="left" className="flex justify-start sm:hidden">
               <Bubble text="不適合自己的課程與產品，讓皮膚越照顧越敏感" />
             </div>
-            <div className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between gap-5">
+            <div data-reveal className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between gap-5">
               <Bubble dark text="明明用的是高價保養，肌膚卻還是黯淡、沒精神" />
               <Bubble text="不適合自己的課程與產品，讓皮膚越照顧越敏感" />
             </div>
@@ -327,13 +338,13 @@ export default function Page() {
           </div>
 
           <div className="text-center space-y-4 max-w-2xl mx-auto">
-            <p className="text-base lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>
+            <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
               問題的核心不在於你不夠努力，而是缺少對肌膚的正確理解與專業指引
             </p>
-            <p className="text-base lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>
+            <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
               如果你也在想「我只是想要一個穩定、透亮、不再折騰的肌膚，到底該從哪裡開始？」
             </p>
-            <p className="text-base lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>
+            <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
               真正的改變，從了解肌膚狀態、回到皮膚本身的節奏開始！
             </p>
             <p className="text-sm tracking-[0.4em] font-light pt-2" style={{ color: "var(--brand-gold)" }}>· · ·</p>
@@ -351,16 +362,17 @@ export default function Page() {
         <div className="px-8 sm:px-12 lg:px-14 pt-14 sm:pt-16 pb-8 sm:pb-10">
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-20">
             <h2
+              data-reveal
               className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug lg:w-[44%] shrink-0 mb-5 lg:mb-0"
               style={{ letterSpacing: "0.03em" }}
             >
               想要彈潤透亮的水煮蛋肌？
             </h2>
             <div className="flex flex-col justify-center gap-2">
-              <p className="text-base lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+              <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                 我們先為你完整評估肌膚狀況，了解當下真正需要的是什麼
               </p>
-              <p className="text-base lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+              <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                 想把皮膚慢慢養好，先從這三個關鍵開始：
               </p>
             </div>
@@ -381,8 +393,8 @@ export default function Page() {
 
           {/* Steps */}
           <div className="flex-1 flex flex-col justify-center gap-10 lg:gap-12 px-8 sm:px-12 lg:px-14 py-12 lg:py-16">
-            {steps.map((step) => (
-              <div key={step.num}>
+            {steps.map((step, i) => (
+              <div key={step.num} data-reveal data-reveal-delay={i + 1}>
                 <div className="flex items-center gap-4 mb-4">
                   <div
                     className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
@@ -399,7 +411,7 @@ export default function Page() {
                 <div className="w-full h-px mb-5" style={{ backgroundColor: "rgba(56,50,42,0.15)" }} />
                 <div className="space-y-2">
                   {step.lines.map((line, i) => (
-                    <p key={i} className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                    <p key={i} className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                       {line}
                     </p>
                   ))}
@@ -418,11 +430,11 @@ export default function Page() {
         <div className="px-6 sm:px-10 lg:px-14">
 
           {/* Heading */}
-          <div className="text-center mb-14 sm:mb-16">
+          <div data-reveal className="text-center mb-14 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-[3rem] font-light mb-3" style={{ letterSpacing: "0.04em" }}>
               為什麼選擇玖膚？
             </h2>
-            <p className="text-sm lg:text-[15px] font-light tracking-widest" style={{ color: "var(--brand-gold)" }}>
+            <p className="text-sm lg:text-[16px] font-light tracking-widest" style={{ color: "var(--brand-gold)" }}>
               Why choose us?
             </p>
           </div>
@@ -463,8 +475,8 @@ export default function Page() {
                   { label: "成效", lines: ["以基礎清潔保濕及舒適放鬆為主", "在皮膚質地層面改善較為有限"] },
                 ],
               },
-            ].map((col) => (
-              <div key={col.label} className="overflow-hidden rounded-xl" style={{ border: "1px solid rgba(56,50,42,0.12)" }}>
+            ].map((col, i) => (
+              <div key={col.label} data-reveal data-reveal-delay={i + 1} className="overflow-hidden rounded-xl" style={{ border: "1px solid rgba(56,50,42,0.12)" }}>
                 {/* Card header */}
                 <div
                   className="py-4 px-5 text-center"
@@ -483,7 +495,7 @@ export default function Page() {
                         {row.label}
                       </p>
                       {row.lines.map((line, i) => (
-                        <p key={i} className="text-sm font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: col.featured ? 0.88 : 0.65 }}>
+                        <p key={i} className="text-sm font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: col.featured ? 0.9 : 0.78 }}>
                           {line}
                         </p>
                       ))}
@@ -495,7 +507,7 @@ export default function Page() {
           </div>
 
           {/* ── DESKTOP: table ── */}
-          <div className="hidden sm:block overflow-x-auto">
+          <div data-reveal className="hidden sm:block overflow-x-auto">
             <table className="w-full border-collapse" style={{ minWidth: 560 }}>
               <thead>
                 <tr>
@@ -574,7 +586,7 @@ export default function Page() {
                                   fontSize: "14px",
                                   letterSpacing: "0.03em",
                                   color: "var(--brand-dark)",
-                                  opacity: isCenter ? 0.88 : 0.62,
+                                  opacity: isCenter ? 0.9 : 0.78,
                                   fontWeight: isBold ? 500 : 300,
                                 }}
                               >
@@ -620,12 +632,12 @@ export default function Page() {
           </div>
 
           {/* Main heading */}
-          <h2 className="text-[2.8rem] sm:text-[3.4rem] lg:text-[4rem] font-light mb-3" style={{ fontFamily: "Georgia, serif", letterSpacing: "0.08em" }}>
+          <h2 data-reveal className="text-[2.8rem] sm:text-[3.4rem] lg:text-[4rem] font-light mb-3" style={{ fontFamily: "Georgia, serif", letterSpacing: "0.08em" }}>
             SKIN CARE
           </h2>
 
           {/* Subtitle row */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
+          <div data-reveal data-reveal-delay="1" className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
             <span className="text-2xl sm:text-[1.8rem] lg:text-[2.1rem] font-normal" style={{ letterSpacing: "0.04em" }}>
               韓式深層保養
             </span>
@@ -639,7 +651,7 @@ export default function Page() {
           <div className="w-12 h-[2px] mt-5 mb-7" style={{ backgroundColor: "var(--brand-gold)", opacity: 0.5 }} />
 
           {/* Description */}
-          <p className="text-base lg:text-[16px] font-light leading-loose mb-10" style={{ color: "var(--brand-dark)", opacity: 0.7, letterSpacing: "0.03em" }}>
+          <p className="text-base lg:text-[16px] font-light leading-loose mb-10" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
             我們的客製化皮膚管理課程，適合痘痘肌、敏感肌、酒糟肌以及乾燥肌等各種膚況，透過11個完整步驟，約120分鐘的專屬課程，由美容師一對一進行肌膚檢測與專業諮詢，幫你全面了解自己的肌膚狀態
           </p>
 
@@ -656,6 +668,8 @@ export default function Page() {
             {skinCareItems.map((item, i) => (
               <div
                 key={item.num}
+                data-reveal
+                data-reveal-delay={Math.min(i + 1, 5)}
                 className="flex gap-5 items-start py-4"
                 style={{ borderTop: i === 0 ? "none" : "1px solid rgba(56,50,42,0.1)" }}
               >
@@ -666,10 +680,10 @@ export default function Page() {
                   {item.num}
                 </span>
                 <div className="flex-1 flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
-                  <p className="text-base lg:text-[17px] font-normal shrink-0" style={{ letterSpacing: "0.04em" }}>
+                  <p className="text-base lg:text-[18px] font-normal shrink-0" style={{ letterSpacing: "0.04em" }}>
                     {item.title}
                   </p>
-                  <p className="text-sm lg:text-[14px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.75, letterSpacing: "0.02em" }}>
+                  <p className="text-sm lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.02em" }}>
                     {item.desc}
                   </p>
                 </div>
@@ -679,10 +693,10 @@ export default function Page() {
 
           {/* Footer summary */}
           <div className="mt-8 pt-7 space-y-1.5" style={{ borderTop: "1px solid rgba(56,50,42,0.14)" }}>
-            <p className="text-sm lg:text-[14px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.78, letterSpacing: "0.03em" }}>
+            <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.86, letterSpacing: "0.03em" }}>
               全程使用頂級院線保養品，確保肌膚得到最完整、最精準的照護
             </p>
-            <p className="text-sm lg:text-[14px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.78, letterSpacing: "0.03em" }}>
+            <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.86, letterSpacing: "0.03em" }}>
               每次課程都不只是表面保養而是從根本調理肌膚，幫助肌膚恢復健康、穩定與透亮，真正看得見的效果
             </p>
           </div>
@@ -703,11 +717,11 @@ export default function Page() {
               Skin Transformation Method
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div data-reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <h2 className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.4rem] font-bold leading-tight" style={{ letterSpacing: "0.03em" }}>
               玖膚水煮蛋肌養成術
             </h2>
-            <p className="text-sm lg:text-[15px] font-light shrink-0 pb-1" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
+            <p className="text-sm lg:text-[16px] font-light shrink-0 pb-1" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
               Our 4 Commitments
             </p>
           </div>
@@ -750,6 +764,8 @@ export default function Page() {
           ].map((item, i) => (
             <div
               key={i}
+              data-reveal
+              data-reveal-delay={i + 1}
               className="flex gap-4 py-5"
               style={{ borderBottom: "1px solid rgba(56,50,42,0.1)" }}
             >
@@ -762,7 +778,7 @@ export default function Page() {
               {/* Content */}
               <div className="flex-1 flex flex-col gap-2 pt-0.5">
                 <span style={{ color: "var(--brand-gold)" }}>{item.icon}</span>
-                <p className="text-sm font-light leading-[1.85]" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                <p className="text-sm font-light leading-[1.85]" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   {item.text}
                 </p>
               </div>
@@ -804,6 +820,8 @@ export default function Page() {
           ].map((item, i) => (
             <div
               key={i}
+              data-reveal
+              data-reveal-delay={i + 1}
               className="flex flex-col"
               style={{ borderLeft: i % 2 === 0 ? "none" : "1px solid rgba(56,50,42,0.12)" }}
             >
@@ -818,7 +836,7 @@ export default function Page() {
               {/* Icon + text */}
               <div className="flex flex-col gap-3 px-4 sm:px-6 lg:px-7 pt-6 pb-8">
                 <span style={{ color: "var(--brand-gold)" }}>{item.icon}</span>
-                <p className="text-sm lg:text-[15px] font-light leading-[1.9]" style={{ color: "var(--brand-dark)", opacity: 0.7, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[16px] font-light leading-[1.9]" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   {item.text}
                 </p>
               </div>
@@ -845,7 +863,7 @@ export default function Page() {
           </p>
 
           {/* Main heading */}
-          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-8">
+          <div data-reveal className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-8">
             <span className="text-[1.5rem] lg:text-[1.8rem] font-light tracking-wider" style={{ fontFamily: "Georgia, serif" }}>
               9skin<span className="text-xs lg:text-sm ml-1 tracking-[0.16em]" style={{ color: "var(--brand-gold)" }}>玖膚</span>
             </span>
@@ -864,19 +882,19 @@ export default function Page() {
 
           {/* Body */}
           <div className="space-y-4 mb-10">
-            <p className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.75, letterSpacing: "0.03em" }}>
+            <p data-reveal data-reveal-delay="1" className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
               9skin成立於2021年，在台北與高雄皆有分店，以改善2000個以上從問題肌膚到健康肌，再邁向變成細緻的光澤肌
             </p>
-            <p className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.75, letterSpacing: "0.03em" }}>
+            <p data-reveal data-reveal-delay="2" className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
               我們提供8種護膚課程，其中以『韓式深層保養』最受歡迎，許多客人第一次體驗後就成為長期回購的忠實顧客
             </p>
-            <p className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.75, letterSpacing: "0.03em" }}>
+            <p data-reveal data-reveal-delay="3" className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
               創立玖膚，只為了一個使命：幫助每個人提升顏值、增加價值，讓你遇見最好的自己
             </p>
           </div>
 
           {/* Salon image + Founder story — side by side */}
-          <div className="flex flex-col sm:flex-row gap-0 flex-1">
+          <div data-reveal className="flex flex-col sm:flex-row gap-0 flex-1">
 
             {/* Salon image */}
             <div className="relative sm:w-[42%] shrink-0 overflow-hidden" style={{ minHeight: 200, borderRadius: "2px 0 0 0" }}>
@@ -899,13 +917,13 @@ export default function Page() {
               </div>
               {/* Story */}
               <div className="space-y-4">
-                <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   小時候的我，是同學眼中的「小黑妹」，因外在曾在學校被取笑。那段經歷讓我深刻感受到自信的重要，也激發我投入保養研究。
                 </p>
-                <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   經過努力與學習，我找到了屬於自己的美，也下定決心：把這項專業技術傳承下去，幫助更多人看見自己最美的一面。
                 </p>
-                <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   正是曾經的低谷，造就了現在的玖膚。因為這段經歷，我知道如何改變自己，也希望每一位走進玖膚的人，都能看見肌膚的改變、重拾自信，活出最美好的自己。
                 </p>
               </div>
@@ -940,11 +958,11 @@ export default function Page() {
         </div>
 
         {/* Olive card */}
-        <div className="rounded-sm px-8 sm:px-10 lg:px-14 py-10 lg:py-12 mb-16 lg:mb-20" style={{ backgroundColor: "#404338" }}>
+        <div data-reveal className="rounded-sm px-8 sm:px-10 lg:px-14 py-10 lg:py-12 mb-16 lg:mb-20" style={{ backgroundColor: "#404338" }}>
           <h2 className="text-[1.7rem] sm:text-[2.2rem] lg:text-[2.8rem] font-bold text-center text-white mb-5" style={{ letterSpacing: "0.04em" }}>
             不只是保養・而是肌膚管理系統
           </h2>
-          <p className="text-sm lg:text-[15px] font-light text-center leading-loose mb-10 lg:mb-12 max-w-3xl mx-auto" style={{ color: "rgba(230,225,205,0.75)", letterSpacing: "0.03em" }}>
+          <p className="text-sm lg:text-[16px] font-light text-center leading-loose mb-10 lg:mb-12 max-w-3xl mx-auto" style={{ color: "rgba(230,225,205,0.88)", letterSpacing: "0.03em" }}>
             我們相信，好的肌膚管理，不是一昧塗抹，而是建立肌膚的管理系統，是一個可以走一輩子的保養計畫。我們的每一堂課，都是一份顏值計畫書
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
@@ -962,9 +980,9 @@ export default function Page() {
                 lines: ["不走極端課程路線", "不追求立即效果而犧牲肌膚健康", "我們重視的是長期穩定的美麗", "而非短暫的表面改善"],
               },
             ].map((col, i) => (
-              <div key={i}>
+              <div key={i} data-reveal data-reveal-delay={i + 1}>
                 <div className="pb-2.5 mb-4" style={{ borderBottom: "1px solid rgba(230,225,205,0.28)" }}>
-                  <p className="text-[14px] lg:text-[15px] font-normal text-white" style={{ letterSpacing: "0.04em" }}>
+                  <p className="text-[14px] lg:text-[16px] font-normal text-white" style={{ letterSpacing: "0.04em" }}>
                     {col.title}
                   </p>
                 </div>
@@ -979,7 +997,7 @@ export default function Page() {
             ))}
           </div>
           <div className="pt-6" style={{ borderTop: "1px solid rgba(230,225,205,0.16)" }}>
-            <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "rgba(230,225,205,0.80)", letterSpacing: "0.03em" }}>
+            <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "rgba(230,225,205,0.92)", letterSpacing: "0.03em" }}>
               顏值，不只是皮膚好，而是你狀態穩定的證明。在9skin，我們不追求一次性的表面改變，而是用系統化的皮膚管理，陪你長期經營顏值資產，讓穩定狀態成為你最好的外在名片
             </p>
           </div>
@@ -1001,7 +1019,7 @@ export default function Page() {
               <div>
                 <p className="text-[11px] tracking-widest font-light mb-1" style={{ color: "var(--brand-gold)" }}>{s.label}</p>
                 <p className="text-base font-normal mb-1.5" style={{ letterSpacing: "0.03em" }}>{s.title}</p>
-                <p className="text-sm font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.78 }}>{s.desc}</p>
+                <p className="text-sm font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.86 }}>{s.desc}</p>
               </div>
             </div>
           ))}
@@ -1015,7 +1033,7 @@ export default function Page() {
             <div className="text-center max-w-[260px]">
               <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 1–2</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>美容師專業肌膚檢測</p>
-              <p className="text-[13px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>深度分析膚況，了解肌膚耐受度與潛在問題，搭配溫和洗卸，徹底清潔表面贓汙，保護肌膚屏障，不造成刺激</p>
+              <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>深度分析膚況，了解肌膚耐受度與潛在問題，搭配溫和洗卸，徹底清潔表面贓汙，保護肌膚屏障，不造成刺激</p>
               <div className="w-2.5 h-2.5 rounded-full mx-auto mt-5" style={{ backgroundColor: "#404338" }} />
             </div>
           </div>
@@ -1026,7 +1044,7 @@ export default function Page() {
               <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 5–6</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>專業手工針清</p>
               <p className="text-[15px] font-light mb-2" style={{ letterSpacing: "0.03em", color: "var(--brand-muted)" }}>→ 韓國醫美級護膚</p>
-              <p className="text-[13px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>溫柔無痛清除粉刺與塞塞毛孔，搭配高濃度營養護理，立即補充肌膚所需，提升水潤與光澤感</p>
+              <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>溫柔無痛清除粉刺與塞塞毛孔，搭配高濃度營養護理，立即補充肌膚所需，提升水潤與光澤感</p>
             </div>
 
             {/* Circle */}
@@ -1042,7 +1060,7 @@ export default function Page() {
               <div className="absolute w-3 h-3 rounded-full" style={{ top: -6, left: "calc(50% - 6px)", backgroundColor: "#404338" }} />
               <div className="absolute w-3 h-3 rounded-full" style={{ top: "calc(50% - 6px)", right: -6, backgroundColor: "#404338" }} />
               <div className="absolute w-3 h-3 rounded-full" style={{ top: "calc(50% - 6px)", left: -6, backgroundColor: "#404338" }} />
-              <div className="absolute w-3 h-3 rounded-full" style={{ top: "calc(91% - 6px)", left: "calc(73% - 6px)", backgroundColor: "#404338" }} />
+              <div className="absolute w-3 h-3 rounded-full" style={{ top: "calc(91% - 6px)", left: "calc(79% - 6px)", backgroundColor: "#404338" }} />
               <div className="absolute w-3 h-3 rounded-full" style={{ top: "calc(91% - 6px)", left: "calc(23% - 6px)", backgroundColor: "#404338" }} />
             </div>
 
@@ -1050,7 +1068,7 @@ export default function Page() {
               <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 3–4</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>毛孔軟化</p>
               <p className="text-[15px] font-light mb-2" style={{ letterSpacing: "0.03em", color: "var(--brand-muted)" }}>→ 水飛梭深層清潔</p>
-              <p className="text-[13px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>軟化角質與毛孔，搭配水飛梭去除深層贓污與老廢角質，改善毛孔塞塞，使肌膚呼吸更順暢</p>
+              <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>軟化角質與毛孔，搭配水飛梭去除深層贓污與老廢角質，改善毛孔塞塞，使肌膚呼吸更順暢</p>
             </div>
           </div>
 
@@ -1061,7 +1079,7 @@ export default function Page() {
               <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 7–8</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>冰導舒緩</p>
               <p className="text-[15px] font-light mb-2" style={{ letterSpacing: "0.03em", color: "var(--brand-muted)" }}>→ 兩道修護面膜</p>
-              <p className="text-[13px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>使用冰導舒緩精華，鎮靜、降低泛紅；接著兩道修護面膜深度保濕、修復肌膚屏障，使肌膚穩定、柔嫩有彈性</p>
+              <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>使用冰導舒緩精華，鎮靜、降低泛紅；接著兩道修護面膜深度保濕、修復肌膚屏障，使肌膚穩定、柔嫩有彈性</p>
             </div>
             <div className="shrink-0" style={{ width: 300 }} />
             <div className="flex-1">
@@ -1069,7 +1087,7 @@ export default function Page() {
               <p className="text-[11px] tracking-[0.28em] font-light mb-1.5" style={{ color: "var(--brand-gold)" }}>STEP 9–10</p>
               <p className="text-[17px] font-normal mb-2" style={{ letterSpacing: "0.03em" }}>PDT照光 → 完成</p>
               <p className="text-[15px] font-light mb-2" style={{ letterSpacing: "0.03em", color: "var(--brand-muted)" }}>→ 韓國醫美級護膚</p>
-              <p className="text-[13px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.75 }}>專業光療促進修護，搭配最後一輪醫美級護膚精華加強肌膚吸收與修護。療程結束後，肌膚即刻展現健康光澤，平滑透亮、穩定有彈性</p>
+              <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>專業光療促進修護，搭配最後一輪醫美級護膚精華加強肌膚吸收與修護。療程結束後，肌膚即刻展現健康光澤，平滑透亮、穩定有彈性</p>
             </div>
           </div>
 
@@ -1087,18 +1105,18 @@ export default function Page() {
           {/* Eyebrow with lines */}
           <div className="flex items-center gap-4 mb-12 sm:mb-16">
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.18)" }} />
-            <p className="text-[11px] lg:text-xs font-light tracking-[0.28em] uppercase shrink-0" style={{ color: "var(--brand-muted)" }}>
+            <p className="text-[11px] lg:text-[13px] font-light tracking-[0.28em] uppercase shrink-0" style={{ color: "var(--brand-muted)" }}>
               Before &amp; After
             </p>
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.18)" }} />
           </div>
 
           {/* Heading */}
-          <div className="text-center mb-14 sm:mb-16">
+          <div data-reveal="fade" className="text-center mb-14 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug mb-4" style={{ letterSpacing: "0.04em" }}>
               顧客真實成效見證
             </h2>
-            <p className="text-sm lg:text-[15px] font-light" style={{ color: "var(--brand-dark)", opacity: 0.55, letterSpacing: "0.05em" }}>
+            <p className="text-sm lg:text-[16px] font-light" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.05em" }}>
               每一張照片，都是一段蛻變的故事
             </p>
           </div>
@@ -1106,7 +1124,7 @@ export default function Page() {
           {/* Grid — 2 cols mobile / 4 cols tablet / 5 cols desktop */}
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
             {baReviews.map((item, i) => (
-              <div key={i} className="card-wrap flex flex-col group">
+              <div key={i} data-reveal="fade" data-reveal-delay={Math.min(i + 1, 5)} className="card-wrap flex flex-col group">
                 <div
                   className="overflow-hidden rounded-sm"
                   style={{ aspectRatio: "1 / 1" }}
@@ -1126,7 +1144,7 @@ export default function Page() {
           {/* Footer note */}
           <div className="mt-14 sm:mt-16 flex items-center gap-4">
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
-            <p className="md:text-[18px] text-xs font-light tracking-[0.15em] shrink-0" style={{ color: "var(--brand-dark)", opacity: 0.4 }}>
+            <p className="md:text-[18px] text-xs font-light tracking-[0.15em] shrink-0" style={{ color: "var(--brand-dark)", opacity: 0.62}}>
               以上均為顧客真實案例，效果因個人膚況而異
             </p>
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
@@ -1145,8 +1163,8 @@ export default function Page() {
         <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-16 sm:mb-20">
 
           {/* Big heading */}
-          <div className="text-center mb-16 sm:mb-20">
-            <p className="text-[11px] lg:text-xs font-light tracking-[0.28em] uppercase mb-6" style={{ color: "var(--brand-muted)" }}>
+          <div data-reveal className="text-center mb-16 sm:mb-20">
+            <p className="text-[11px] lg:text-[13px] font-light tracking-[0.28em] uppercase mb-6" style={{ color: "var(--brand-muted)" }}>
               KOL Reviews
             </p>
             <h2
@@ -1155,7 +1173,7 @@ export default function Page() {
             >
               眞實口碑・看得見的改變
             </h2>
-            <p className="text-sm lg:text-base font-light tracking-widest" style={{ color: "var(--brand-dark)", opacity: 0.45, letterSpacing: "0.18em" }}>
+            <p className="text-sm lg:text-base font-light tracking-widest" style={{ color: "var(--brand-dark)", opacity: 0.65, letterSpacing: "0.18em" }}>
               Real Testimonials, Visible Transformations.
             </p>
           </div>
@@ -1188,7 +1206,7 @@ export default function Page() {
             </div>
 
             {/* Right: text */}
-            <div className="flex-1 text-center lg:text-left">
+            <div data-reveal data-reveal-delay="1" className="flex-1 text-center lg:text-left">
               <p className="text-base tracking-[0.4em] mb-5" style={{ color: "var(--brand-muted)", letterSpacing: "0.3em" }}>
                 · · · · · · ·
               </p>
@@ -1200,14 +1218,14 @@ export default function Page() {
               </h3>
               <div className="w-12 h-px mb-6 mx-auto lg:mx-0" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
               <div className="space-y-4 mb-8">
-                <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   許多美容部落客與KOL體驗後都給予高度評價，不只是因為立即的效果，更重視的是玖膚對肌膚健康的長期關注
                 </p>
-                <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   超過5000位顧客的信任，來自於我們對每一位客人的用心照護。每一則好評都是我們持續進步的動力
                 </p>
               </div>
-              <p className="text-[11px] font-light tracking-[0.2em] uppercase" style={{ color: "var(--brand-muted)", opacity: 0.7 }}>
+              <p className="text-[11px] font-light tracking-[0.2em] uppercase" style={{ color: "var(--brand-muted)" }}>
                 Highly positive feedback from KOLs and customers
               </p>
             </div>
