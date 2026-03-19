@@ -58,12 +58,12 @@ function Bubble({ text, dark = false, align = "left" }: { text: string; dark?: b
 
 const kolRow1 = [
   { src: "/img/Page 11 KOL Reviews/Page \u200d11-1-1.png", alt: "KOL review 1" },
-  { src: "/img/Page 11 KOL Reviews/Page 11-1-2.png",       alt: "KOL review 2" },
-  { src: "/img/Page 11 KOL Reviews/Page 11-1-3.png",       alt: "KOL review 3" },
-  { src: "/img/Page 11 KOL Reviews/Page 11-1-4.png",       alt: "KOL review 4" },
-  { src: "/img/Page 11 KOL Reviews/Page 11-2-1.png",       alt: "KOL review 5" },
-  { src: "/img/Page 11 KOL Reviews/Page 11-2-2.png",       alt: "KOL review 6" },
-  { src: "/img/Page 11 KOL Reviews/Page 11-2-3.png",       alt: "KOL review 7" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-1-2.png", alt: "KOL review 2" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-1-3.png", alt: "KOL review 3" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-1-4.png", alt: "KOL review 4" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-2-1.png", alt: "KOL review 5" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-2-2.png", alt: "KOL review 6" },
+  { src: "/img/Page 11 KOL Reviews/Page 11-2-3.png", alt: "KOL review 7" },
 ];
 
 const kolRow2 = [
@@ -211,7 +211,7 @@ export default function Page() {
                 <p className="text-base lg:text-[20px] font-light leading-loose">我們像管理資產一樣，陪你管理『顏值』</p>
                 <p className="text-base lg:text-[20px] font-light leading-loose">替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
               </div>
-              
+
               <div data-reveal data-reveal-delay="4" className="space-y-3">
                 <div className="w-20 h-px" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
                 <p className="text-base lg:text-[20px] font-light leading-loose">我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
@@ -658,7 +658,7 @@ export default function Page() {
           </div>
 
           {/* Main heading */}
-          <h2 data-reveal className="text-[2.8rem] sm:text-[3.4rem] lg:text-[4rem] font-light mb-3" style={{letterSpacing: "0.08em" }}>
+          <h2 data-reveal className="text-[2.8rem] sm:text-[3.4rem] lg:text-[4rem] font-light mb-3" style={{ letterSpacing: "0.08em" }}>
             SKIN CARE
           </h2>
 
@@ -1176,7 +1176,7 @@ export default function Page() {
           {/* Footer note */}
           <div className="mt-14 sm:mt-16 flex items-center gap-4">
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
-            <p className="md:text-[18px] text-xs font-light tracking-[0.15em] shrink-0" style={{ color: "var(--brand-dark)", opacity: 0.62}}>
+            <p className="md:text-[18px] text-xs font-light tracking-[0.15em] shrink-0" style={{ color: "var(--brand-dark)", opacity: 0.62 }}>
               以上均為顧客真實案例，效果因個人膚況而異
             </p>
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
@@ -1341,6 +1341,98 @@ export default function Page() {
             ))}
           </div>
 
+        </div>
+
+      </section>
+
+      {/* ── S12 · LINE Customer Reviews ── */}
+      <section className="pt-12 sm:pt-20 pb-12" style={{ backgroundColor: "var(--brand-lighter)" }}>
+
+        {/* Heading */}
+        <div className="text-center mb-8 sm:mb-14 px-4" data-reveal="fade">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>
+            官方line 顧客好評分享
+          </h2>
+          <p className="mt-2 text-sm sm:text-base italic" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
+            Official Line Customer Review Sharing
+          </p>
+        </div>
+
+        {/* Mobile: 2-col grid */}
+        <div className="sm:hidden columns-2 gap-3 px-4">
+          {[
+            "/img/Page 12_ Customer Review from Line Official /IMG_0054.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_1424.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_1588.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_2692.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_2693.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_3443.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_3870.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_6375.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_7069.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_7154.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_7644.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_8622.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_9222.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_9264.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_9595.jpg",
+            "/img/Page 12_ Customer Review from Line Official /IMG_9699.jpg",
+          ].map((src, i) => (
+            <div key={i} className="mb-3 break-inside-avoid cursor-zoom-in" onClick={() => setLightbox(src)}>
+              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "white", boxShadow: "0 4px 16px rgba(30,24,18,0.10)", padding: "5px" }}>
+                <Image src={src} alt={`顧客好評 ${i + 1}`} width={300} height={480} className="w-full h-auto rounded-xl" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: absolute scattered layout */}
+        <div className="hidden sm:block relative mx-auto" style={{ maxWidth: 1200, height: 1340, paddingLeft: 24, paddingRight: 24 }}>
+          {([
+            { src: "IMG_0054.jpg", left: "0%", top: 0, width: "27%"},
+            { src: "IMG_1424.jpg", left: "24%", top: 50, width: "26%" },
+            { src: "IMG_1588.jpg", left: "49%", top: 30, width: "24%"},
+            { src: "IMG_2692.jpg", left: "73%", top: -10, width: "26%" },
+            { src: "IMG_2693.jpg", left: "-5%", top: 270, width: "27%" },
+            { src: "IMG_3443.jpg", left: "22%", top: 295, width: "25%"},
+            { src: "IMG_3870.jpg", left: "49%", top: 200, width: "24%" },
+            { src: "IMG_6375.jpg", left: "76%", top: 188, width: "25%"},
+            { src: "IMG_7069.jpg", left: "-2%", top: 480, width: "26%"},
+            { src: "IMG_7154.jpg", left: "22%", top: 425, width: "26%" },
+            { src: "IMG_7644.jpg", left: "48%", top: 350, width: "26%"},
+            { src: "IMG_8622.jpg", left: "79%", top: 485, width: "25%" },
+            { src: "IMG_9222.jpg", left: "-4%", top: 605, width: "27%" },
+            { src: "IMG_9264.jpg", left: "25%", top: 625, width: "26%"},
+            { src: "IMG_9595.jpg", left: "51%", top: 520, width: "23%" },
+            { src: "IMG_9699.jpg", left: "75%", top: 600, width: "24%"},
+          ] as { src: string; left: string; top: number; width: string;  }[]).map((card, i) => (
+            <div
+              key={i}
+              className="absolute cursor-zoom-in"
+              style={{
+                left: card.left,
+                top: card.top,
+                width: card.width,
+                transform: `rotate(${card.deg}deg)`,
+                transformOrigin: "center center",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                zIndex: 1,
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "rotate(0deg) scale(1.04)"; (e.currentTarget as HTMLElement).style.zIndex = "10"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = `rotate(${card.deg}deg) scale(1)`; (e.currentTarget as HTMLElement).style.zIndex = "1"; }}
+              onClick={() => setLightbox(`/img/Page 12_ Customer Review from Line Official /${card.src}`)}
+            >
+              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "white", boxShadow: "0 6px 24px rgba(30,24,18,0.12)", padding: "6px" }}>
+                <Image
+                  src={`/img/Page 12_ Customer Review from Line Official /${card.src}`}
+                  alt={`顧客好評 ${i + 1}`}
+                  width={300}
+                  height={480}
+                  className="w-full h-auto rounded-xl"
+                />
+              </div>
+            </div>
+          ))}
         </div>
 
       </section>
