@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { LuClipboardList, LuLeaf, LuSparkles, LuFlaskConical } from "react-icons/lu";
+import { SiLine } from "react-icons/si";
 
 function PinIcon() {
   return (
@@ -15,23 +16,42 @@ function PinIcon() {
   );
 }
 
-function Bubble({ text, dark = false }: { text: string; dark?: boolean }) {
-  const bg = dark ? "var(--brand-footer)" : "var(--brand-light)";
+function Bubble({ text, dark = false, align = "left" }: { text: string; dark?: boolean; align?: "left" | "right" | "center" }) {
+  const bgHex = dark ? "#404338" : "#E0DAD0";
   const color = dark ? "var(--brand-footer-text)" : "var(--brand-dark)";
+
+  const tail =
+    align === "left" ? (
+      <div style={{ display: "flex", justifyContent: "flex-start", paddingLeft: 20 }}>
+        <div style={{ width: 0, height: 0, borderRight: "12px solid transparent", borderTop: `13px solid ${bgHex}` }} />
+      </div>
+    ) : align === "right" ? (
+      <div style={{ display: "flex", justifyContent: "flex-end", paddingRight: 20 }}>
+        <div style={{ width: 0, height: 0, borderLeft: "12px solid transparent", borderTop: `13px solid ${bgHex}` }} />
+      </div>
+    ) : (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ width: 0, height: 0, borderLeft: "10px solid transparent", borderRight: "10px solid transparent", borderTop: `11px solid ${bgHex}` }} />
+      </div>
+    );
+
   return (
-    <div
-      className="rounded-full px-6 sm:px-7 py-3 sm:py-[14px] max-w-[88vw] sm:max-w-none"
-      style={{
-        backgroundColor: bg,
-        color,
-        boxShadow: dark
-          ? "0 6px 28px rgba(30,24,18,0.22), 0 1px 4px rgba(30,24,18,0.1)"
-          : "0 2px 16px rgba(30,24,18,0.08)",
-      }}
-    >
-      <p className="text-sm sm:text-[15px] lg:text-base font-light" style={{ letterSpacing: "0.04em" }}>
-        {text}
-      </p>
+    <div className="flex flex-col max-w-[88vw] sm:max-w-none">
+      <div
+        className="rounded-2xl px-6 sm:px-8 py-4 sm:py-5"
+        style={{
+          backgroundColor: bgHex,
+          color,
+          boxShadow: dark
+            ? "0 6px 28px rgba(30,24,18,0.22), 0 1px 4px rgba(30,24,18,0.1)"
+            : "0 2px 16px rgba(30,24,18,0.08)",
+        }}
+      >
+        <p className="text-[15px] sm:text-base lg:text-[17px] font-light" style={{ letterSpacing: "0.04em" }}>
+          {text}
+        </p>
+      </div>
+      {tail}
     </div>
   );
 }
@@ -136,6 +156,8 @@ const steps = [
 ];
 
 export default function Page() {
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
   useEffect(() => {
     const els = document.querySelectorAll("[data-reveal]");
     const obs = new IntersectionObserver(
@@ -187,22 +209,22 @@ export default function Page() {
             {/* Body */}
             <div className="flex flex-col gap-8 lg:gap-10 lg:flex-1 lg:justify-center">
               <div data-reveal data-reveal-delay="3" className="space-y-3">
-                <p className="text-base lg:text-[18px] font-light leading-loose">養膚，是一件更深、更長遠的事</p>
-                <p className="text-base lg:text-[18px] font-light leading-loose">我們像管理資產一樣，陪你管理『顏值』</p>
-                <p className="text-base lg:text-[18px] font-light leading-loose">替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">養膚，是一件更深、更長遠的事</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">我們像管理資產一樣，陪你管理『顏值』</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
               </div>
               <div className="w-8 h-px" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
               <div data-reveal data-reveal-delay="4" className="space-y-3">
-                <p className="text-base lg:text-[18px] font-light leading-loose">我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
-                <p className="text-base lg:text-[18px] font-light leading-loose">以暖色調營造放鬆有溫度的環境</p>
-                <p className="text-base lg:text-[18px] font-light leading-loose">讓每位顧客都能享有專屬的私密與安心感</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">以暖色調營造放鬆有溫度的環境</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">讓每位顧客都能享有專屬的私密與安心感</p>
               </div>
             </div>
           </div>
 
           {/* Right — image */}
           <div className="lg:hidden w-full">
-            <Image src="/img/Page 1.JPG" alt="9skin" width={1206} height={2130} className="w-full h-auto" priority />
+            <Image src="/img/Page 1.JPG" alt="9skin" width={1206} height={2130} className="w-full h-[500px] object-cover" priority />
           </div>
           <div className="hidden lg:block relative lg:w-[32%] xl:w-[34%]">
             <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover object-[center_15%]" priority />
@@ -214,14 +236,14 @@ export default function Page() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-20">
             <div className="flex items-center gap-3">
               <PinIcon />
-              <span className="text-sm lg:text-[16px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
+              <span className="text-sm lg:text-[17px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
                 台北店：位於松江南京站步行3分鐘
               </span>
             </div>
             <div className="hidden sm:block w-px h-4" style={{ backgroundColor: "rgba(197,186,176,0.2)" }} />
             <div className="flex items-center gap-3">
               <PinIcon />
-              <span className="text-sm lg:text-[16px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
+              <span className="text-sm lg:text-[17px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
                 高雄店：位於巨蛋站步行6分鐘
               </span>
             </div>
@@ -233,7 +255,7 @@ export default function Page() {
           SECTION 2 — Skin Concerns
       ══════════════════════════════════════ */}
       <section className="py-20 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-lighter)" }}>
-        <div className="max-w-5xl mx-auto px-6 sm:px-8">
+        <div className="max-w-5xl mx-auto px-6 sm:px-0">
 
           <div data-reveal className="text-center mb-16 sm:mb-20">
             <p className="text-[11px] lg:text-[13px] tracking-[0.3em] uppercase mb-5 font-light" style={{ color: "var(--brand-gold)" }}>
@@ -242,7 +264,7 @@ export default function Page() {
             <h2 className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug mb-4" style={{ letterSpacing: "0.04em" }}>
               常見的肌膚困擾，你中了幾項？
             </h2>
-            <p className="text-sm lg:text-[16px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
+            <p className="text-sm lg:text-[17px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
               How many of these common skin concerns do you struggle with?
             </p>
             <div className="flex items-center justify-center gap-3 mt-8">
@@ -263,7 +285,7 @@ export default function Page() {
                     <p className="text-white/60 text-[11px] tracking-widest font-light">{c.subtitle}</p>
                   </div>
                 </div>
-                <p className="text-sm lg:text-[16px] font-light leading-[1.95]" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
+                <p className="text-sm lg:text-[17px] font-light leading-[1.95]" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
                   {c.desc}
                 </p>
               </div>
@@ -280,7 +302,7 @@ export default function Page() {
 
           <div className="mt-10">
             <div className="rounded-full px-8 sm:px-12 py-4 sm:py-5 text-center" style={{ backgroundColor: "var(--brand-footer)", boxShadow: "0 4px 24px rgba(30,24,18,0.12)" }}>
-              <p className="text-sm lg:text-[16px] font-light leading-relaxed" style={{ color: "var(--brand-footer-text)", letterSpacing: "0.05em" }}>
+              <p className="text-sm lg:text-[17px] font-light leading-relaxed" style={{ color: "var(--brand-footer-text)", letterSpacing: "0.05em" }}>
                 這些問題看似獨立，實際上都指向同一個核心：肌膚缺乏正確的深層調理與系統化管理
               </p>
             </div>
@@ -299,55 +321,59 @@ export default function Page() {
             <h2 className="text-2xl sm:text-3xl lg:text-[2.4rem] font-light leading-snug" style={{ letterSpacing: "0.03em" }}>
               變美的路上，你也正在經歷這些嗎？
             </h2>
-            <span className="text-sm lg:text-[16px] font-light shrink-0" style={{ color: "var(--brand-gold)", letterSpacing: "0.18em" }}>
+            <span className="text-sm lg:text-[17px] font-light shrink-0" style={{ color: "var(--brand-gold)", letterSpacing: "0.18em" }}>
               Skin Problems
             </span>
           </div>
           <div className="w-full h-px mb-16" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
 
           <div className="flex flex-col gap-4 sm:gap-7 mb-16 sm:mb-20">
-            <div data-reveal="left" className="flex justify-start sm:justify-start sm:pl-[12%]">
-              <Bubble text="保養品越買越多，毛孔卻沒有變細，反而更明顯" />
+            {/* Row 1 — center-left */}
+            <div data-reveal="left" className="flex justify-start sm:pl-[12%]">
+              <Bubble text="保養品越買越多，毛孔卻沒有變細，反而更明顯" align="left" />
             </div>
+            {/* Row 2 — mobile */}
             <div data-reveal="right" className="flex justify-end sm:hidden">
-              <Bubble dark text="痘痘藥、A 酸都試過，皮膚卻始終反覆、不穩定" />
+              <Bubble dark text="痘痘藥、A 酸都試過，皮膚卻始終反覆、不穩定" align="right" />
             </div>
-            <div data-reveal className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between gap-5">
-              <Bubble text="一到換季就泛紅、刺癢、脫皮，怎麼保養都不安心" />
-              <Bubble dark text="痘痘藥、A 酸都試過，皮膚卻始終反覆、不穩定" />
+            {/* Row 2 — desktop */}
+            <div data-reveal className="hidden sm:flex sm:flex-row sm:items-start sm:justify-between gap-5">
+              <Bubble text="一到換季就泛紅、刺癢、脫皮，怎麼保養都不安心" align="left" />
+              <Bubble dark text="痘痘藥、A 酸都試過，皮膚卻始終反覆、不穩定" align="right" />
+            </div>
+            {/* Row 2 mobile — light */}
+            <div data-reveal="left" className="flex justify-start sm:hidden">
+              <Bubble text="一到換季就泛紅、刺癢、脫皮，怎麼保養都不安心" align="left" />
+            </div>
+            {/* Row 3 — mobile */}
+            <div data-reveal="right" className="flex justify-end sm:hidden">
+              <Bubble dark text="明明用的是高價保養，肌膚卻還是黯淡、沒精神" align="right" />
             </div>
             <div data-reveal="left" className="flex justify-start sm:hidden">
-              <Bubble text="一到換季就泛紅、刺癢、脫皮，怎麼保養都不安心" />
+              <Bubble text="不適合自己的課程與產品，讓皮膚越照顧越敏感" align="left" />
             </div>
-            <div data-reveal="right" className="flex justify-end sm:hidden">
-              <Bubble dark text="明明用的是高價保養，肌膚卻還是黯淡、沒精神" />
-            </div>
-            <div data-reveal="left" className="flex justify-start sm:hidden">
-              <Bubble text="不適合自己的課程與產品，讓皮膚越照顧越敏感" />
-            </div>
-            <div data-reveal className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between gap-5">
-              <Bubble dark text="明明用的是高價保養，肌膚卻還是黯淡、沒精神" />
-              <Bubble text="不適合自己的課程與產品，讓皮膚越照顧越敏感" />
+            {/* Row 3 — desktop */}
+            <div data-reveal className="hidden sm:flex sm:flex-row sm:items-start sm:justify-between gap-5">
+              <Bubble dark text="明明用的是高價保養，肌膚卻還是黯淡、沒精神" align="right" />
+              <Bubble text="不適合自己的課程與產品，讓皮膚越照顧越敏感" align="left" />
             </div>
           </div>
 
-          <div className="flex items-center gap-4 mb-12">
-            <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.12)" }} />
-            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--brand-gold)" }} />
-            <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.12)" }} />
-          </div>
-
-          <div className="text-center space-y-4 max-w-2xl mx-auto">
-            <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
-              問題的核心不在於你不夠努力，而是缺少對肌膚的正確理解與專業指引
-            </p>
-            <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
-              如果你也在想「我只是想要一個穩定、透亮、不再折騰的肌膚，到底該從哪裡開始？」
-            </p>
-            <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
-              真正的改變，從了解肌膚狀態、回到皮膚本身的節奏開始！
-            </p>
-            <p className="text-sm tracking-[0.4em] font-light pt-2" style={{ color: "var(--brand-gold)" }}>· · ·</p>
+          <div className="flex items-start gap-4 sm:gap-8">
+            <span className="text-[4rem] sm:text-[5rem] lg:text-[6rem] font-extralight leading-none shrink-0 select-none mt-2" style={{ color: "var(--brand-dark)", opacity: 0.68 }}>(</span>
+            <div className="flex-1 text-center space-y-3 py-4">
+              <p className="text-[15px] sm:text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
+                問題的核心不在於你不夠努力，而是缺少對肌膚的正確理解與專業指引
+              </p>
+              <p className="text-[15px] sm:text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
+                如果你也在想「我只是想要一個穩定、透亮、不再折騰的肌膚，到底該從哪裡開始？」
+              </p>
+              <p className="text-[15px] sm:text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
+                真正的改變，從了解肌膚狀態、回到皮膚本身的節奏開始！
+              </p>
+              <p className="text-sm tracking-[0.4em] font-light pt-1" style={{ color: "var(--brand-gold)" }}>· · ·</p>
+            </div>
+            <span className="text-[4rem] sm:text-[5rem] lg:text-[6rem] font-extralight leading-none shrink-0 select-none mt-2" style={{ color: "var(--brand-dark)", opacity: 0.68 }}>)</span>
           </div>
 
         </div>
@@ -369,10 +395,10 @@ export default function Page() {
               想要彈潤透亮的水煮蛋肌？
             </h2>
             <div className="flex flex-col justify-center gap-2">
-              <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+              <p className="text-base lg:text-[20px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                 我們先為你完整評估肌膚狀況，了解當下真正需要的是什麼
               </p>
-              <p className="text-base lg:text-[18px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+              <p className="text-base lg:text-[20px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                 想把皮膚慢慢養好，先從這三個關鍵開始：
               </p>
             </div>
@@ -434,7 +460,7 @@ export default function Page() {
             <h2 className="text-3xl sm:text-4xl lg:text-[3rem] font-light mb-3" style={{ letterSpacing: "0.04em" }}>
               為什麼選擇玖膚？
             </h2>
-            <p className="text-sm lg:text-[16px] font-light tracking-widest" style={{ color: "var(--brand-gold)" }}>
+            <p className="text-sm lg:text-[17px] font-light tracking-widest" style={{ color: "var(--brand-gold)" }}>
               Why choose us?
             </p>
           </div>
@@ -642,7 +668,7 @@ export default function Page() {
               韓式深層保養
             </span>
             <span className="text-lg lg:text-xl font-light" style={{ color: "rgba(56,50,42,0.35)" }}>·</span>
-            <span className="text-base lg:text-[18px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.04em" }}>
+            <span className="text-base lg:text-[20px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.04em" }}>
               不只表面，更深入肌底
             </span>
           </div>
@@ -651,7 +677,7 @@ export default function Page() {
           <div className="w-12 h-[2px] mt-5 mb-7" style={{ backgroundColor: "var(--brand-gold)", opacity: 0.5 }} />
 
           {/* Description */}
-          <p className="text-base lg:text-[16px] font-light leading-loose mb-10" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+          <p className="text-base lg:text-[17px] font-light leading-loose mb-10" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
             我們的客製化皮膚管理課程，適合痘痘肌、敏感肌、酒糟肌以及乾燥肌等各種膚況，透過11個完整步驟，約120分鐘的專屬課程，由美容師一對一進行肌膚檢測與專業諮詢，幫你全面了解自己的肌膚狀態
           </p>
 
@@ -680,7 +706,7 @@ export default function Page() {
                   {item.num}
                 </span>
                 <div className="flex-1 flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
-                  <p className="text-base lg:text-[18px] font-normal shrink-0" style={{ letterSpacing: "0.04em" }}>
+                  <p className="text-base lg:text-[20px] font-normal shrink-0" style={{ letterSpacing: "0.04em" }}>
                     {item.title}
                   </p>
                   <p className="text-sm lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.02em" }}>
@@ -721,7 +747,7 @@ export default function Page() {
             <h2 className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.4rem] font-bold leading-tight" style={{ letterSpacing: "0.03em" }}>
               玖膚水煮蛋肌養成術
             </h2>
-            <p className="text-sm lg:text-[16px] font-light shrink-0 pb-1" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
+            <p className="text-sm lg:text-[17px] font-light shrink-0 pb-1" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
               Our 4 Commitments
             </p>
           </div>
@@ -836,7 +862,7 @@ export default function Page() {
               {/* Icon + text */}
               <div className="flex flex-col gap-3 px-4 sm:px-6 lg:px-7 pt-6 pb-8">
                 <span style={{ color: "var(--brand-gold)" }}>{item.icon}</span>
-                <p className="text-sm lg:text-[16px] font-light leading-[1.9]" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[17px] font-light leading-[1.9]" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   {item.text}
                 </p>
               </div>
@@ -917,13 +943,13 @@ export default function Page() {
               </div>
               {/* Story */}
               <div className="space-y-4">
-                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   小時候的我，是同學眼中的「小黑妹」，因外在曾在學校被取笑。那段經歷讓我深刻感受到自信的重要，也激發我投入保養研究。
                 </p>
-                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   經過努力與學習，我找到了屬於自己的美，也下定決心：把這項專業技術傳承下去，幫助更多人看見自己最美的一面。
                 </p>
-                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   正是曾經的低谷，造就了現在的玖膚。因為這段經歷，我知道如何改變自己，也希望每一位走進玖膚的人，都能看見肌膚的改變、重拾自信，活出最美好的自己。
                 </p>
               </div>
@@ -962,7 +988,7 @@ export default function Page() {
           <h2 className="text-[1.7rem] sm:text-[2.2rem] lg:text-[2.8rem] font-bold text-center text-white mb-5" style={{ letterSpacing: "0.04em" }}>
             不只是保養・而是肌膚管理系統
           </h2>
-          <p className="text-sm lg:text-[16px] font-light text-center leading-loose mb-10 lg:mb-12 max-w-3xl mx-auto" style={{ color: "rgba(230,225,205,0.88)", letterSpacing: "0.03em" }}>
+          <p className="text-sm lg:text-[17px] font-light text-center leading-loose mb-10 lg:mb-12 max-w-3xl mx-auto" style={{ color: "rgba(230,225,205,0.88)", letterSpacing: "0.03em" }}>
             我們相信，好的肌膚管理，不是一昧塗抹，而是建立肌膚的管理系統，是一個可以走一輩子的保養計畫。我們的每一堂課，都是一份顏值計畫書
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
@@ -982,7 +1008,7 @@ export default function Page() {
             ].map((col, i) => (
               <div key={i} data-reveal data-reveal-delay={i + 1}>
                 <div className="pb-2.5 mb-4" style={{ borderBottom: "1px solid rgba(230,225,205,0.28)" }}>
-                  <p className="text-[14px] lg:text-[16px] font-normal text-white" style={{ letterSpacing: "0.04em" }}>
+                  <p className="text-[14px] lg:text-[17px] font-normal text-white" style={{ letterSpacing: "0.04em" }}>
                     {col.title}
                   </p>
                 </div>
@@ -997,7 +1023,7 @@ export default function Page() {
             ))}
           </div>
           <div className="pt-6" style={{ borderTop: "1px solid rgba(230,225,205,0.16)" }}>
-            <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "rgba(230,225,205,0.92)", letterSpacing: "0.03em" }}>
+            <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "rgba(230,225,205,0.92)", letterSpacing: "0.03em" }}>
               顏值，不只是皮膚好，而是你狀態穩定的證明。在9skin，我們不追求一次性的表面改變，而是用系統化的皮膚管理，陪你長期經營顏值資產，讓穩定狀態成為你最好的外在名片
             </p>
           </div>
@@ -1116,7 +1142,7 @@ export default function Page() {
             <h2 className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug mb-4" style={{ letterSpacing: "0.04em" }}>
               顧客真實成效見證
             </h2>
-            <p className="text-sm lg:text-[16px] font-light" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.05em" }}>
+            <p className="text-sm lg:text-[17px] font-light" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.05em" }}>
               每一張照片，都是一段蛻變的故事
             </p>
           </div>
@@ -1124,17 +1150,23 @@ export default function Page() {
           {/* Grid — 2 cols mobile / 4 cols tablet / 5 cols desktop */}
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
             {baReviews.map((item, i) => (
-              <div key={i} data-reveal="fade" data-reveal-delay={Math.min(i + 1, 5)} className="card-wrap flex flex-col group">
+              <div
+                key={i}
+                data-reveal="fade"
+                data-reveal-delay={Math.min(i + 1, 5)}
+                className="card-wrap flex flex-col group cursor-zoom-in"
+                onClick={() => setLightbox(item.img)}
+              >
                 <div
                   className="overflow-hidden rounded-sm"
-                  style={{ aspectRatio: "1 / 1" }}
+                  style={{ aspectRatio: "1 / 1", backgroundColor: "#F0EBE0", padding: "3px" }}
                 >
                   <Image
                     src={item.img}
                     alt={item.title}
                     width={400}
                     height={400}
-                    className="card-img w-full h-full object-cover"
+                    className="card-img w-full h-full object-cover rounded-sm"
                   />
                 </div>
               </div>
@@ -1153,6 +1185,33 @@ export default function Page() {
         </div>
       </section>
 
+
+      {/* ══════════════════════════════════════
+          BOOK NOW CTA
+      ══════════════════════════════════════ */}
+      <section className="py-16 sm:py-20" style={{ backgroundColor: "var(--brand-footer)" }}>
+        <div className="flex flex-col items-center gap-6 px-6 text-center">
+          <p className="text-[11px] tracking-[0.35em] uppercase font-light" style={{ color: "var(--brand-footer-text)", opacity: 0.6 }}>
+            開始你的肌膚之旅
+          </p>
+          <h2 className="text-2xl sm:text-3xl lg:text-[2.4rem] font-light leading-snug" style={{ color: "var(--brand-footer-text)", letterSpacing: "0.04em" }}>
+            立即預約，讓肌膚遇見改變
+          </h2>
+          <p className="text-[15px] lg:text-[17px] font-light max-w-md leading-loose" style={{ color: "rgba(197,186,176,0.8)", letterSpacing: "0.03em" }}>
+            專屬美容師為你量身規劃，打造屬於你的水煮蛋肌
+          </p>
+          <a
+            href="https://line.me/R/ti/p/@9skin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 flex items-center gap-3 px-8 py-4 rounded-full font-light text-sm transition-opacity hover:opacity-85"
+            style={{ backgroundColor: "#06C755", color: "white", letterSpacing: "0.12em" }}
+          >
+            <SiLine size={20} />
+            LINE 立即預約 · Book Now
+          </a>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════
           SECTION 11 — KOL Reviews
@@ -1186,12 +1245,15 @@ export default function Page() {
               {[kolRow2[5], kolRow2[6]].map((img, i) => (
                 <div
                   key={i}
-                  className="overflow-hidden rounded-2xl shadow-md"
+                  className="overflow-hidden rounded-2xl shadow-md cursor-zoom-in"
+                  onClick={() => setLightbox(img.src)}
                   style={{
                     width: "clamp(120px, 38vw, 160px)",
                     height: "clamp(212px, 67vw, 284px)",
-                    border: "1px solid rgba(56,50,42,0.08)",
+                    border: "1px solid #E8E0D4",
                     boxShadow: "0 8px 32px rgba(56,50,42,0.12)",
+                    backgroundColor: "#F5F0E8",
+                    padding: "3px",
                   }}
                 >
                   <Image
@@ -1199,7 +1261,7 @@ export default function Page() {
                     alt={img.alt}
                     width={160}
                     height={284}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
               ))}
@@ -1218,10 +1280,10 @@ export default function Page() {
               </h3>
               <div className="w-12 h-px mb-6 mx-auto lg:mx-0" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
               <div className="space-y-4 mb-8">
-                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   許多美容部落客與KOL體驗後都給予高度評價，不只是因為立即的效果，更重視的是玖膚對肌膚健康的長期關注
                 </p>
-                <p className="text-sm lg:text-[16px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   超過5000位顧客的信任，來自於我們對每一位客人的用心照護。每一則好評都是我們持續進步的動力
                 </p>
               </div>
@@ -1238,24 +1300,46 @@ export default function Page() {
           <div className="h-px" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
         </div>
 
-        {/* Marquee rows */}
-        <div className="marquee-outer flex flex-col gap-4">
+        {/* Mobile: swipeable KOL gallery */}
+        <div className="sm:hidden overflow-x-auto scroll-smooth px-4 pb-4" style={{ WebkitOverflowScrolling: "touch" } as React.CSSProperties}>
+          <div className="flex gap-3" style={{ width: "max-content" }}>
+            {[...kolRow1, ...kolRow2].map((img, i) => (
+              <div
+                key={i}
+                className="shrink-0 overflow-hidden rounded-xl cursor-zoom-in"
+                style={{
+                  height: "clamp(220px, 65vw, 320px)",
+                  width: "clamp(124px, 37vw, 180px)",
+                  backgroundColor: "#F5F0E8",
+                  padding: "2px",
+                  boxShadow: "0 4px 16px rgba(56,50,42,0.1)",
+                }}
+                onClick={() => setLightbox(img.src)}
+              >
+                <Image src={img.src} alt={img.alt} width={180} height={320} className="h-full w-full object-cover rounded-lg" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Marquee rows — desktop only */}
+        <div className="marquee-outer hidden sm:flex flex-col gap-4">
 
           {/* Row 1 — scrolls left */}
           <div className="flex gap-3 sm:gap-4 marquee-track-left" style={{ width: "max-content" }}>
             {[...kolRow1, ...kolRow1].map((img, i) => (
               <div
                 key={i}
-                className="shrink-0 overflow-hidden rounded-xl"
-                style={{ height: "clamp(260px, 55vw, 420px)", width: "clamp(146px, 31vw, 236px)" }}
+                className="shrink-0 overflow-hidden rounded-xl cursor-zoom-in"
+                style={{
+                  height: "clamp(260px, 55vw, 420px)",
+                  width: "clamp(146px, 31vw, 236px)",
+                  backgroundColor: "#F5F0E8",
+                  padding: "2px",
+                }}
+                onClick={() => setLightbox(img.src)}
               >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={236}
-                  height={420}
-                  className="h-full w-full object-cover"
-                />
+                <Image src={img.src} alt={img.alt} width={236} height={420} className="h-full w-full object-cover rounded-lg" />
               </div>
             ))}
           </div>
@@ -1265,16 +1349,16 @@ export default function Page() {
             {[...kolRow2, ...kolRow2].map((img, i) => (
               <div
                 key={i}
-                className="shrink-0 overflow-hidden rounded-xl"
-                style={{ height: "clamp(260px, 55vw, 420px)", width: "clamp(146px, 31vw, 236px)" }}
+                className="shrink-0 overflow-hidden rounded-xl cursor-zoom-in"
+                style={{
+                  height: "clamp(260px, 55vw, 420px)",
+                  width: "clamp(146px, 31vw, 236px)",
+                  backgroundColor: "#F5F0E8",
+                  padding: "2px",
+                }}
+                onClick={() => setLightbox(img.src)}
               >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={236}
-                  height={420}
-                  className="h-full w-full object-cover"
-                />
+                <Image src={img.src} alt={img.alt} width={236} height={420} className="h-full w-full object-cover rounded-lg" />
               </div>
             ))}
           </div>
@@ -1282,6 +1366,46 @@ export default function Page() {
         </div>
 
       </section>
+
+      {/* ── Lightbox ── */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ backgroundColor: "rgba(10,8,6,0.75)", cursor: "zoom-out" }}
+          onClick={() => setLightbox(null)}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={lightbox}
+            alt=""
+            style={{
+              width: "90vw",
+              height: "90vh",
+              objectFit: "contain",
+              cursor: "zoom-out",
+            }}
+          />
+          <button
+            className="absolute top-4 right-5 text-white/60 hover:text-white text-5xl font-extralight leading-none"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.8)" }}
+            onClick={() => setLightbox(null)}
+          >
+            ×
+          </button>
+        </div>
+      )}
+
+      {/* ── Floating LINE button ── */}
+      <a
+        href="https://line.me/R/ti/p/@9skin"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center transition-transform hover:scale-105"
+        style={{ backgroundColor: "#06C755", boxShadow: "0 6px 24px rgba(6,199,85,0.4)" }}
+        aria-label="LINE 預約"
+      >
+        <SiLine size={28} color="white" />
+      </a>
 
     </div>
   );
