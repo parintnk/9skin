@@ -19,7 +19,7 @@ function Bubble({ text, dark = false }: { text: string; dark?: boolean }) {
   const color = dark ? "var(--brand-footer-text)" : "var(--brand-dark)";
   return (
     <div
-      className="rounded-full px-7 py-[14px]"
+      className="rounded-full px-6 sm:px-7 py-3 sm:py-[14px] max-w-[88vw] sm:max-w-none"
       style={{
         backgroundColor: bg,
         color,
@@ -28,7 +28,7 @@ function Bubble({ text, dark = false }: { text: string; dark?: boolean }) {
           : "0 2px 16px rgba(30,24,18,0.08)",
       }}
     >
-      <p className="text-[15px] lg:text-base font-light" style={{ letterSpacing: "0.04em" }}>
+      <p className="text-sm sm:text-[15px] lg:text-base font-light" style={{ letterSpacing: "0.04em" }}>
         {text}
       </p>
     </div>
@@ -145,10 +145,10 @@ export default function Page() {
         <main className="flex-1 flex flex-col lg:flex-row">
 
           {/* Left */}
-          <div className="flex flex-col px-8 sm:px-12 lg:px-14 pt-10 pb-12 lg:pt-14 lg:pb-14 flex-1">
+          <div className="flex flex-col px-6 sm:px-12 lg:px-14 pt-8 pb-10 lg:pt-14 lg:pb-14 flex-1">
 
             {/* Logo */}
-            <div className="mb-12 lg:mb-20">
+            <div className="mb-8 lg:mb-20">
               <div className="flex items-baseline gap-2.5">
                 <span className="text-[1.6rem] lg:text-[1.9rem] font-light tracking-wider" style={{ fontFamily: "Georgia, serif" }}>
                   9skin
@@ -294,15 +294,27 @@ export default function Page() {
           </div>
           <div className="w-full h-px mb-16" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
 
-          <div className="flex flex-col gap-5 sm:gap-7 mb-16 sm:mb-20">
-            <div className="flex justify-center sm:justify-start sm:pl-[12%]">
+          <div className="flex flex-col gap-4 sm:gap-7 mb-16 sm:mb-20">
+            <div className="flex justify-start sm:justify-start sm:pl-[12%]">
               <Bubble text="保養品越買越多，毛孔卻沒有變細，反而更明顯" />
             </div>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+            <div className="flex justify-end sm:hidden">
+              <Bubble dark text="痘痘藥、A 酸都試過，皮膚卻始終反覆、不穩定" />
+            </div>
+            <div className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between gap-5">
               <Bubble text="一到換季就泛紅、刺癢、脫皮，怎麼保養都不安心" />
               <Bubble dark text="痘痘藥、A 酸都試過，皮膚卻始終反覆、不穩定" />
             </div>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+            <div className="flex justify-start sm:hidden">
+              <Bubble text="一到換季就泛紅、刺癢、脫皮，怎麼保養都不安心" />
+            </div>
+            <div className="flex justify-end sm:hidden">
+              <Bubble dark text="明明用的是高價保養，肌膚卻還是黯淡、沒精神" />
+            </div>
+            <div className="flex justify-start sm:hidden">
+              <Bubble text="不適合自己的課程與產品，讓皮膚越照顧越敏感" />
+            </div>
+            <div className="hidden sm:flex sm:flex-row sm:items-center sm:justify-between gap-5">
               <Bubble dark text="明明用的是高價保養，肌膚卻還是黯淡、沒精神" />
               <Bubble text="不適合自己的課程與產品，讓皮膚越照顧越敏感" />
             </div>
@@ -704,8 +716,62 @@ export default function Page() {
         {/* Full-width rule */}
         <div className="w-full h-px mb-12 lg:mb-16" style={{ backgroundColor: "rgba(56,50,42,0.16)" }} />
 
-        {/* 4-column grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 px-8 sm:px-12 lg:px-14" style={{ gap: 0 }}>
+        {/* ── Mobile: horizontal card list ── */}
+        <div className="sm:hidden px-6 flex flex-col" style={{ borderTop: "1px solid rgba(56,50,42,0.12)" }}>
+          {[
+            {
+              img: "/img/Page 7-1.png",
+              alt: "諮詢照顧",
+              label: "專屬諮詢",
+              icon: <LuClipboardList size={18} />,
+              text: "專屬美容師一對一諮詢照顧，為你設計客製化護膚流程",
+            },
+            {
+              img: "/img/Page 7-2.jpg",
+              alt: "舒適空間",
+              label: "舒適環境",
+              icon: <LuLeaf size={18} />,
+              text: "溫馨舒適且乾淨的空間，用心服務讓肌膚與心情一起放鬆",
+            },
+            {
+              img: "/img/Page 7-3.png",
+              alt: "專業手法",
+              label: "專業手法",
+              icon: <LuSparkles size={18} />,
+              text: "搭配進口院線保養品與專業儀器輔助，透過美容師細膩的手法，讓每一次保養都發揮應有的效果",
+            },
+            {
+              img: "/img/Page 7-4.png",
+              alt: "客製流程",
+              label: "客製流程",
+              icon: <LuFlaskConical size={18} />,
+              text: "採用顧問式概念，依不同膚質與護理階段，量身設計分區客製化流程，真正做到每個細節都符合肌膚需求",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="flex gap-4 py-5"
+              style={{ borderBottom: "1px solid rgba(56,50,42,0.1)" }}
+            >
+              {/* Thumbnail */}
+              <div className="relative shrink-0 overflow-hidden rounded-sm" style={{ width: 92, height: 122 }}>
+                <Image src={item.img} alt={item.alt} fill className="object-cover object-center" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.45) 0%, transparent 55%)" }} />
+                <p className="absolute bottom-1.5 left-2 text-white text-[10px] font-light tracking-wider">{item.label}</p>
+              </div>
+              {/* Content */}
+              <div className="flex-1 flex flex-col gap-2 pt-0.5">
+                <span style={{ color: "var(--brand-gold)" }}>{item.icon}</span>
+                <p className="text-sm font-light leading-[1.85]" style={{ color: "var(--brand-dark)", opacity: 0.72, letterSpacing: "0.03em" }}>
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── SM+: 4-column grid ── */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 px-8 sm:px-12 lg:px-14" style={{ gap: 0 }}>
           {[
             {
               img: "/img/Page 7-1.png",
@@ -739,19 +805,16 @@ export default function Page() {
             <div
               key={i}
               className="flex flex-col"
-              style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(56,50,42,0.12)" }}
+              style={{ borderLeft: i % 2 === 0 ? "none" : "1px solid rgba(56,50,42,0.12)" }}
             >
               {/* Image */}
               <div className="card-wrap relative w-full overflow-hidden" style={{ aspectRatio: "3/4" }}>
                 <Image src={item.img} alt={item.alt} fill className="card-img object-cover object-center" />
-                {/* Subtle overlay */}
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.35) 0%, transparent 50%)" }} />
-                {/* Label on image bottom */}
                 <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-5 pb-4">
                   <p className="text-white text-sm lg:text-base font-light tracking-widest">{item.label}</p>
                 </div>
               </div>
-
               {/* Icon + text */}
               <div className="flex flex-col gap-3 px-4 sm:px-6 lg:px-7 pt-6 pb-8">
                 <span style={{ color: "var(--brand-gold)" }}>{item.icon}</span>
@@ -816,7 +879,7 @@ export default function Page() {
           <div className="flex flex-col sm:flex-row gap-0 flex-1">
 
             {/* Salon image */}
-            <div className="relative sm:w-[42%] shrink-0 overflow-hidden" style={{ minHeight: 260, borderRadius: "2px 0 0 0" }}>
+            <div className="relative sm:w-[42%] shrink-0 overflow-hidden" style={{ minHeight: 200, borderRadius: "2px 0 0 0" }}>
               <Image src="/img/Page 8-2.jpg" alt="玖膚空間" fill className="object-cover object-center" />
             </div>
 
@@ -1101,14 +1164,14 @@ export default function Page() {
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
             {/* Left: 2 phone cards */}
-            <div className="flex gap-4 sm:gap-6 shrink-0">
+            <div className="flex gap-3 sm:gap-6 shrink-0">
               {[kolRow2[5], kolRow2[6]].map((img, i) => (
                 <div
                   key={i}
                   className="overflow-hidden rounded-2xl shadow-md"
                   style={{
-                    width: "160px",
-                    height: "284px",
+                    width: "clamp(120px, 38vw, 160px)",
+                    height: "clamp(212px, 67vw, 284px)",
                     border: "1px solid rgba(56,50,42,0.08)",
                     boxShadow: "0 8px 32px rgba(56,50,42,0.12)",
                   }}
@@ -1161,12 +1224,12 @@ export default function Page() {
         <div className="marquee-outer flex flex-col gap-4">
 
           {/* Row 1 — scrolls left */}
-          <div className="flex gap-4 marquee-track-left" style={{ width: "max-content" }}>
+          <div className="flex gap-3 sm:gap-4 marquee-track-left" style={{ width: "max-content" }}>
             {[...kolRow1, ...kolRow1].map((img, i) => (
               <div
                 key={i}
                 className="shrink-0 overflow-hidden rounded-xl"
-                style={{ height: "420px", width: "236px" }}
+                style={{ height: "clamp(260px, 55vw, 420px)", width: "clamp(146px, 31vw, 236px)" }}
               >
                 <Image
                   src={img.src}
@@ -1180,12 +1243,12 @@ export default function Page() {
           </div>
 
           {/* Row 2 — scrolls right */}
-          <div className="flex gap-4 marquee-track-right" style={{ width: "max-content" }}>
+          <div className="flex gap-3 sm:gap-4 marquee-track-right" style={{ width: "max-content" }}>
             {[...kolRow2, ...kolRow2].map((img, i) => (
               <div
                 key={i}
                 className="shrink-0 overflow-hidden rounded-xl"
-                style={{ height: "420px", width: "236px" }}
+                style={{ height: "clamp(260px, 55vw, 420px)", width: "clamp(146px, 31vw, 236px)" }}
               >
                 <Image
                   src={img.src}
