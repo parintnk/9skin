@@ -321,9 +321,9 @@ export default function Page() {
 
             {/* Zone 2 — Heading (middle) */}
             <div>
-              <p className="text-[10px] tracking-[0.32em] uppercase mb-3 font-light" style={{ color: "rgba(232,226,218,0.5)" }}>
+              {/* <p className="text-[10px] tracking-[0.32em] uppercase mb-3 font-light" style={{ color: "rgba(232,226,218,0.5)" }}>
                 Since 2021 · Taipei · Kaohsiung
-              </p>
+              </p> */}
               <h1 className="text-[2.45rem] font-light leading-snug mb-4" style={{ color: "#F0EBE2", letterSpacing: "0.04em" }}>
                 「关于我们」
               </h1>
@@ -342,10 +342,6 @@ export default function Page() {
                 <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
                 <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>以暖色調營造放鬆有溫度的環境</p>
                 <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>讓每位顧客都能享有專屬的私密與安心感</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-px h-6" style={{ backgroundColor: "rgba(232,226,218,0.28)" }} />
-                <span className="text-[10px] tracking-[0.3em] uppercase" style={{ color: "rgba(232,226,218,0.35)" }}>Scroll</span>
               </div>
             </div>
           </div>
