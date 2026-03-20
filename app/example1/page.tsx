@@ -915,7 +915,7 @@ export default function Page() {
       <section id="s7" className="py-8 sm:py-20 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
 
         {/* Header block */}
-        <div className="px-8 sm:px-12 lg:px-14 mb-14 lg:mb-18">
+        <div className="px-8 sm:px-12 lg:px-14 mb-8 lg:mb-18">
           <div className="flex items-center gap-4 mb-8">
             <div className="h-px w-8" style={{ backgroundColor: "rgba(56,50,42,0.25)" }} />
             <p className="text-xs lg:text-[13px] font-light tracking-[0.22em] uppercase" style={{ color: "var(--brand-gold)" }}>
@@ -935,35 +935,35 @@ export default function Page() {
         {/* Full-width rule */}
         <div className="w-full h-px mb-12 lg:mb-16" style={{ backgroundColor: "rgba(56,50,42,0.16)" }} />
 
-        {/* ── Mobile: horizontal card list ── */}
-        <div className="sm:hidden px-6 flex flex-col" style={{ borderTop: "1px solid rgba(56,50,42,0.12)" }}>
+        {/* ── Mobile: 2×2 card grid ── */}
+        <div className="sm:hidden grid grid-cols-2 gap-3 px-5">
           {[
             {
               img: "/img/Page 7-1.png",
               alt: "諮詢照顧",
               label: "專屬諮詢",
-              icon: <LuClipboardList size={18} />,
+              icon: <LuClipboardList size={16} />,
               text: "專屬美容師一對一諮詢照顧，為你設計客製化護膚流程",
             },
             {
               img: "/img/Page 7-2.jpg",
               alt: "舒適空間",
               label: "舒適環境",
-              icon: <LuLeaf size={18} />,
+              icon: <LuLeaf size={16} />,
               text: "溫馨舒適且乾淨的空間，用心服務讓肌膚與心情一起放鬆",
             },
             {
               img: "/img/Page 7-3.png",
               alt: "專業手法",
               label: "專業手法",
-              icon: <LuSparkles size={18} />,
+              icon: <LuSparkles size={16} />,
               text: "搭配進口院線保養品與專業儀器輔助，透過美容師細膩的手法，讓每一次保養都發揮應有的效果",
             },
             {
               img: "/img/Page 7-4.png",
               alt: "客製流程",
               label: "客製流程",
-              icon: <LuFlaskConical size={18} />,
+              icon: <LuFlaskConical size={16} />,
               text: "採用顧問式概念，依不同膚質與護理階段，量身設計分區客製化流程，真正做到每個細節都符合肌膚需求",
             },
           ].map((item, i) => (
@@ -971,19 +971,20 @@ export default function Page() {
               key={i}
               data-reveal
               data-reveal-delay={i + 1}
-              className="flex gap-4 py-5"
-              style={{ borderBottom: "1px solid rgba(56,50,42,0.1)" }}
+              className="flex flex-col"
             >
-              {/* Thumbnail */}
-              <div className="relative shrink-0 overflow-hidden rounded-lg" style={{ width: 120, height: 160 }}>
-                <Image src={item.img} alt={item.alt} fill className="object-cover object-center" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.55) 0%, transparent 50%)" }} />
-                <p className="absolute bottom-2 left-2.5 text-white text-[11px] font-light tracking-wider">{item.label}</p>
+              {/* Image card */}
+              <div className="card-wrap relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: "3/4" }}>
+                <Image src={item.img} alt={item.alt} fill className="card-img object-cover object-center" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.6) 0%, transparent 55%)" }} />
+                <div className="absolute bottom-0 left-0 right-0 px-3 pb-3">
+                  <p className="text-white text-[12px] font-light tracking-widest">{item.label}</p>
+                </div>
               </div>
-              {/* Content */}
-              <div className="flex-1 flex flex-col gap-2.5 pt-1">
+              {/* Icon + text */}
+              <div className="flex flex-col gap-2 px-1 pt-3 pb-2">
                 <span style={{ color: "var(--brand-gold)" }}>{item.icon}</span>
-                <p className="text-sm font-light leading-[1.85]" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-[12px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.02em" }}>
                   {item.text}
                 </p>
               </div>
