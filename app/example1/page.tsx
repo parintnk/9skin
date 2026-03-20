@@ -284,7 +284,88 @@ export default function Page() {
           SECTION 1 — Hero / About
       ══════════════════════════════════════ */}
       <section id="s1" className="sm:min-h-screen flex flex-col">
-        <main className="flex-1 flex flex-col lg:flex-row">
+
+        {/* ══ MOBILE Hero (full-screen cover) ══ */}
+        <div className="lg:hidden relative flex flex-col" style={{ minHeight: "100svh" }}>
+
+          {/* Full-bleed background image */}
+          <Image
+            src="/img/Page 1.JPG"
+            alt="9skin"
+            fill
+            className="object-cover object-[center_15%]"
+            priority
+          />
+
+          {/* Gradient overlay — stronger coverage for readability */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to bottom, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.12) 35%, rgba(20,16,12,0.55) 60%, rgba(20,16,12,0.88) 100%)" }}
+          />
+
+          {/* Content layer — 3-zone layout */}
+          <div className="relative z-10 flex flex-col flex-1 px-7 pt-12 pb-7 justify-between">
+
+            {/* Zone 1 — Logo (top) */}
+            <div>
+              <Image
+                src="/img/9skin logo.png"
+                alt="9skin 玖膚"
+                width={160}
+                height={58}
+                className="w-[130px] h-auto"
+                style={{ filter: "brightness(0) invert(1)", opacity: 0.92 }}
+                priority
+              />
+            </div>
+
+            {/* Zone 2 — Heading (middle) */}
+            <div>
+              <p className="text-[10px] tracking-[0.32em] uppercase mb-3 font-light" style={{ color: "rgba(232,226,218,0.5)" }}>
+                Since 2021 · Taipei · Kaohsiung
+              </p>
+              <h1 className="text-[2.45rem] font-light leading-snug mb-4" style={{ color: "#F0EBE2", letterSpacing: "0.04em" }}>
+                「关于我们」
+              </h1>
+              <div className="w-10 h-px" style={{ backgroundColor: "rgba(232,226,218,0.35)" }} />
+            </div>
+
+            {/* Zone 3 — Body + scroll hint (bottom) */}
+            <div>
+              <div className="space-y-2 mb-5">
+                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>養膚，是一件更深、更長遠的事</p>
+                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>我們像管理資產一樣，陪你管理『顏值』</p>
+                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
+              </div>
+              <div className="w-16 h-px mb-5" style={{ backgroundColor: "rgba(232,226,218,0.18)" }} />
+              <div className="space-y-2 mb-7">
+                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
+                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>以暖色調營造放鬆有溫度的環境</p>
+                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>讓每位顧客都能享有專屬的私密與安心感</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-px h-6" style={{ backgroundColor: "rgba(232,226,218,0.28)" }} />
+                <span className="text-[10px] tracking-[0.3em] uppercase" style={{ color: "rgba(232,226,218,0.35)" }}>Scroll</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Location bar — pinned at bottom */}
+          <div className="relative z-10 flex items-center gap-0" style={{ backgroundColor: "var(--brand-footer)" }}>
+            <div className="flex-1 flex items-center gap-2.5 px-5 py-4">
+              <PinIcon />
+              <span className="text-xs font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>台北・松江南京</span>
+            </div>
+            <div className="w-px h-4" style={{ backgroundColor: "rgba(197,186,176,0.2)" }} />
+            <div className="flex-1 flex items-center gap-2.5 px-5 py-4">
+              <PinIcon />
+              <span className="text-xs font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>高雄・巨蛋站</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ══ DESKTOP layout (unchanged) ══ */}
+        <main className="hidden lg:flex flex-1 flex-row">
 
           {/* Left */}
           <div className="flex flex-col px-6 sm:px-12 lg:px-14 pt-5 pb-5 sm:pt-8 sm:pb-10 lg:pt-14 lg:pb-14 flex-1">
@@ -296,9 +377,6 @@ export default function Page() {
 
             {/* Heading block */}
             <div className="mb-5 sm:mb-12">
-              {/* <p data-reveal data-reveal-delay="1" className="text-[11px] lg:text-[13px] tracking-[0.3em] uppercase mb-4 font-light" style={{ color: "var(--brand-gold)" }}>
-                Brand Introduction
-              </p> */}
               <h1 data-reveal data-reveal-delay="2" className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-light leading-tight mb-8" style={{ letterSpacing: "0.04em" }}>
                 「关于我们」
               </h1>
@@ -315,7 +393,6 @@ export default function Page() {
                 <p className="text-base lg:text-[20px] font-light leading-loose">我們像管理資產一樣，陪你管理『顏值』</p>
                 <p className="text-base lg:text-[20px] font-light leading-loose">替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
               </div>
-
               <div data-reveal data-reveal-delay="4" className="space-y-3">
                 <div className="w-20 h-px" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
                 <p className="text-base lg:text-[20px] font-light leading-loose">我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
@@ -326,17 +403,13 @@ export default function Page() {
           </div>
 
           {/* Right — image */}
-          <div className="lg:hidden w-full">
-            <Image src="/img/Page 1.JPG" alt="9skin" width={1206} height={2130} className="w-full h-[300px] sm:h-[360px] object-cover  object-[cent
-          -er_15%]" priority />
-          </div>
           <div className="hidden lg:block relative lg:w-[32%] xl:w-[34%]">
             <Image src="/img/Page 1.JPG" alt="9skin" fill className="object-cover object-[center_15%]" priority />
           </div>
         </main>
 
-        {/* Footer */}
-        <footer className="py-5 px-8 sm:px-12" style={{ backgroundColor: "var(--brand-footer)" }}>
+        {/* Desktop footer */}
+        <footer className="hidden lg:block py-5 px-8 sm:px-12" style={{ backgroundColor: "var(--brand-footer)" }}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-20">
             <div className="flex items-center gap-3">
               <PinIcon />
@@ -344,7 +417,7 @@ export default function Page() {
                 台北店：位於松江南京站步行3分鐘
               </span>
             </div>
-            <div className="hidden sm:block w-px h-4" style={{ backgroundColor: "rgba(197,186,176,0.2)" }} />
+            <div className="w-px h-4" style={{ backgroundColor: "rgba(197,186,176,0.2)" }} />
             <div className="flex items-center gap-3">
               <PinIcon />
               <span className="text-sm lg:text-[17px] font-light tracking-wide" style={{ color: "var(--brand-footer-text)" }}>
