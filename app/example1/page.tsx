@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { LuClipboardList, LuLeaf, LuSparkles, LuFlaskConical } from "react-icons/lu";
-import { SiLine } from "react-icons/si";
+import { SiLine, SiInstagram } from "react-icons/si";
 
 function PinIcon() {
   return (
@@ -155,6 +155,18 @@ const steps = [
 
 export default function Page() {
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [scrollPct, setScrollPct] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrolled = doc.scrollTop || document.body.scrollTop;
+      const total = doc.scrollHeight - doc.clientHeight;
+      setScrollPct(total > 0 ? (scrolled / total) * 100 : 0);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const els = document.querySelectorAll("[data-reveal]");
@@ -175,6 +187,20 @@ export default function Page() {
 
   return (
     <div style={{ backgroundColor: "var(--brand-cream)", color: "var(--brand-dark)" }}>
+
+      {/* ── Scroll progress bar ── */}
+      <div className="fixed top-0 left-0 right-0 z-50" style={{ height: 3, backgroundColor: "transparent" }}>
+        <div
+          style={{
+            height: "100%",
+            width: `${scrollPct}%`,
+            background: "linear-gradient(90deg, #C5A882 0%, #A0896E 50%, #7A6652 100%)",
+            boxShadow: "0 0 10px rgba(160,137,110,0.6), 0 0 4px rgba(160,137,110,0.4)",
+            borderRadius: "0 2px 2px 0",
+            transition: "width 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          }}
+        />
+      </div>
 
       {/* ══════════════════════════════════════
           SECTION 1 — Hero / About
@@ -1558,6 +1584,116 @@ export default function Page() {
           </button>
         </div>
       )}
+
+      {/* ── Footer ── */}
+      <footer style={{ backgroundColor: "var(--brand-footer)" }}>
+
+        {/* ── Hero brand statement ── */}
+        <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 text-center">
+          <p className="text-xs tracking-[0.35em] uppercase mb-5" style={{ color: "var(--brand-footer-text)", opacity: 0.45 }}>
+            Since 2021 · Taipei · Kaohsiung
+          </p>
+          <h2
+            className="text-5xl sm:text-7xl lg:text-8xl font-extralight"
+            style={{ color: "#E8E2DA", letterSpacing: "0.12em", lineHeight: 1.1 }}
+          >
+            玖膚工作室
+          </h2>
+          <p className="mt-4 text-sm sm:text-base font-light italic tracking-widest" style={{ color: "var(--brand-footer-text)", opacity: 0.55, fontFamily: "serif" }}>
+            幫助每個人提升顏值 · 增加價值 · 讓你遇見最好的自己
+          </p>
+        </div>
+
+        {/* ── Thin divider ── */}
+        <div className="max-w-6xl mx-auto px-6">
+          <div style={{ height: 1, backgroundColor: "rgba(255,255,255,0.1)" }} />
+        </div>
+
+        {/* ── 3-col info grid ── */}
+        <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6">
+
+          {/* Taipei */}
+          <div>
+            <p className="text-[10px] tracking-[0.3em] uppercase mb-5" style={{ color: "#E8E2DA", opacity: 0.4 }}>
+              台北店 · Taipei
+            </p>
+            <ul className="space-y-2.5 text-sm font-light" style={{ color: "var(--brand-footer-text)", opacity: 0.75, lineHeight: 1.7 }}>
+              <li>松江南京站步行 3 分鐘</li>
+              <li>週一至週日 10:00 – 20:00</li>
+            </ul>
+          </div>
+
+          {/* Kaohsiung */}
+          <div>
+            <p className="text-[10px] tracking-[0.3em] uppercase mb-5" style={{ color: "#E8E2DA", opacity: 0.4 }}>
+              高雄店 · Kaohsiung
+            </p>
+            <ul className="space-y-2.5 text-sm font-light" style={{ color: "var(--brand-footer-text)", opacity: 0.75, lineHeight: 1.7 }}>
+              <li>巨蛋站步行 6 分鐘</li>
+              <li>週一至週日 10:00 – 20:00</li>
+            </ul>
+          </div>
+
+          {/* Book Now */}
+          <div className="flex flex-col gap-5">
+            <p className="text-[10px] tracking-[0.3em] uppercase" style={{ color: "#E8E2DA", opacity: 0.4 }}>
+              立即預約 · Book Now
+            </p>
+            <a
+              href="https://line.me/R/ti/p/@9skin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 self-start px-6 py-3 text-sm font-light tracking-wider transition-all hover:opacity-80"
+              style={{
+                border: "1px solid rgba(232,226,218,0.35)",
+                color: "#E8E2DA",
+                letterSpacing: "0.12em",
+              }}
+            >
+              <SiLine size={14} />
+              LINE 預約
+            </a>
+            {/* Social icons */}
+            <div className="flex items-center gap-4 mt-1">
+              <a
+                href="https://line.me/R/ti/p/@9skin"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LINE"
+                className="transition-opacity hover:opacity-60"
+                style={{ color: "var(--brand-footer-text)", opacity: 0.55 }}
+              >
+                <SiLine size={18} />
+              </a>
+              <a
+                href="https://www.instagram.com/9skin_999/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="transition-opacity hover:opacity-60"
+                style={{ color: "var(--brand-footer-text)", opacity: 0.55 }}
+              >
+                <SiInstagram size={18} />
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        {/* ── Bottom bar ── */}
+        <div className="max-w-6xl mx-auto px-6">
+          <div style={{ height: 1, backgroundColor: "rgba(255,255,255,0.07)" }} />
+        </div>
+        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span className="text-[11px] tracking-wider" style={{ color: "var(--brand-footer-text)", opacity: 0.35 }}>
+            © {new Date().getFullYear()} 玖膚工作室 9skin Studio. All rights reserved.
+          </span>
+          <span className="text-[11px] tracking-[0.2em]" style={{ color: "var(--brand-footer-text)", opacity: 0.3 }}>
+            台北 · 高雄
+          </span>
+        </div>
+
+      </footer>
 
       {/* ── Floating LINE button ── */}
       <a
