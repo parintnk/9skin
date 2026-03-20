@@ -1346,7 +1346,7 @@ export default function Page() {
       </section>
 
       {/* ── S12 · LINE Customer Reviews ── */}
-      <section className="pt-12 sm:pt-20 pb-12" style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section className="pt-12 sm:pt-15 " style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Heading */}
         <div className="text-center mb-8 sm:mb-14 px-4" data-reveal="fade">
@@ -1387,7 +1387,7 @@ export default function Page() {
         </div>
 
         {/* Desktop: absolute scattered layout */}
-        <div className="hidden sm:block relative mx-auto" style={{ maxWidth: 1200, height: 1340, paddingLeft: 24, paddingRight: 24 }}>
+        <div className="hidden sm:block relative mx-auto" style={{ maxWidth: 1200, height: 900, paddingLeft: 24, paddingRight: 24 }}>
           {([
             { src: "IMG_0054.jpg", left: "0%", top: 0, width: "27%"},
             { src: "IMG_1424.jpg", left: "24%", top: 50, width: "26%" },
@@ -1435,6 +1435,57 @@ export default function Page() {
           ))}
         </div>
 
+      </section>
+
+      {/* ── S13 · Environmental Introduction ── */}
+      <section data-reveal="fade" style={{ backgroundColor: "var(--brand-cream)" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "3fr 3fr 4fr",
+            gridTemplateRows: "1fr 1fr",
+            gridTemplateAreas: `"text tea  bed" "mach lounge lounge"`,
+            height: "100vh",
+            gap: 2,
+          }}
+        >
+          {/* Text panel */}
+          <div
+            className="flex flex-col justify-center  px-10  lg:px-12"
+            style={{ gridArea: "text", backgroundColor: "var(--brand-cream)" }}
+          >
+            <h2 className="text-3xl lg:text-6xl font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>
+              環境介紹
+            </h2>
+            <p className="mt-3 text-sm md:text-2xl italic" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em", fontFamily: "serif" }}>
+              Environmental Introduction
+            </p>
+          </div>
+
+          {/* Tea photo */}
+          <div className="overflow-hidden" style={{ gridArea: "tea" }}>
+            <Image src="/img/Page 12-1.jpg" alt="歡迎茶飲" width={640} height={640}
+              className="w-full h-full object-cover" />
+          </div>
+
+          {/* Treatment bed photo */}
+          <div className="overflow-hidden" style={{ gridArea: "bed" }}>
+            <Image src="/img/Page 12-2.jpg" alt="護膚床" width={800} height={640}
+              className="w-full h-full object-cover" />
+          </div>
+
+          {/* Skin analysis machine */}
+          <div className="overflow-hidden" style={{ gridArea: "mach" }}>
+            <Image src="/img/Page 12-3.jpg" alt="肌膚檢測儀器" width={480} height={640}
+              className="w-full h-full object-cover object-bottom" />
+          </div>
+
+          {/* Lounge */}
+          <div className="overflow-hidden" style={{ gridArea: "lounge" }}>
+            <Image src="/img/Page 12-4.jpg" alt="舒適候診空間" width={1200} height={640}
+              className="w-full h-full object-cover object-center" />
+          </div>
+        </div>
       </section>
 
       {/* ── Lightbox ── */}
