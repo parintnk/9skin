@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { LuClipboardList, LuLeaf, LuSparkles, LuFlaskConical } from "react-icons/lu";
+import { LuClipboardList, LuLeaf, LuSparkles, LuFlaskConical, LuChevronUp } from "react-icons/lu";
 import { SiLine, SiInstagram } from "react-icons/si";
 
 function PinIcon() {
@@ -153,8 +153,56 @@ const steps = [
   },
 ];
 
+const lineReviewSrcs = [
+  "/img/Page 12_ Customer Review from Line Official /IMG_0054.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_1424.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_1588.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_2692.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_2693.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_3443.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_3870.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_6375.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_7069.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_7154.jpg",
+  "/img/Page 12_ Customer Review from Line Official /IMG_7644.jpg",
+];
+
+const lineReviewDesktopCards: { src: string; left: string; top: number; width: string }[] = [
+  { src: "IMG_0054.jpg", left: "0%", top: 0, width: "27%"},
+  { src: "IMG_1424.jpg", left: "24%", top: 50, width: "26%" },
+  { src: "IMG_1588.jpg", left: "49%", top: 30, width: "24%"},
+  { src: "IMG_2692.jpg", left: "73%", top: -10, width: "26%" },
+  { src: "IMG_2693.jpg", left: "-5%", top: 270, width: "27%" },
+  { src: "IMG_3443.jpg", left: "22%", top: 295, width: "25%"},
+  { src: "IMG_3870.jpg", left: "49%", top: 200, width: "24%" },
+  { src: "IMG_6375.jpg", left: "76%", top: 188, width: "25%"},
+  { src: "IMG_7069.jpg", left: "-2%", top: 480, width: "26%"},
+  { src: "IMG_7154.jpg", left: "22%", top: 425, width: "26%" },
+  { src: "IMG_7644.jpg", left: "48%", top: 350, width: "26%"},
+  { src: "IMG_8622.jpg", left: "79%", top: 485, width: "25%" },
+  { src: "IMG_9222.jpg", left: "-4%", top: 605, width: "27%" },
+  { src: "IMG_9264.jpg", left: "25%", top: 625, width: "26%"},
+  { src: "IMG_9595.jpg", left: "51%", top: 520, width: "23%" },
+  { src: "IMG_9699.jpg", left: "75%", top: 600, width: "24%"},
+];
+
+const lineReviewDesktopSrcs = lineReviewDesktopCards.map(c => `/img/Page 12_ Customer Review from Line Official /${c.src}`);
+
+const navSections = [
+  { id: "s1", label: "關于我們" },
+  { id: "s6", label: "韓式深層保養" },
+  { id: "s5", label: "為什麼選擇玖膚" },
+  { id: "s7", label: "玖膚水煮蛋肌" },
+  { id: "s8", label: "我們的使命" },
+  { id: "s10", label: "顧客成效見證" },
+  { id: "s11", label: "KOL好評" },
+  { id: "s12", label: "LINE顧客好評" },
+];
+
 export default function Page() {
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lightboxImages, setLightboxImages] = useState<string[]>([]);
+  const [activeSection, setActiveSection] = useState(0);
   const [scrollPct, setScrollPct] = useState(0);
 
   useEffect(() => {
@@ -185,6 +233,36 @@ export default function Page() {
     return () => obs.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") setLightboxIndex(i => Math.max(0, i! - 1));
+      else if (e.key === "ArrowRight") setLightboxIndex(i => Math.min(lightboxImages.length - 1, i! + 1));
+      else if (e.key === "Escape") setLightboxIndex(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxIndex, lightboxImages.length]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const idx = navSections.findIndex(s => s.id === e.target.id);
+            if (idx !== -1) setActiveSection(idx);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    navSections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div style={{ backgroundColor: "var(--brand-cream)", color: "var(--brand-dark)" }}>
 
@@ -205,7 +283,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 1 — Hero / About
       ══════════════════════════════════════ */}
-      <section className="sm:min-h-screen flex flex-col">
+      <section id="s1" className="sm:min-h-screen flex flex-col">
         <main className="flex-1 flex flex-col lg:flex-row">
 
           {/* Left */}
@@ -478,7 +556,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 5 — Why Choose 玖膚
       ══════════════════════════════════════ */}
-      <section className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section id="s5" className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
         <div className="px-6 sm:px-10 lg:px-14">
 
           {/* Heading */}
@@ -661,7 +739,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 6 — Skin Care Program
       ══════════════════════════════════════ */}
-      <section className="flex flex-col lg:flex-row" style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section id="s6" className="flex flex-col lg:flex-row" style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Image — mobile top, desktop left */}
         <div className="lg:hidden w-full px-5 pt-8 pb-2">
@@ -761,7 +839,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 7 — 玖膚水煮蛋肌養成術
       ══════════════════════════════════════ */}
-      <section className="py-8 sm:py-20 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section id="s7" className="py-8 sm:py-20 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
 
         {/* Header block */}
         <div className="px-8 sm:px-12 lg:px-14 mb-14 lg:mb-18">
@@ -906,7 +984,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 8 — Our Mission / Founder
       ══════════════════════════════════════ */}
-      <section className="flex flex-col lg:flex-row" style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section id="s8" className="flex flex-col lg:flex-row" style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Left: content */}
         <div className="flex-1 flex flex-col px-8 sm:px-12 lg:px-14 pt-14 lg:pt-16 pb-0">
@@ -1155,7 +1233,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 10 — Before & After Results
       ══════════════════════════════════════ */}
-      <section className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section id="s10" className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
         <div className="max-w-9xl mx-auto px-6 sm:px-10">
 
           {/* Eyebrow with lines */}
@@ -1185,7 +1263,7 @@ export default function Page() {
                 data-reveal="fade"
                 data-reveal-delay={Math.min(i + 1, 5)}
                 className="card-wrap flex flex-col group cursor-zoom-in"
-                onClick={() => setLightbox(item.img)}
+                onClick={() => { setLightboxImages(baReviews.map(r => r.img)); setLightboxIndex(i); }}
               >
                 <div
                   className="overflow-hidden rounded-sm"
@@ -1246,7 +1324,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 11 — KOL Reviews
       ══════════════════════════════════════ */}
-      <section className="py-8 sm:py-24 lg:py-28 overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section id="s11" className="py-8 sm:py-24 lg:py-28 overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Header */}
         <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-6 sm:mb-20">
@@ -1276,7 +1354,7 @@ export default function Page() {
                 <div
                   key={i}
                   className="overflow-hidden rounded-2xl shadow-md cursor-zoom-in"
-                  onClick={() => setLightbox(img.src)}
+                  onClick={() => { setLightboxImages(kolRow2.map(r => r.src)); setLightboxIndex(5 + i); }}
                   style={{
                     width: "clamp(120px, 38vw, 160px)",
                     height: "clamp(212px, 67vw, 284px)",
@@ -1345,7 +1423,7 @@ export default function Page() {
                   backgroundColor: "#F5F0E8",
                   padding: "2px",
                 }}
-                onClick={() => setLightbox(img.src)}
+                onClick={() => { setLightboxImages(kolRow1.map(r => r.src)); setLightboxIndex(i % kolRow1.length); }}
               >
                 <Image src={img.src} alt={img.alt} width={236} height={420} className="h-full w-full object-cover rounded-lg" />
               </div>
@@ -1364,7 +1442,7 @@ export default function Page() {
                   backgroundColor: "#F5F0E8",
                   padding: "2px",
                 }}
-                onClick={() => setLightbox(img.src)}
+                onClick={() => { setLightboxImages(kolRow2.map(r => r.src)); setLightboxIndex(i % kolRow2.length); }}
               >
                 <Image src={img.src} alt={img.alt} width={236} height={420} className="h-full w-full object-cover rounded-lg" />
               </div>
@@ -1376,7 +1454,7 @@ export default function Page() {
       </section>
 
       {/* ── S12 · LINE Customer Reviews ── */}
-      <section className="pt-12 sm:pt-15 " style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section id="s12" className="pt-12 sm:pt-15 " style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Heading */}
         <div className="text-center mb-8 sm:mb-14 px-4" data-reveal="fade">
@@ -1390,25 +1468,13 @@ export default function Page() {
 
         {/* Mobile: 2-col masonry */}
         <div className="sm:hidden columns-2 gap-2 px-4 pb-10" style={{ columnGap: 10 }}>
-          {[
-            "/img/Page 12_ Customer Review from Line Official /IMG_0054.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_1424.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_1588.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_2692.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_2693.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_3443.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_3870.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_6375.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_7069.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_7154.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_7644.jpg",
-          ].map((src, i) => (
+          {lineReviewSrcs.map((src, i) => (
             <div
               key={i}
               data-reveal="pop"
               className="break-inside-avoid cursor-zoom-in"
               style={{ marginBottom: 10, animationDelay: `${i * 0.15}s` }}
-              onClick={() => setLightbox(src)}
+              onClick={() => { setLightboxImages(lineReviewSrcs); setLightboxIndex(i); }}
             >
               <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "white", boxShadow: "0 2px 12px rgba(30,24,18,0.10)", padding: "4px" }}>
                 <Image src={src} alt={`顧客好評 ${i + 1}`} width={300} height={480} className="w-full h-auto rounded-xl" />
@@ -1419,24 +1485,7 @@ export default function Page() {
 
         {/* Desktop: absolute scattered layout */}
         <div className="hidden sm:block relative mx-auto" style={{ maxWidth: 1200, height: 900, paddingLeft: 24, paddingRight: 24 }}>
-          {([
-            { src: "IMG_0054.jpg", left: "0%", top: 0, width: "27%"},
-            { src: "IMG_1424.jpg", left: "24%", top: 50, width: "26%" },
-            { src: "IMG_1588.jpg", left: "49%", top: 30, width: "24%"},
-            { src: "IMG_2692.jpg", left: "73%", top: -10, width: "26%" },
-            { src: "IMG_2693.jpg", left: "-5%", top: 270, width: "27%" },
-            { src: "IMG_3443.jpg", left: "22%", top: 295, width: "25%"},
-            { src: "IMG_3870.jpg", left: "49%", top: 200, width: "24%" },
-            { src: "IMG_6375.jpg", left: "76%", top: 188, width: "25%"},
-            { src: "IMG_7069.jpg", left: "-2%", top: 480, width: "26%"},
-            { src: "IMG_7154.jpg", left: "22%", top: 425, width: "26%" },
-            { src: "IMG_7644.jpg", left: "48%", top: 350, width: "26%"},
-            { src: "IMG_8622.jpg", left: "79%", top: 485, width: "25%" },
-            { src: "IMG_9222.jpg", left: "-4%", top: 605, width: "27%" },
-            { src: "IMG_9264.jpg", left: "25%", top: 625, width: "26%"},
-            { src: "IMG_9595.jpg", left: "51%", top: 520, width: "23%" },
-            { src: "IMG_9699.jpg", left: "75%", top: 600, width: "24%"},
-          ] as { src: string; left: string; top: number; width: string; }[]).map((card, i) => (
+          {lineReviewDesktopCards.map((card, i) => (
             <div
               key={i}
               data-reveal="pop"
@@ -1454,7 +1503,7 @@ export default function Page() {
                 style={{ transformOrigin: "center center", transition: "transform 0.3s ease" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1.05)"; (e.currentTarget as HTMLElement).parentElement!.style.zIndex = "10"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; (e.currentTarget as HTMLElement).parentElement!.style.zIndex = "1"; }}
-                onClick={() => setLightbox(`/img/Page 12_ Customer Review from Line Official /${card.src}`)}
+                onClick={() => { setLightboxImages(lineReviewDesktopSrcs); setLightboxIndex(i); }}
               >
                 <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "white", boxShadow: "0 6px 24px rgba(30,24,18,0.12)", padding: "6px" }}>
                   <Image
@@ -1558,30 +1607,76 @@ export default function Page() {
       </section>
 
       {/* ── Lightbox ── */}
-      {lightbox && (
+      {lightboxIndex !== null && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{ backgroundColor: "rgba(10,8,6,0.75)", cursor: "zoom-out" }}
-          onClick={() => setLightbox(null)}
+          style={{ backgroundColor: "rgba(10,8,6,0.82)", cursor: "zoom-out" }}
+          onClick={() => setLightboxIndex(null)}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={lightbox}
+            src={lightboxImages[lightboxIndex]}
             alt=""
-            style={{
-              width: "90vw",
-              height: "90vh",
-              objectFit: "contain",
-              cursor: "zoom-out",
-            }}
+            style={{ width: "70vw", height: "70vh", objectFit: "contain", cursor: "default" }}
+            onClick={e => e.stopPropagation()}
           />
+          {/* Close */}
           <button
             className="absolute top-4 right-5 text-white/60 hover:text-white text-5xl font-extralight leading-none"
             style={{ textShadow: "0 2px 8px rgba(0,0,0,0.8)" }}
-            onClick={() => setLightbox(null)}
+            onClick={() => setLightboxIndex(null)}
           >
             ×
           </button>
+          {/* Desktop side arrows */}
+          {lightboxIndex > 0 && (
+            <button
+              className="hidden sm:block absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-6xl font-extralight leading-none"
+              style={{ textShadow: "0 2px 8px rgba(0,0,0,0.8)" }}
+              onClick={e => { e.stopPropagation(); setLightboxIndex(i => Math.max(0, i! - 1)); }}
+            >
+              ‹
+            </button>
+          )}
+          {lightboxIndex < lightboxImages.length - 1 && (
+            <button
+              className="hidden sm:block absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-6xl font-extralight leading-none"
+              style={{ textShadow: "0 2px 8px rgba(0,0,0,0.8)" }}
+              onClick={e => { e.stopPropagation(); setLightboxIndex(i => Math.min(lightboxImages.length - 1, i! + 1)); }}
+            >
+              ›
+            </button>
+          )}
+          {/* Desktop counter */}
+          <span className="hidden sm:block absolute bottom-5 left-1/2 -translate-x-1/2 text-white/50 text-sm font-light tracking-widest">
+            {lightboxIndex + 1} / {lightboxImages.length}
+          </span>
+          {/* Mobile bottom nav */}
+          <div
+            className="sm:hidden absolute bottom-0 left-0 right-0 flex items-center justify-between px-6 py-4"
+            style={{ backgroundColor: "rgba(10,8,6,0.6)" }}
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="w-12 h-12 flex items-center justify-center text-3xl font-extralight rounded-full transition-opacity"
+              style={{ color: "white", opacity: lightboxIndex === 0 ? 0.2 : 0.8 }}
+              disabled={lightboxIndex === 0}
+              onClick={() => setLightboxIndex(i => Math.max(0, i! - 1))}
+            >
+              ‹
+            </button>
+            <span className="text-white/50 text-sm font-light tracking-widest">
+              {lightboxIndex + 1} / {lightboxImages.length}
+            </span>
+            <button
+              className="w-12 h-12 flex items-center justify-center text-3xl font-extralight rounded-full transition-opacity"
+              style={{ color: "white", opacity: lightboxIndex === lightboxImages.length - 1 ? 0.2 : 0.8 }}
+              disabled={lightboxIndex === lightboxImages.length - 1}
+              onClick={() => setLightboxIndex(i => Math.min(lightboxImages.length - 1, i! + 1))}
+            >
+              ›
+            </button>
+          </div>
         </div>
       )}
 
@@ -1695,6 +1790,34 @@ export default function Page() {
 
       </footer>
 
+      {/* ── Section nav dots ── */}
+      <nav className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3">
+        {navSections.map((s, i) => (
+          <button
+            key={i}
+            onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" })}
+            className="group relative flex items-center justify-end"
+            aria-label={s.label}
+          >
+            <span
+              className="absolute right-6 opacity-0 group-hover:opacity-100 transition-opacity text-xs whitespace-nowrap px-2 py-1 rounded"
+              style={{ backgroundColor: "var(--brand-footer)", color: "#E8E2DA" }}
+            >
+              {s.label}
+            </span>
+            <span
+              className="block rounded-full transition-all"
+              style={{
+                width: activeSection === i ? 8 : 6,
+                height: activeSection === i ? 8 : 6,
+                backgroundColor: activeSection === i ? "var(--brand-dark)" : "transparent",
+                border: `1.5px solid ${activeSection === i ? "var(--brand-dark)" : "rgba(56,50,42,0.35)"}`,
+              }}
+            />
+          </button>
+        ))}
+      </nav>
+
       {/* ── Floating LINE button ── */}
       <a
         href="https://line.me/R/ti/p/@9skin"
@@ -1706,6 +1829,18 @@ export default function Page() {
       >
         <SiLine size={28} color="white" />
       </a>
+
+      {/* ── Back to top ── */}
+      {scrollPct > 8 && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 left-6 z-40 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-105"
+          style={{ backgroundColor: "var(--brand-footer)", opacity: 0.85 }}
+          aria-label="Back to top"
+        >
+          <LuChevronUp size={18} color="#E8E2DA" />
+        </button>
+      )}
 
     </div>
   );
