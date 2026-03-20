@@ -975,13 +975,13 @@ export default function Page() {
               style={{ borderBottom: "1px solid rgba(56,50,42,0.1)" }}
             >
               {/* Thumbnail */}
-              <div className="relative shrink-0 overflow-hidden rounded-sm" style={{ width: 92, height: 122 }}>
+              <div className="relative shrink-0 overflow-hidden rounded-lg" style={{ width: 120, height: 160 }}>
                 <Image src={item.img} alt={item.alt} fill className="object-cover object-center" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.45) 0%, transparent 55%)" }} />
-                <p className="absolute bottom-1.5 left-2 text-white text-[10px] font-light tracking-wider">{item.label}</p>
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.55) 0%, transparent 50%)" }} />
+                <p className="absolute bottom-2 left-2.5 text-white text-[11px] font-light tracking-wider">{item.label}</p>
               </div>
               {/* Content */}
-              <div className="flex-1 flex flex-col gap-2 pt-0.5">
+              <div className="flex-1 flex flex-col gap-2.5 pt-1">
                 <span style={{ color: "var(--brand-gold)" }}>{item.icon}</span>
                 <p className="text-sm font-light leading-[1.85]" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   {item.text}
