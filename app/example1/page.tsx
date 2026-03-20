@@ -1329,7 +1329,7 @@ export default function Page() {
           </div>
 
           {/* Grid — 2 cols mobile / 4 cols tablet / 5 cols desktop */}
-          <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
             {baReviews.map((item, i) => (
               <div
                 key={i}
