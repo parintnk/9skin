@@ -638,8 +638,10 @@ export default function Page() {
       <section className="flex flex-col lg:flex-row" style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Image — mobile top, desktop left */}
-        <div className="lg:hidden w-full">
-          <Image src="/img/Page 6.JPG" alt="韓式深層保養" width={900} height={1200} className="w-full h-auto" />
+        <div className="lg:hidden w-full px-5 pt-8 pb-2">
+          <div className="overflow-hidden rounded-3xl" style={{ boxShadow: "0 8px 32px rgba(30,24,18,0.13)" }}>
+            <Image src="/img/Page 6.JPG" alt="韓式深層保養" width={900} height={1200} className="w-full h-auto" />
+          </div>
         </div>
         <div className="hidden lg:block relative lg:w-[38%] xl:w-[40%]" style={{ minHeight: 700 }}>
           <Image src="/img/Page 6.JPG" alt="韓式深層保養" fill className="object-cover object-[center_15%]" />
@@ -959,8 +961,10 @@ export default function Page() {
         </div>
 
         {/* Right: full-height studio photo */}
-        <div className="lg:hidden w-full mt-8">
-          <Image src="/img/Page 8-1.JPG" alt="玖膚工作室" width={900} height={1200} className="w-full h-auto" />
+        <div className="lg:hidden w-full px-5 pt-2 pb-8">
+          <div className="overflow-hidden rounded-3xl" style={{ boxShadow: "0 8px 32px rgba(30,24,18,0.13)" }}>
+            <Image src="/img/Page 8-1.JPG" alt="玖膚工作室" width={900} height={1200} className="w-full h-auto" />
+          </div>
         </div>
         <div className="hidden lg:block relative lg:w-[34%] xl:w-[36%]" style={{ minHeight: 640 }}>
           <Image src="/img/Page 8-1.JPG" alt="玖膚工作室" fill className="object-cover object-center" />
@@ -1358,8 +1362,8 @@ export default function Page() {
           </p>
         </div>
 
-        {/* Mobile: 2-col grid */}
-        <div className="sm:hidden columns-2 gap-3 px-4">
+        {/* Mobile: 2-col masonry */}
+        <div className="sm:hidden columns-2 gap-2 px-4 pb-10" style={{ columnGap: 10 }}>
           {[
             "/img/Page 12_ Customer Review from Line Official /IMG_0054.jpg",
             "/img/Page 12_ Customer Review from Line Official /IMG_1424.jpg",
@@ -1372,14 +1376,15 @@ export default function Page() {
             "/img/Page 12_ Customer Review from Line Official /IMG_7069.jpg",
             "/img/Page 12_ Customer Review from Line Official /IMG_7154.jpg",
             "/img/Page 12_ Customer Review from Line Official /IMG_7644.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_8622.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_9222.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_9264.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_9595.jpg",
-            "/img/Page 12_ Customer Review from Line Official /IMG_9699.jpg",
           ].map((src, i) => (
-            <div key={i} className="mb-3 break-inside-avoid cursor-zoom-in" onClick={() => setLightbox(src)}>
-              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "white", boxShadow: "0 4px 16px rgba(30,24,18,0.10)", padding: "5px" }}>
+            <div
+              key={i}
+              data-reveal="pop"
+              className="break-inside-avoid cursor-zoom-in"
+              style={{ marginBottom: 10, animationDelay: `${i * 0.15}s` }}
+              onClick={() => setLightbox(src)}
+            >
+              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "white", boxShadow: "0 2px 12px rgba(30,24,18,0.10)", padding: "4px" }}>
                 <Image src={src} alt={`顧客好評 ${i + 1}`} width={300} height={480} className="w-full h-auto rounded-xl" />
               </div>
             </div>
@@ -1405,31 +1410,35 @@ export default function Page() {
             { src: "IMG_9264.jpg", left: "25%", top: 625, width: "26%"},
             { src: "IMG_9595.jpg", left: "51%", top: 520, width: "23%" },
             { src: "IMG_9699.jpg", left: "75%", top: 600, width: "24%"},
-          ] as { src: string; left: string; top: number; width: string;  }[]).map((card, i) => (
+          ] as { src: string; left: string; top: number; width: string; }[]).map((card, i) => (
             <div
               key={i}
-              className="absolute cursor-zoom-in"
+              data-reveal="pop"
               style={{
+                position: "absolute",
                 left: card.left,
                 top: card.top,
                 width: card.width,
-                transform: `rotate(${card.deg}deg)`,
-                transformOrigin: "center center",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                animationDelay: `${i * 0.15}s`,
                 zIndex: 1,
               }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "rotate(0deg) scale(1.04)"; (e.currentTarget as HTMLElement).style.zIndex = "10"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = `rotate(${card.deg}deg) scale(1)`; (e.currentTarget as HTMLElement).style.zIndex = "1"; }}
-              onClick={() => setLightbox(`/img/Page 12_ Customer Review from Line Official /${card.src}`)}
             >
-              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "white", boxShadow: "0 6px 24px rgba(30,24,18,0.12)", padding: "6px" }}>
-                <Image
-                  src={`/img/Page 12_ Customer Review from Line Official /${card.src}`}
-                  alt={`顧客好評 ${i + 1}`}
-                  width={300}
-                  height={480}
-                  className="w-full h-auto rounded-xl"
-                />
+              <div
+                className="cursor-zoom-in"
+                style={{ transformOrigin: "center center", transition: "transform 0.3s ease" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1.05)"; (e.currentTarget as HTMLElement).parentElement!.style.zIndex = "10"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; (e.currentTarget as HTMLElement).parentElement!.style.zIndex = "1"; }}
+                onClick={() => setLightbox(`/img/Page 12_ Customer Review from Line Official /${card.src}`)}
+              >
+                <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: "white", boxShadow: "0 6px 24px rgba(30,24,18,0.12)", padding: "6px" }}>
+                  <Image
+                    src={`/img/Page 12_ Customer Review from Line Official /${card.src}`}
+                    alt={`顧客好評 ${i + 1}`}
+                    width={300}
+                    height={480}
+                    className="w-full h-auto rounded-xl"
+                  />
+                </div>
               </div>
             </div>
           ))}
@@ -1438,10 +1447,43 @@ export default function Page() {
       </section>
 
       {/* ── S13 · Environmental Introduction ── */}
-      <section data-reveal="fade" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section style={{ backgroundColor: "var(--brand-cream)" }}>
+
+        {/* Mobile layout */}
+        <div className="sm:hidden px-5 py-12">
+          <div className="text-center mb-7" data-reveal="fade">
+            <h2 className="text-3xl font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>環境介紹</h2>
+            <p className="mt-2 text-sm italic" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em", fontFamily: "serif" }}>Environmental Introduction</p>
+          </div>
+          {/* Top: 2 equal photos */}
+          <div className="grid grid-cols-2 gap-2 mb-2">
+            <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "3/4" }}>
+              <Image src="/img/Page 12-1.jpg" alt="歡迎茶飲" width={400} height={533}
+                className="w-full h-full object-cover" />
+            </div>
+            <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "3/4" }}>
+              <Image src="/img/Page 12-2.jpg" alt="護膚床" width={400} height={533}
+                className="w-full h-full object-cover" />
+            </div>
+          </div>
+          {/* Bottom: narrow + wide */}
+          <div className="grid gap-2" style={{ gridTemplateColumns: "2fr 3fr", height: 240 }}>
+            <div className="overflow-hidden rounded-2xl">
+              <Image src="/img/Page 12-3.jpg" alt="肌膚檢測儀器" width={300} height={450}
+                className="w-full h-full object-cover object-bottom" />
+            </div>
+            <div className="overflow-hidden rounded-2xl">
+              <Image src="/img/Page 12-4.jpg" alt="舒適候診空間" width={500} height={450}
+                className="w-full h-full object-cover object-center" />
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop layout */}
         <div
+          className="hidden sm:grid"
+          data-reveal="fade"
           style={{
-            display: "grid",
             gridTemplateColumns: "3fr 3fr 4fr",
             gridTemplateRows: "1fr 1fr",
             gridTemplateAreas: `"text tea  bed" "mach lounge lounge"`,
@@ -1451,7 +1493,7 @@ export default function Page() {
         >
           {/* Text panel */}
           <div
-            className="flex flex-col justify-center  px-10  lg:px-12"
+            className="flex flex-col justify-center px-10 lg:px-12"
             style={{ gridArea: "text", backgroundColor: "var(--brand-cream)" }}
           >
             <h2 className="text-3xl lg:text-6xl font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>
@@ -1486,6 +1528,7 @@ export default function Page() {
               className="w-full h-full object-cover object-center" />
           </div>
         </div>
+
       </section>
 
       {/* ── Lightbox ── */}

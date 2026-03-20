@@ -82,6 +82,23 @@ body {
 [data-reveal-delay="4"].is-revealed { transition-delay: 0.32s; }
 [data-reveal-delay="5"].is-revealed { transition-delay: 0.40s; }
 
+/* ── Pop-in (LINE review cards) ── */
+@keyframes pop-in {
+  0%   { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.12); opacity: 1; }
+  80%  { transform: scale(0.96); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+[data-reveal="pop"] {
+  opacity: 0;
+}
+
+[data-reveal="pop"].is-revealed {
+  animation: pop-in 0.45s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
+  [data-reveal="pop"] { opacity: 1; animation: none; }
 }
