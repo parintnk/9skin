@@ -102,25 +102,25 @@ const concerns = [
     img: "/img/Page 2-1.png",
     title: "痘痘反覆出現",
     subtitle: "Persistent acne",
-    desc: "一次又一次治痘，皮膚卻永遠在反覆出狀況。痘痘從來不是單一原因。出油、發炎、細菌、角質代謝肌膚屏障只要一個環節失衡，就很難真正穩定。與其一直「處理痘痘」 不如把皮膚的整體狀態調回健康",
+    desc: "一次又一次治痘,皮膚卻永遠在反覆出狀況。痘痘從來不是單一原因。出油、 發炎、細菌、角質代謝肌膚屏障只要一個環節失衡,就很難真正穩定。與其一直「處理痘痘」不如把皮膚的整體狀態調回健康",
   },
   {
     img: "/img/Page 2-2.png",
-    title: "保養品一直買，皮膚卻沒變好",
-    subtitle: "Skincare shopping, skin unchanged",
-    desc: "明明用的是專櫃、醫美等級保養 肌膚卻怎麼都不透亮？ 不是你保養不夠，是皮膚狀態不對 角質太厚，吸收進不去；角質太薄，水留不住 真正該做的，是先了解肌膚 再把皮膚慢慢養回健康、會發光的狀態",
+    title: "保養品一直買,皮膚卻沒變好",
+    subtitle: "保養品購物，肌膚不變",
+    desc: "明明用的是專櫃、醫美等級保養肌膚卻怎麼都不透亮?不是你保養不夠, 是皮膚狀態不對角質太厚,吸收進不去;角質太薄,水留不住眞正該做的,是先了解肌膚再把皮膚慢慢養回健康、會發光的狀態",
   },
   {
     img: "/img/Page 2-3.png",
-    title: "越認真保養，皮膚卻越敏感",
+    title: "越認真保養,皮膚卻越敏感",
     subtitle: "More skincare, more sensitive",
-    desc: "做臉、煥膚、雷射都嘗試過 皮膚卻越來越紅、越來越薄？ 當肌膚已經不穩定，再一味追求刺激與重建，反而只會讓皮膚更疲憊。真正有效的保養是從肌膚生理出發，選對現在「適合你」的照護方式",
+    desc: "做臉、煥膚、雷射都嘗試過皮膚卻越來越紅、越來越薄? 當肌膚已經不穩定,再一味追求刺激與重建,反而只會讓皮膚更疲憊。真正有效的保養是從肌膚生理出發,選對現在「適合你」的照護方式",
   },
   {
     img: "/img/Page 2-4.png",
-    title: "想瘦小臉，卻不想再忍痛",
-    subtitle: "Face slimming without the pain",
-    desc: "想要緊緻小臉卻對電波、音波的疼痛感卻步？ 瘦臉不一定要忍痛。透過非侵入式的儀器護理，科技加持，安全溫和又看得見效果。從表層到深層喚醒肌膚支撐力，讓肌膚感受更緊緻、改善鬆弛感，最終感受輪廓更立體",
+    title: "想瘦小臉,卻不想再忍痛",
+    subtitle: "瘦臉不痛",
+    desc: "想要緊緻小臉卻對電波、音波的疼痛感卻步? 瘦臉不一定要忍痛。透過非侵入式的儀器護理,科技加持,安全溫和又看得見效果。從表層到深層喚醒肌膚支撐力,讓肌膚感受更緊緻、改善鬆弛感,最終感受輪廓更立體",
   },
 ];
 
@@ -419,56 +419,103 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 2 — Skin Concerns
       ══════════════════════════════════════ */}
-      <section className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-lighter)" }}>
-        <div className="max-w-5xl mx-auto px-6 sm:px-0">
+      <section className="h-[100svh] min-h-[600px] py-2 sm:py-4 flex flex-col justify-center overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full flex flex-col items-center sm:block">
 
-          <div data-reveal className="text-center mb-6 sm:mb-20">
-            <p className="text-[11px] lg:text-[13px] tracking-[0.3em] uppercase mb-5 font-light" style={{ color: "var(--brand-gold)" }}>
-              Skin Concerns
-            </p>
-            <h2 className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug mb-4" style={{ letterSpacing: "0.04em" }}>
+          <div data-reveal className="text-center mb-4 sm:mb-8">
+            <h2 className="text-xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug mb-1 sm:mb-2" style={{ letterSpacing: "0.04em" }}>
               常見的肌膚困擾，你中了幾項？
             </h2>
-            <p className="text-sm lg:text-[17px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
+            <p className="text-[12px] sm:text-sm lg:text-[17px] font-light mt-1 sm:mt-0" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em" }}>
               How many of these common skin concerns do you struggle with?
             </p>
-            <div className="flex items-center justify-center gap-3 mt-8">
+            <div className="hidden sm:flex items-center justify-center gap-3 mt-4">
               <div className="h-px w-16" style={{ backgroundColor: "rgba(56,50,42,0.15)" }} />
               <div className="w-1 h-1 rounded-full" style={{ backgroundColor: "var(--brand-gold)" }} />
               <div className="h-px w-16" style={{ backgroundColor: "rgba(56,50,42,0.15)" }} />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5 sm:gap-y-16">
+          <div className="hidden sm:grid sm:grid-cols-2 gap-x-10 gap-y-6 lg:gap-y-10 w-full">
             {concerns.map((c, i) => (
-              <div key={i} data-reveal data-reveal-delay={i + 1} className="flex flex-col gap-5">
-                <div className="card-wrap relative w-full overflow-hidden" style={{ aspectRatio: "543/209", borderRadius: "2px" }}>
+              <div key={i} data-reveal data-reveal-delay={i + 1} className="flex flex-col gap-3">
+                <div className="card-wrap relative w-full overflow-hidden" style={{ aspectRatio: "543/180", borderRadius: "2px" }}>
                   <Image src={c.img} alt={c.title} fill className="card-img object-cover" />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, rgba(20,16,12,0.1) 0%, rgba(20,16,12,0.55) 100%)" }} />
-                  <div className="absolute inset-0 flex flex-col justify-end px-6 pb-5">
-                    <p className="text-white font-light text-base lg:text-lg leading-snug mb-1" style={{ letterSpacing: "0.04em" }}>{c.title}</p>
+                  <div className="absolute inset-0 flex flex-col justify-end px-5 pb-4">
+                    <p className="text-white font-light text-base lg:text-[17px] leading-snug mb-1" style={{ letterSpacing: "0.04em" }}>{c.title}</p>
                     <p className="text-white/60 text-[11px] tracking-widest font-light">{c.subtitle}</p>
                   </div>
                 </div>
-                <p className="text-sm lg:text-[17px] font-light leading-[1.95]" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
+                <p className="text-[13px] lg:text-[15px] font-light leading-[1.8] line-clamp-3" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
                   {c.desc}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="flex justify-center mt-16 sm:mt-20">
-            <div className="w-11 h-11 rounded-full flex items-center justify-center" style={{ border: "1px solid rgba(56,50,42,0.25)", backgroundColor: "rgba(56,50,42,0.04)" }}>
+          <div className="flex flex-col gap-6 sm:hidden mt-2 pt-2 pb-2 w-full max-w-[340px]">
+            {concerns.map((c, i) => (
+              <div key={i} data-reveal data-reveal-delay={i + 1} className="relative">
+                {/* The Box */}
+                <div 
+                  className="relative ml-5 mr-6 border pt-5 pb-3 px-3"
+                  style={{ borderColor: "rgba(56,50,42,0.3)" }}
+                >
+                  {/* The top-left oversized number */}
+                  <span 
+                    className="absolute z-10 flex items-center justify-center font-serif italic"
+                    style={{ 
+                      top: "-1.4rem",
+                      left: "-1.2rem",
+                      fontSize: "3.0rem", 
+                      color: "var(--brand-dark)", 
+                      backgroundColor: "var(--brand-lighter)",
+                      padding: "0 6px",
+                      lineHeight: "1"
+                    }}
+                  >
+                    {i + 1}
+                  </span>
+
+                  {/* The top-right circular image */}
+                  <div 
+                    className="absolute z-10 rounded-full overflow-hidden"
+                    style={{ 
+                      top: "-16px",
+                      right: "-10px",
+                      width: "60px", 
+                      height: "60px",
+                      border: "3px solid var(--brand-lighter)"
+                    }}
+                  >
+                    <Image src={c.img} alt={c.title} fill className="object-cover object-center" />
+                  </div>
+
+                  <div className="text-center mb-2 px-2 relative z-0">
+                    <h3 className="text-[13px] font-medium leading-[1.4] tracking-widest" style={{ color: "var(--brand-dark)", opacity: 0.9 }}>
+                      {c.title}
+                    </h3>
+                  </div>
+                  <p className="text-[10px] leading-[1.6] font-light text-justify relative z-0 line-clamp-3" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
+                    {c.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="hidden sm:flex justify-center mt-6 lg:mt-8">
+            <div className="w-9 h-9 lg:w-11 lg:h-11 rounded-full flex items-center justify-center" style={{ border: "1px solid rgba(56,50,42,0.25)", backgroundColor: "rgba(56,50,42,0.04)" }}>
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <path d="M8 2v12M2.5 9.5l5.5 5 5.5-5" stroke="var(--brand-dark)" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </div>
 
-          <div className="mt-10">
-            <div className="rounded-full px-8 sm:px-12 py-4 sm:py-5 text-center" style={{ backgroundColor: "var(--brand-footer)", boxShadow: "0 4px 24px rgba(30,24,18,0.12)" }}>
-              <p className="text-sm lg:text-[17px] font-light leading-relaxed" style={{ color: "var(--brand-footer-text)", letterSpacing: "0.05em" }}>
-                這些問題看似獨立，實際上都指向同一個核心：肌膚缺乏正確的深層調理與系統化管理
+          <div className="hidden sm:block mt-6">
+            <div className="rounded-full px-8 py-3 lg:py-4 text-center mx-auto" style={{ backgroundColor: "var(--brand-footer)", boxShadow: "0 4px 24px rgba(30,24,18,0.12)", maxWidth: "80%" }}>
+              <p className="text-[13px] lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-footer-text)", letterSpacing: "0.05em" }}>
+                這些問題看似獨立,實際上都指向同一個核心:肌膚缺乏正確的深層調理與系統化管理
               </p>
             </div>
           </div>
