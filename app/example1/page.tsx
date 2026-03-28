@@ -168,22 +168,22 @@ const lineReviewSrcs = [
 ];
 
 const lineReviewDesktopCards: { src: string; left: string; top: number; width: string }[] = [
-  { src: "IMG_0054.jpg", left: "0%", top: 0, width: "27%"},
+  { src: "IMG_0054.jpg", left: "0%", top: 0, width: "27%" },
   { src: "IMG_1424.jpg", left: "24%", top: 50, width: "26%" },
-  { src: "IMG_1588.jpg", left: "49%", top: 30, width: "24%"},
+  { src: "IMG_1588.jpg", left: "49%", top: 30, width: "24%" },
   { src: "IMG_2692.jpg", left: "73%", top: -10, width: "26%" },
   { src: "IMG_2693.jpg", left: "-5%", top: 270, width: "27%" },
-  { src: "IMG_3443.jpg", left: "22%", top: 295, width: "25%"},
+  { src: "IMG_3443.jpg", left: "22%", top: 295, width: "25%" },
   { src: "IMG_3870.jpg", left: "49%", top: 200, width: "24%" },
-  { src: "IMG_6375.jpg", left: "76%", top: 188, width: "25%"},
-  { src: "IMG_7069.jpg", left: "-2%", top: 480, width: "26%"},
+  { src: "IMG_6375.jpg", left: "76%", top: 188, width: "25%" },
+  { src: "IMG_7069.jpg", left: "-2%", top: 480, width: "26%" },
   { src: "IMG_7154.jpg", left: "22%", top: 425, width: "26%" },
-  { src: "IMG_7644.jpg", left: "48%", top: 350, width: "26%"},
+  { src: "IMG_7644.jpg", left: "48%", top: 350, width: "26%" },
   { src: "IMG_8622.jpg", left: "79%", top: 485, width: "25%" },
   { src: "IMG_9222.jpg", left: "-4%", top: 605, width: "27%" },
-  { src: "IMG_9264.jpg", left: "25%", top: 625, width: "26%"},
+  { src: "IMG_9264.jpg", left: "25%", top: 625, width: "26%" },
   { src: "IMG_9595.jpg", left: "51%", top: 520, width: "23%" },
-  { src: "IMG_9699.jpg", left: "75%", top: 600, width: "24%"},
+  { src: "IMG_9699.jpg", left: "75%", top: 600, width: "24%" },
 ];
 
 const lineReviewDesktopSrcs = lineReviewDesktopCards.map(c => `/img/Page 12_ Customer Review from Line Official /${c.src}`);
@@ -293,55 +293,49 @@ export default function Page() {
             src="/img/Page 1.JPG"
             alt="9skin"
             fill
-            className="object-cover object-[center_15%]"
+            className="object-cover object-[center_15%] pb-12"
             priority
           />
 
           {/* Gradient overlay — stronger coverage for readability */}
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.12) 35%, rgba(20,16,12,0.55) 60%, rgba(20,16,12,0.88) 100%)" }}
+            style={{ background: "linear-gradient(to bottom, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.12) 25%, rgba(20,16,12,0.55) 100%, rgba(20,16,12,0.88) 100%)" }}
           />
 
           {/* Content layer — 3-zone layout */}
-          <div className="relative z-10 flex flex-col flex-1 px-7 pt-12 pb-7 justify-between">
+          <div className="relative z-10 flex flex-col flex-1 px-7 pt-12 pb-5">
 
             {/* Zone 1 — Logo (top) */}
-            <div>
+            <div className="flex items-center justify-center mt-[80px]">
               <Image
                 src="/img/9skin logo.png"
                 alt="9skin 玖膚"
                 width={160}
                 height={58}
-                className="w-[130px] h-auto"
-                style={{ filter: "brightness(0) invert(1)", opacity: 0.92 }}
+                className="w-[200px] h-auto object-cover"
+                style={{ filter: "brightness(0) invert(1)", opacity: 0.90 }}
                 priority
               />
             </div>
 
             {/* Zone 2 — Heading (middle) */}
-            <div>
+            <div className="mt-5 ">
               {/* <p className="text-[10px] tracking-[0.32em] uppercase mb-3 font-light" style={{ color: "rgba(232,226,218,0.5)" }}>
                 Since 2021 · Taipei · Kaohsiung
               </p> */}
-              <h1 className="text-[2.45rem] font-light leading-snug mb-4" style={{ color: "#F0EBE2", letterSpacing: "0.04em" }}>
-                「关于我们」
+              <h1 className="text-[2.25rem] font-medium text-center leading-snug mb-10" style={{ color: "#F0EBE2", letterSpacing: "0.04em" }}>
+                「關於玖膚」
               </h1>
-              <div className="w-10 h-px" style={{ backgroundColor: "rgba(232,226,218,0.35)" }} />
             </div>
 
             {/* Zone 3 — Body + scroll hint (bottom) */}
-            <div>
-              <div className="space-y-2 mb-5">
-                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>養膚，是一件更深、更長遠的事</p>
-                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>我們像管理資產一樣，陪你管理『顏值』</p>
-                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
-              </div>
-              <div className="w-16 h-px mb-5" style={{ backgroundColor: "rgba(232,226,218,0.18)" }} />
-              <div className="space-y-2 mb-7">
-                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
-                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>以暖色調營造放鬆有溫度的環境</p>
-                <p className="text-[14.5px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.65)", letterSpacing: "0.03em" }}>讓每位顧客都能享有專屬的私密與安心感</p>
+            <div className="mt-auto flex items-center justify-center">
+              <div className="">
+                <p className="text-[12px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>養膚,是一件深遠的事,我們陪你管理「顏值」</p>
+                <p className="text-[12px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>規劃專屬保養計畫,成為你的顏值資產顧問</p>
+                <p className="text-[12px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>在這裡,你可以慢下來,被傾聽、被理解</p>
+                <p className="text-[12px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>溫潤空間與細緻服務,讓肌膚與心一起放鬆</p>
               </div>
             </div>
           </div>
@@ -374,7 +368,7 @@ export default function Page() {
             {/* Heading block */}
             <div className="mb-5 sm:mb-12">
               <h1 data-reveal data-reveal-delay="2" className="text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem] font-light leading-tight mb-8" style={{ letterSpacing: "0.04em" }}>
-                「关于我们」
+                「關於玖膚」
               </h1>
               <div className="flex items-center gap-4">
                 <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.18)" }} />
@@ -385,15 +379,13 @@ export default function Page() {
             {/* Body */}
             <div className="flex flex-col gap-4 lg:gap-10 lg:flex-1 lg:justify-center">
               <div data-reveal data-reveal-delay="3" className="space-y-3">
-                <p className="text-base lg:text-[20px] font-light leading-loose">養膚，是一件更深、更長遠的事</p>
-                <p className="text-base lg:text-[20px] font-light leading-loose">我們像管理資產一樣，陪你管理『顏值』</p>
-                <p className="text-base lg:text-[20px] font-light leading-loose">替你規劃專屬保養計畫，成為風格與生活的顏值資產管理顧問</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">養膚,是一件深遠的事,我們陪你管理「顏值」</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">規劃專屬保養計畫,成為你的顏值資產顧問</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">在這裡,你可以慢下來,被傾聽、被理解</p>
               </div>
               <div data-reveal data-reveal-delay="4" className="space-y-3">
                 <div className="w-20 h-px" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
-                <p className="text-base lg:text-[20px] font-light leading-loose">我們打造溫馨、寬敞且舒適的開放式諮詢空間</p>
-                <p className="text-base lg:text-[20px] font-light leading-loose">以暖色調營造放鬆有溫度的環境</p>
-                <p className="text-base lg:text-[20px] font-light leading-loose">讓每位顧客都能享有專屬的私密與安心感</p>
+                <p className="text-base lg:text-[20px] font-light leading-loose">溫潤空間與細緻服務,讓肌膚與心一起放鬆</p>
               </div>
             </div>
           </div>
