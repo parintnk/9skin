@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { LuClipboardList, LuLeaf, LuSparkles, LuFlaskConical, LuChevronUp } from "react-icons/lu";
 import { SiLine, SiInstagram } from "react-icons/si";
@@ -459,18 +459,18 @@ export default function Page() {
             {concerns.map((c, i) => (
               <div key={i} data-reveal data-reveal-delay={i + 1} className="relative">
                 {/* The Box */}
-                <div 
+                <div
                   className="relative ml-5 mr-6 border pt-5 pb-3 px-3"
                   style={{ borderColor: "rgba(56,50,42,0.3)" }}
                 >
                   {/* The top-left oversized number */}
-                  <span 
+                  <span
                     className="absolute z-10 flex items-center justify-center font-serif italic"
-                    style={{ 
+                    style={{
                       top: "-1.4rem",
                       left: "-1.2rem",
-                      fontSize: "3.0rem", 
-                      color: "var(--brand-dark)", 
+                      fontSize: "3.0rem",
+                      color: "var(--brand-dark)",
                       backgroundColor: "var(--brand-lighter)",
                       padding: "0 6px",
                       lineHeight: "1"
@@ -480,12 +480,12 @@ export default function Page() {
                   </span>
 
                   {/* The top-right circular image */}
-                  <div 
+                  <div
                     className="absolute z-10 rounded-full overflow-hidden"
-                    style={{ 
+                    style={{
                       top: "-16px",
                       right: "-10px",
-                      width: "60px", 
+                      width: "60px",
                       height: "60px",
                       border: "3px solid var(--brand-lighter)"
                     }}
@@ -683,7 +683,7 @@ export default function Page() {
                 data-reveal
                 data-reveal-delay={i + 1}
                 className="rounded-2xl px-5 py-5 sm:px-6 sm:py-6"
-                style={{ backgroundColor: "rgba(255,255,255,0.65)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(56,50,42,0.08)", boxShadow: "0 4px 20px rgba(56,50,42,0.06)" }}
+                style={{ backgroundColor: "rgba(228, 227, 227, 0.65)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(56,50,42,0.08)", boxShadow: "0 4px 20px rgba(56,50,42,0.06)" }}
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div
@@ -716,7 +716,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 5 — Why Choose 玖膚
       ══════════════════════════════════════ */}
-      <section id="s5" className="py-8 sm:py-24 lg:py-28" style={{ backgroundColor: "var(--brand-cream)" }}>
+      <section id="s5" className="h-auto sm:min-h-0 py-16 sm:py-24 lg:py-28 flex flex-col overflow-hidden" style={{ backgroundColor: "var(--brand-cream)" }}>
         <div className="px-6 sm:px-10 lg:px-14">
 
           {/* Heading */}
@@ -729,20 +729,12 @@ export default function Page() {
             </p>
           </div>
 
-          {/* ── MOBILE: cards ── */}
-          <div className="flex flex-col gap-5 sm:hidden">
-            {[
-              {
-                label: "玖膚皮膚管理",
-                dark: true,
-                featured: true,
-                rows: [
-                  { label: "費用", lines: ["價格 $2~3000"] },
-                  { label: "時間", lines: ["1～2月一次，平均60~120分/次"] },
-                  { label: "特色", lines: ["從專業肌膚檢測開始，深入了解肌膚底層狀況", "依據膚質、耐受度與不同區域問題，搭配專業儀器與手法", "真正做到客製化的皮膚分區管理", "讓每一次做臉都是看得到改變"] },
-                  { label: "成效", lines: ["膚質真正被改善", "達到穩定、透亮、有彈性的水煮蛋肌"] },
-                ],
-              },
+          {/* ── MOBILE: horizontal carousel with center focus ── */}
+          <style>{`
+            .s5-carousel::-webkit-scrollbar { display: none; }
+          `}</style>
+          {(() => {
+            const s5Cards = [
               {
                 label: "醫美療程",
                 dark: false,
@@ -750,8 +742,19 @@ export default function Page() {
                 rows: [
                   { label: "費用", lines: ["價格 $5000以上"] },
                   { label: "時間", lines: ["1～2月一次，平均1hr/次"] },
-                  { label: "特色", lines: ["以雷射為主作為治療", "針對敏感肌或需手工針清的痘痘肌，雷射並非最佳首選"] },
+                  { label: "特色", lines: ["以雷射為主作為治療", "但是針對需要維護保養的敏感肌", "或是需要專業手工針清的粉刺痘痘肌", "雷射並非最佳首選"] },
                   { label: "成效", lines: ["快速立即見效", "但長期施作肌膚容易敏感及需承擔操作風險"] },
+                ],
+              },
+              {
+                label: "玖膚皮膚管理",
+                dark: true,
+                featured: true,
+                rows: [
+                  { label: "費用", lines: ["價格 $2~3000"] },
+                  { label: "時間", lines: ["1～2月一次，平均60~120分/次"] },
+                  { label: "特色", lines: ["從專業肌膚檢測開始，深入了解肌膚底層狀況", "找出真正影響膚況的關鍵", "依據每個人的膚質、肌膚耐受度與不同區域的問題差異", "搭配專業皮膚管理儀器、專業手法與頂級院線保養品", "為肌膚各區量身規劃對應的管理方式", "真正做到客製化的皮膚分區管理", "讓每一次做臉都不是浪費，而是看得到改變"] },
+                  { label: "成效", lines: ["透過系統性的皮膚管理不只是短暫好看而是膚質真正被改善", "達到穩定、透亮、有彈性的水煮蛋肌"] },
                 ],
               },
               {
@@ -761,40 +764,128 @@ export default function Page() {
                 rows: [
                   { label: "費用", lines: ["價格 $2000左右"] },
                   { label: "時間", lines: ["1～2月一次，平均60~120分/次"] },
-                  { label: "特色", lines: ["以粉刺清潔與基礎保濕為核心", "流程相對固定，較少結合科技化輔助調整"] },
-                  { label: "成效", lines: ["以基礎清潔保濕及舒適放鬆為主", "在皮膚質地層面改善較為有限"] },
+                  { label: "特色", lines: ["以粉刺清潔與基礎保濕為核心", "流程相對固定", "較少結合科技化輔助調整", "因此在皮膚質地層面的改善較為有限"] },
+                  { label: "成效", lines: ["以基礎清潔保濕", "以及舒適放鬆為主"] },
                 ],
               },
-            ].map((col, i) => (
-              <div key={col.label} data-reveal data-reveal-delay={i + 1} className="overflow-hidden rounded-xl" style={{ border: "1px solid rgba(56,50,42,0.12)" }}>
-                {/* Card header */}
+            ];
+            /* eslint-disable react-hooks/rules-of-hooks */
+            const [s5Active, setS5Active] = useState(1);
+            const s5Ref = useRef<HTMLDivElement>(null);
+
+            useEffect(() => {
+              const el = s5Ref.current;
+              if (!el) return;
+              const onScroll = () => {
+                const cardW = el.scrollWidth / 3;
+                const idx = Math.round(el.scrollLeft / cardW);
+                setS5Active(Math.min(2, Math.max(0, idx)));
+              };
+              el.addEventListener("scroll", onScroll, { passive: true });
+              // scroll to center card on mount
+              const cardW = el.scrollWidth / 3;
+              el.scrollLeft = cardW;
+              return () => el.removeEventListener("scroll", onScroll);
+            }, []);
+            /* eslint-enable react-hooks/rules-of-hooks */
+
+            return (
+              <>
                 <div
-                  className="py-4 px-5 text-center"
+                  ref={s5Ref}
+                  className="s5-carousel sm:hidden flex overflow-x-auto gap-3 px-4"
                   style={{
-                    backgroundColor: col.dark ? "var(--brand-footer)" : "var(--brand-light)",
-                    color: col.dark ? "var(--brand-footer-text)" : "var(--brand-dark)",
+                    scrollSnapType: "x mandatory",
+                    WebkitOverflowScrolling: "touch",
+                    scrollbarWidth: "none",
+                    paddingTop: "2vh",
+                    paddingBottom: "2vh",
                   }}
                 >
-                  <p className="text-base font-light tracking-widest">{col.label}</p>
-                </div>
-                {/* Card rows */}
-                <div className="divide-y" style={{ borderColor: "rgba(56,50,42,0.1)" }}>
-                  {col.rows.map((row) => (
-                    <div key={row.label} className="px-5 py-4" style={{ backgroundColor: col.featured ? "rgba(74,72,64,0.04)" : "transparent" }}>
-                      <p className="text-[11px] tracking-[0.2em] uppercase mb-2 font-light" style={{ color: "var(--brand-gold)" }}>
-                        {row.label}
-                      </p>
-                      {row.lines.map((line, i) => (
-                        <p key={i} className="text-sm font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: col.featured ? 0.9 : 0.78 }}>
-                          {line}
-                        </p>
-                      ))}
+                  {s5Cards.map((col, i) => (
+                    <div
+                      key={col.label}
+                      data-reveal
+                      data-reveal-delay={i + 1}
+                      className="shrink-0 overflow-hidden rounded-2xl transition-all duration-300"
+                      style={{
+                        width: "68vw",
+                        scrollSnapAlign: "center",
+                        border: col.featured ? "2px solid var(--brand-gold)" : "1px solid rgba(56,50,42,0.12)",
+                        boxShadow: i === s5Active
+                          ? "0 8px 32px rgba(56,50,42,0.15)"
+                          : "0 2px 12px rgba(56,50,42,0.05)",
+                        transform: i === s5Active ? "scale(1)" : "scale(0.92)",
+                        opacity: i === s5Active ? 1 : 0.6,
+                      }}
+                    >
+                      {/* Card header */}
+                      <div
+                        className="py-4 px-5 text-center"
+                        style={{
+                          backgroundColor: col.dark ? "var(--brand-footer)" : "var(--brand-light)",
+                          color: col.dark ? "var(--brand-footer-text)" : "var(--brand-dark)",
+                        }}
+                      >
+                        <p className="text-base font-light tracking-widest">{col.label}</p>
+                      </div>
+                      {/* Card rows */}
+                      <div style={{ backgroundColor: col.featured ? "rgba(74,72,64,0.04)" : "transparent" }}>
+                        {col.rows.map((row, ri) => (
+                          <div key={row.label}>
+                            {ri > 0 && (
+                              <div className="mx-5" style={{ height: 1, backgroundColor: "rgba(56,50,42,0.1)" }} />
+                            )}
+                            <div className="px-5 py-3">
+                              <p className="text-[10px] tracking-[0.2em] uppercase mb-1.5 font-light" style={{ color: "var(--brand-gold)" }}>
+                                {row.label}
+                              </p>
+                              {row.lines.map((line, li) => (
+                                <p key={li} className="text-[12px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: col.featured ? 0.9 : 0.78 }}>
+                                  {line}
+                                </p>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
-            ))}
-          </div>
+                {/* Text indicators */}
+                <div className="flex sm:hidden justify-center gap-4 mt-3 mb-2">
+                  {s5Cards.map((col, i) => (
+                    <button
+                      key={i}
+                      className="transition-all duration-300"
+                      style={{
+                        fontSize: 11,
+                        fontWeight: i === s5Active ? 500 : 300,
+                        letterSpacing: "0.05em",
+                        color: i === s5Active ? "var(--brand-dark)" : "rgba(56,50,42,0.35)",
+                        paddingBottom: 2,
+                        background: "none",
+                        borderTop: "none",
+                        borderLeft: "none",
+                        borderRight: "none",
+                        borderBottomStyle: "solid",
+                        borderBottomWidth: 1.5,
+                        borderBottomColor: i === s5Active ? "var(--brand-dark)" : "transparent",
+                      }}
+                      onClick={() => {
+                        const el = s5Ref.current;
+                        if (!el) return;
+                        const cardW = el.scrollWidth / 3;
+                        el.scrollTo({ left: cardW * i, behavior: "smooth" });
+                      }}
+                    >
+                      {col.label}
+                    </button>
+                  ))}
+                </div>
+              </>
+            );
+          })()}
 
           {/* ── DESKTOP: table ── */}
           <div data-reveal className="hidden sm:block overflow-x-auto">
