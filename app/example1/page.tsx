@@ -131,7 +131,7 @@ const steps = [
     num: "01",
     title: "評估你的肌膚屬性",
     lines: [
-      "透過專業檢測與分析找出真正的膚況問題，而非憑感覺保養",
+      "透過專業檢測與分析找出真正的膚況問題,而非憑感覺保養",
       "我們會同時評估肌膚耐受度、當下的不穩定狀態與已存在的問題點",
       "了解肌膚能承受的程度與修護需求",
       "再為每一位顧客量身規劃最適合的客製化照護方案",
@@ -142,15 +142,15 @@ const steps = [
     title: "以肌膚調理・養護為前提",
     lines: [
       "不追求立即見效的激進手段而是建立肌膚的健康基礎",
-      "從根本強化肌膚屏障，讓皮膚自然恢復平衡狀態",
+      "從根本強化肌膚屏障,讓皮膚自然恢復平衡狀態",
     ],
   },
   {
     num: "03",
-    title: "守護肌膚・讓好狀態常在",
+    title: "守護肌膚,讓好狀態常在",
     lines: [
       "肌膚已達理想狀態",
-      "我們專注守護，維持最佳膚況，讓亮澤與彈性長久可見",
+      "我們專注守護,維持最佳膚況,讓亮澤與彈性長久可見",
     ],
   },
 ];
@@ -590,24 +590,26 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 4 — Three Keys
       ══════════════════════════════════════ */}
-      <section className="flex flex-col" style={{ backgroundColor: "var(--brand-light)" }}>
+
+      {/* ── DESKTOP ── */}
+      <section className="hidden lg:flex flex-col" style={{ backgroundColor: "var(--brand-light)" }}>
 
         {/* Header */}
-        <div className="px-8 sm:px-12 lg:px-14 pt-7 sm:pt-16 pb-8 sm:pb-10">
-          <div className="flex flex-col lg:flex-row lg:items-start lg:gap-20">
+        <div className="px-14 pt-16 pb-10">
+          <div className="flex flex-row items-start gap-20">
             <h2
               data-reveal
-              className="text-2xl sm:text-3xl lg:text-[2.6rem] font-light leading-snug lg:w-[44%] shrink-0 mb-5 lg:mb-0"
+              className="text-[2.6rem] font-light leading-snug w-[44%] shrink-0"
               style={{ letterSpacing: "0.03em" }}
             >
-              想要彈潤透亮的水煮蛋肌？
+              想要彈潤透亮的水煮蛋肌?
             </h2>
             <div className="flex flex-col justify-center gap-2">
-              <p className="text-base lg:text-[20px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
-                我們先為你完整評估肌膚狀況，了解當下真正需要的是什麼
+              <p className="text-[20px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                我們先為你完整評估肌膚狀況,了解當下真正需要的是什麼
               </p>
-              <p className="text-base lg:text-[20px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
-                想把皮膚慢慢養好，先從這三個關鍵開始：
+              <p className="text-[20px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                想把皮膚慢慢養好,先從這三個關鍵開始:
               </p>
             </div>
           </div>
@@ -615,18 +617,11 @@ export default function Page() {
         </div>
 
         {/* Split: image left | steps right */}
-        <div className="flex flex-col lg:flex-row flex-1">
-
-          {/* Image */}
-          <div className="lg:hidden w-full">
-            <Image src="/img/Page 4.png" alt="水煮蛋肌" width={564} height={439} className="w-full h-auto" />
-          </div>
-          <div className="hidden lg:block relative lg:w-[44%] xl:w-[46%]" style={{ minHeight: 520 }}>
+        <div className="flex flex-row flex-1">
+          <div className="relative w-[44%] xl:w-[46%]" style={{ minHeight: 520 }}>
             <Image src="/img/Page 4.png" alt="水煮蛋肌" fill className="object-cover object-center" />
           </div>
-
-          {/* Steps */}
-          <div className="flex-1 flex flex-col justify-center gap-10 lg:gap-12 px-8 sm:px-12 lg:px-14 py-12 lg:py-16">
+          <div className="flex-1 flex flex-col justify-center gap-12 px-14 py-16">
             {steps.map((step, i) => (
               <div key={step.num} data-reveal data-reveal-delay={i + 1}>
                 <div className="flex items-center gap-4 mb-4">
@@ -638,14 +633,75 @@ export default function Page() {
                       {step.num}
                     </span>
                   </div>
-                  <h3 className="text-xl lg:text-[1.4rem] font-light" style={{ letterSpacing: "0.04em" }}>
+                  <h3 className="text-[1.4rem] font-light" style={{ letterSpacing: "0.04em" }}>
                     {step.title}
                   </h3>
                 </div>
                 <div className="w-full h-px mb-5" style={{ backgroundColor: "rgba(56,50,42,0.15)" }} />
                 <div className="space-y-2">
-                  {step.lines.map((line, i) => (
-                    <p key={i} className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                  {step.lines.map((line, li) => (
+                    <p key={li} className="text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                      {line}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── MOBILE ── */}
+      <section className="lg:hidden relative min-h-screen flex flex-col overflow-hidden">
+        {/* Mobile background image */}
+        <Image src="/img/s4-mobile-bg.png" style={{ mixBlendMode: "multiply", filter: "brightness(0.70)", opacity: 0.4 }} alt="水煮蛋肌" fill className="object-cover object-center" />
+        {/* Light overlay */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(255,252,247,0.55) 0%, rgba(255,252,247,0.40) 40%, rgba(255,252,247,0.60) 100%)" }} />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col flex-1 px-6 sm:px-10 py-10 sm:py-14">
+
+          {/* Header */}
+          <div data-reveal className="mb-6 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-light leading-snug mb-3" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>
+              想要彈潤透亮的水煮蛋肌?
+            </h2>
+            <div className="h-px w-16" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
+          </div>
+
+          <div className="mb-6 sm:mb-8">
+            <p className="text-[13px] sm:text-base font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.8, letterSpacing: "0.03em" }}>
+              我們先為你完整評估肌膚狀況,了解當下真正需要的是什麼想把皮膚慢慢養好,先從這三個關鍵開始:
+            </p>
+          </div>
+
+          {/* Steps */}
+          <div className="flex flex-col gap-5 sm:gap-8 flex-1">
+            {steps.map((step, i) => (
+              <div
+                key={step.num}
+                data-reveal
+                data-reveal-delay={i + 1}
+                className="rounded-2xl px-5 py-5 sm:px-6 sm:py-6"
+                style={{ backgroundColor: "rgba(255,255,255,0.65)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", border: "1px solid rgba(56,50,42,0.08)", boxShadow: "0 4px 20px rgba(56,50,42,0.06)" }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: "var(--brand-footer)" }}
+                  >
+                    <span className="text-[10px] font-light tracking-wider" style={{ color: "var(--brand-footer-text)" }}>
+                      {step.num}
+                    </span>
+                  </div>
+                  <h3 className="text-[15px] sm:text-lg font-light" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>
+                    {step.title}
+                  </h3>
+                </div>
+                <div className="h-px mb-3" style={{ backgroundColor: "rgba(56,50,42,0.1)" }} />
+                <div className="space-y-1">
+                  {step.lines.map((line, li) => (
+                    <p key={li} className="text-[12px] sm:text-[14px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.78, letterSpacing: "0.03em" }}>
                       {line}
                     </p>
                   ))}
