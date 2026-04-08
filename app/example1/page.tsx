@@ -473,7 +473,7 @@ export default function Page() {
       {/* ══════════════════════════════════════
           SECTION 2 — Skin Concerns
       ══════════════════════════════════════ */}
-      <section className="h-[100svh] min-h-[600px] py-2 sm:py-4 flex flex-col justify-center overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
+      <section className="h-[100svh] min-h-[600px] py-2 sm:h-auto sm:min-h-0 sm:py-16 lg:py-20 flex flex-col justify-center overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full flex flex-col items-center sm:block">
 
           <div data-reveal className="text-center mb-4 sm:mb-8">
@@ -493,11 +493,12 @@ export default function Page() {
           <div className="hidden sm:grid sm:grid-cols-2 gap-x-10 gap-y-6 lg:gap-y-10 w-full">
             {concerns.map((c, i) => (
               <div key={i} data-reveal data-reveal-delay={i + 1} className="flex flex-col gap-3">
-                <div className="card-wrap relative w-full overflow-hidden" style={{ aspectRatio: "543/180", borderRadius: "2px" }}>
+                <div className="card-wrap relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: "543/280", boxShadow: "0 4px 20px rgba(56,50,42,0.10)" }}>
                   <Image src={c.img} alt={c.title} fill className="card-img object-cover" />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.45) 0%, rgba(30,24,18,0) 55%)" }} />
                   <div className="absolute inset-0 flex flex-col justify-end px-5 pb-4">
-                    <p className="text-white font-light text-base lg:text-[17px] leading-snug mb-1" style={{ letterSpacing: "0.04em" }}>{c.title}</p>
-                    <p className="text-white/60 text-[11px] tracking-widest font-light">{c.subtitle}</p>
+                    <p className="text-white font-normal text-base lg:text-lg leading-snug mb-1" style={{ letterSpacing: "0.04em" }}>{c.title}</p>
+                    <p className="text-white/65 text-[11px] tracking-widest font-light">{c.subtitle}</p>
                   </div>
                 </div>
                 <p className="text-[13px] lg:text-[15px] font-light leading-[1.8] line-clamp-3" style={{ color: "var(--brand-dark)", opacity: 0.85 }}>
@@ -1044,21 +1045,16 @@ export default function Page() {
       ══════════════════════════════════════ */}
       <section id="s6" className="flex flex-col lg:flex-row" style={{ backgroundColor: "var(--brand-lighter)" }}>
 
-        {/* Image — mobile top, desktop left */}
-        <div className="lg:hidden w-full px-5 pt-8 pb-2">
-          <div className="overflow-hidden rounded-3xl" style={{ boxShadow: "0 8px 32px rgba(30,24,18,0.13)" }}>
-            <Image src="/img/Page 6.JPG" alt="韓式深層保養" width={900} height={1200} className="w-full h-auto" />
-          </div>
-        </div>
+        {/* Image — desktop left only */}
         <div className="hidden lg:block relative lg:w-[38%] xl:w-[40%]" style={{ minHeight: 700 }}>
           <Image src="/img/Page 6.JPG" alt="韓式深層保養" fill className="object-cover object-[center_15%]" />
         </div>
 
         {/* Content */}
-        <div className="flex-1 flex flex-col px-8 sm:px-12 lg:px-14 py-14 lg:py-16">
+        <div className="flex-1 flex flex-col px-6 sm:px-12 lg:px-14 py-6 sm:py-14 lg:py-16">
 
           {/* Eyebrow + rule */}
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-4 mb-4 sm:mb-8">
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
             <p className="text-xs lg:text-[13px] tracking-[0.28em] uppercase font-light shrink-0" style={{ color: "var(--brand-gold)" }}>
               Korean deep skin care
@@ -1067,32 +1063,32 @@ export default function Page() {
           </div>
 
           {/* Main heading */}
-          <h2 data-reveal className="text-[2.8rem] sm:text-[3.4rem] lg:text-[4rem] font-light mb-3" style={{ letterSpacing: "0.08em" }}>
+          <h2 data-reveal className="text-[1.8rem] sm:text-[3.4rem] lg:text-[4rem] font-light mb-2 sm:mb-3" style={{ letterSpacing: "0.08em" }}>
             SKIN CARE
           </h2>
 
           {/* Subtitle row */}
-          <div data-reveal data-reveal-delay="1" className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
-            <span className="text-2xl sm:text-[1.8rem] lg:text-[2.1rem] font-normal" style={{ letterSpacing: "0.04em" }}>
+          <div data-reveal data-reveal-delay="1" className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-1 sm:mb-2">
+            <span className="text-lg sm:text-[1.8rem] lg:text-[2.1rem] font-normal" style={{ letterSpacing: "0.04em" }}>
               韓式深層保養
             </span>
-            <span className="text-lg lg:text-xl font-light" style={{ color: "rgba(56,50,42,0.35)" }}>·</span>
-            <span className="text-base lg:text-[20px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.04em" }}>
+            <span className="text-sm sm:text-lg lg:text-xl font-light" style={{ color: "rgba(56,50,42,0.35)" }}>·</span>
+            <span className="text-sm sm:text-base lg:text-[20px] font-light" style={{ color: "var(--brand-muted)", letterSpacing: "0.04em" }}>
               不只表面，更深入肌底
             </span>
           </div>
 
           {/* Thin accent under subtitle */}
-          <div className="w-12 h-[2px] mt-5 mb-7" style={{ backgroundColor: "var(--brand-gold)", opacity: 0.5 }} />
+          <div className="w-12 h-0.5 mt-3 sm:mt-5 mb-4 sm:mb-7" style={{ backgroundColor: "var(--brand-gold)", opacity: 0.5 }} />
 
           {/* Description */}
-          <p className="text-base lg:text-[17px] font-light leading-loose mb-10" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+          <p className="text-[13px] sm:text-base lg:text-[17px] font-light leading-relaxed sm:leading-loose mb-4 sm:mb-10" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
             我們的客製化皮膚管理課程，適合痘痘肌、敏感肌、酒糟肌以及乾燥肌等各種膚況，透過11個完整步驟，約120分鐘的專屬課程，由美容師一對一進行肌膚檢測與專業諮詢，幫你全面了解自己的肌膚狀態
           </p>
 
           {/* Divider + sub-heading */}
-          <div className="flex items-center gap-4 mb-8">
-            <h3 className="text-lg lg:text-[1.3rem] font-light shrink-0" style={{ letterSpacing: "0.06em" }}>
+          <div className="flex items-center gap-4 mb-4 sm:mb-8">
+            <h3 className="text-base sm:text-lg lg:text-[1.3rem] font-light shrink-0" style={{ letterSpacing: "0.06em" }}>
               課程內容包括
             </h3>
             <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.16)" }} />
@@ -1105,20 +1101,20 @@ export default function Page() {
                 key={item.num}
                 data-reveal
                 data-reveal-delay={Math.min(i + 1, 5)}
-                className="flex gap-5 items-start py-4"
+                className="flex gap-3 sm:gap-5 items-start py-2 sm:py-4"
                 style={{ borderTop: i === 0 ? "none" : "1px solid rgba(56,50,42,0.1)" }}
               >
                 <span
-                  className="text-[13px] font-light tracking-wider shrink-0 pt-[3px]"
+                  className="text-[11px] sm:text-[13px] font-light tracking-wider shrink-0 pt-0.75"
                   style={{ color: "var(--brand-gold)", minWidth: "2.2rem" }}
                 >
                   {item.num}
                 </span>
                 <div className="flex-1 flex flex-col sm:flex-row sm:items-baseline sm:gap-3">
-                  <p className="text-base lg:text-[20px] font-normal shrink-0" style={{ letterSpacing: "0.04em" }}>
+                  <p className="text-sm sm:text-base lg:text-[20px] font-normal shrink-0" style={{ letterSpacing: "0.04em" }}>
                     {item.title}
                   </p>
-                  <p className="text-sm lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.02em" }}>
+                  <p className="text-xs sm:text-sm lg:text-[15px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.02em" }}>
                     {item.desc}
                   </p>
                 </div>
@@ -1127,15 +1123,22 @@ export default function Page() {
           </div>
 
           {/* Footer summary */}
-          <div className="mt-8 pt-7 space-y-1.5" style={{ borderTop: "1px solid rgba(56,50,42,0.14)" }}>
-            <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.86, letterSpacing: "0.03em" }}>
+          <div className="mt-4 sm:mt-8 pt-4 sm:pt-7 space-y-1.5" style={{ borderTop: "1px solid rgba(56,50,42,0.14)" }}>
+            <p className="text-xs sm:text-sm lg:text-[15px] font-light leading-relaxed sm:leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.86, letterSpacing: "0.03em" }}>
               全程使用頂級院線保養品，確保肌膚得到最完整、最精準的照護
             </p>
-            <p className="text-sm lg:text-[15px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.86, letterSpacing: "0.03em" }}>
+            <p className="text-xs sm:text-sm lg:text-[15px] font-light leading-relaxed sm:leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.86, letterSpacing: "0.03em" }}>
               每次課程都不只是表面保養而是從根本調理肌膚，幫助肌膚恢復健康、穩定與透亮，真正看得見的效果
             </p>
           </div>
 
+        </div>
+
+        {/* Image — mobile bottom */}
+        <div className="lg:hidden w-full px-5 pt-2 pb-4">
+          <div className="overflow-hidden rounded-3xl max-h-[35vh]" style={{ boxShadow: "0 8px 32px rgba(30,24,18,0.13)" }}>
+            <Image src="/img/Page 6.JPG" alt="韓式深層保養" width={900} height={1200} className="w-full h-full object-cover object-[center_12%]" />
+          </div>
         </div>
       </section>
 
@@ -1279,40 +1282,38 @@ export default function Page() {
       <section id="s8" className="flex flex-col lg:flex-row" style={{ backgroundColor: "var(--brand-lighter)" }}>
 
         {/* Left: content */}
-        <div className="flex-1 flex flex-col px-8 sm:px-12 lg:px-14 pt-14 lg:pt-16 pb-0">
+        <div className="flex-1 flex flex-col px-6 sm:px-12 lg:px-14 pt-8 sm:pt-14 lg:pt-16 pb-0">
 
           {/* Eyebrow */}
-          <p className="text-sm font-light mb-5 italic" style={{ color: "var(--brand-muted)", letterSpacing: "0.04em" }}>
+          <p className="text-xs sm:text-sm font-light mb-3 sm:mb-5 italic" style={{ color: "var(--brand-muted)", letterSpacing: "0.04em" }}>
             Let you meet the best version of yourself
           </p>
 
           {/* Main heading */}
-          <div data-reveal className="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-8">
-            <span className="text-[1.5rem] lg:text-[1.8rem] font-light tracking-wider" style={{ fontFamily: "Georgia, serif" }}>
-              9skin<span className="text-xs lg:text-sm ml-1 tracking-[0.16em]" style={{ color: "var(--brand-gold)" }}>玖膚</span>
-            </span>
-            <h2 className="text-[1.8rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold leading-tight" style={{ letterSpacing: "0.03em" }}>
+          <div data-reveal className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-4 sm:mb-8">
+            <Image src="/img/9skin logo.png" alt="9skin玖膚" width={120} height={40} className="h-7 sm:h-8 lg:h-10 w-auto" />
+            <h2 className="text-[1.3rem] sm:text-[2.2rem] lg:text-[2.6rem] font-bold leading-tight" style={{ letterSpacing: "0.03em" }}>
               讓你遇見最好的自己
             </h2>
           </div>
 
           {/* Sub-heading */}
-          <h3 className="text-xl lg:text-2xl font-bold mb-5" style={{ letterSpacing: "0.04em" }}>
+          <h3 className="text-base sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-5" style={{ letterSpacing: "0.04em" }}>
             我們的使命
           </h3>
 
           {/* Rule */}
-          <div className="w-full h-px mb-7" style={{ backgroundColor: "rgba(56,50,42,0.18)" }} />
+          <div className="w-full h-px mb-4 sm:mb-7" style={{ backgroundColor: "rgba(56,50,42,0.18)" }} />
 
           {/* Body */}
-          <div className="space-y-4 mb-10">
-            <p data-reveal data-reveal-delay="1" className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
+          <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-10">
+            <p data-reveal data-reveal-delay="1" className="text-[12px] sm:text-[15px] lg:text-base font-light leading-relaxed sm:leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
               9skin成立於2021年，在台北與高雄皆有分店，以改善2000個以上從問題肌膚到健康肌，再邁向變成細緻的光澤肌
             </p>
-            <p data-reveal data-reveal-delay="2" className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
+            <p data-reveal data-reveal-delay="2" className="text-[12px] sm:text-[15px] lg:text-base font-light leading-relaxed sm:leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
               我們提供8種護膚課程，其中以『韓式深層保養』最受歡迎，許多客人第一次體驗後就成為長期回購的忠實顧客
             </p>
-            <p data-reveal data-reveal-delay="3" className="text-[15px] lg:text-base font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
+            <p data-reveal data-reveal-delay="3" className="text-[12px] sm:text-[15px] lg:text-base font-light leading-relaxed sm:leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.85, letterSpacing: "0.03em" }}>
               創立玖膚，只為了一個使命：幫助每個人提升顏值、增加價值，讓你遇見最好的自己
             </p>
           </div>
@@ -1320,34 +1321,34 @@ export default function Page() {
           {/* Salon image + Founder story — side by side */}
           <div data-reveal className="flex flex-col sm:flex-row gap-0 flex-1">
 
-            {/* Salon image */}
-            <div className="relative sm:w-[42%] shrink-0 overflow-hidden" style={{ minHeight: 200, borderRadius: "2px 0 0 0" }}>
+            {/* Salon image — hidden on mobile */}
+            <div className="hidden sm:block relative sm:w-[42%] shrink-0 overflow-hidden" style={{ minHeight: 200, borderRadius: "2px 0 0 0" }}>
               <Image src="/img/Page 8-2.jpg" alt="玖膚空間" fill className="object-cover object-center" />
             </div>
 
             {/* Founder story */}
-            <div className="flex-1 px-6 sm:px-8 pt-6 pb-10 sm:pt-8 flex flex-col gap-5" style={{ backgroundColor: "rgba(56,50,42,0.04)" }}>
+            <div className="flex-1 px-4 sm:px-8 pt-4 sm:pt-8 pb-6 sm:pb-10 flex flex-col gap-3 sm:gap-5" style={{ backgroundColor: "rgba(56,50,42,0.04)" }}>
               {/* Label row */}
               <div className="flex items-center justify-between">
                 <span
-                  className="px-4 py-1.5 rounded-full text-[13px] font-light tracking-widest"
+                  className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-[13px] font-light tracking-widest"
                   style={{ backgroundColor: "var(--brand-footer)", color: "var(--brand-footer-text)" }}
                 >
                   創辦人的故事
                 </span>
-                <span className="text-xs font-light tracking-[0.16em]" style={{ color: "var(--brand-muted)" }}>
+                <span className="text-[10px] sm:text-xs font-light tracking-[0.16em]" style={{ color: "var(--brand-muted)" }}>
                   The founder&apos;s story
                 </span>
               </div>
               {/* Story */}
-              <div className="space-y-4">
-                <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+              <div className="space-y-3 sm:space-y-4">
+                <p className="text-xs sm:text-sm lg:text-[17px] font-light leading-relaxed sm:leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   小時候的我，是同學眼中的「小黑妹」，因外在曾在學校被取笑。那段經歷讓我深刻感受到自信的重要，也激發我投入保養研究。
                 </p>
-                <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-xs sm:text-sm lg:text-[17px] font-light leading-relaxed sm:leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   經過努力與學習，我找到了屬於自己的美，也下定決心：把這項專業技術傳承下去，幫助更多人看見自己最美的一面。
                 </p>
-                <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+                <p className="text-xs sm:text-sm lg:text-[17px] font-light leading-relaxed sm:leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                   正是曾經的低谷，造就了現在的玖膚。因為這段經歷，我知道如何改變自己，也希望每一位走進玖膚的人，都能看見肌膚的改變、重拾自信，活出最美好的自己。
                 </p>
               </div>
@@ -1357,9 +1358,9 @@ export default function Page() {
         </div>
 
         {/* Right: full-height studio photo */}
-        <div className="lg:hidden w-full px-5 pt-2 pb-8">
-          <div className="overflow-hidden rounded-3xl" style={{ boxShadow: "0 8px 32px rgba(30,24,18,0.13)" }}>
-            <Image src="/img/Page 8-1.JPG" alt="玖膚工作室" width={900} height={1200} className="w-full h-auto" />
+        <div className="lg:hidden w-full px-16 pt-4 pb-3">
+          <div className="overflow-hidden w-full rounded-2xl max-h-[40vh]" style={{ boxShadow: "0 6px 24px rgba(30,24,18,0.10)" }}>
+            <Image src="/img/Page 8-1.JPG" alt="玖膚工作室" width={900} height={1200} className="w-full h-full object-cover" />
           </div>
         </div>
         <div className="hidden lg:block relative lg:w-[34%] xl:w-[36%]" style={{ minHeight: 640 }}>
@@ -1838,27 +1839,59 @@ export default function Page() {
             <h2 className="text-3xl font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>環境介紹</h2>
             <p className="mt-2 text-sm italic" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em", fontFamily: "serif" }}>Environmental Introduction</p>
           </div>
-          {/* Top: 2 equal photos */}
-          <div className="grid grid-cols-2 gap-2 mb-2">
-            <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "3/4" }}>
-              <Image src="/img/Page 12-1.jpg" alt="歡迎茶飲" width={400} height={533}
-                className="w-full h-full object-cover" />
+
+          <div data-reveal className="rounded-[28px] p-2 mb-3" style={{ backgroundColor: "rgba(255,255,255,0.7)", boxShadow: "0 10px 30px rgba(56,50,42,0.08)" }}>
+            <div className="overflow-hidden rounded-[22px]" style={{ aspectRatio: "4 / 2" }}>
+              <Image
+                src="/img/Page 12-2.jpg"
+                alt="護膚床"
+                width={800}
+                height={1000}
+                className="w-full h-auto object-cover object-center"
+              />
             </div>
-            <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "3/4" }}>
-              <Image src="/img/Page 12-2.jpg" alt="護膚床" width={400} height={533}
-                className="w-full h-full object-cover" />
+            <div className="px-2 pt-4 pb-2">
+              <p className="text-[11px] uppercase font-light" style={{ color: "var(--brand-gold)", letterSpacing: "0.24em" }}>
+                Main Treatment Room
+              </p>
+              <p className="mt-2 text-[15px] font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.02em" }}>
+                舒適放鬆的護膚空間
+              </p>
+              <p className="mt-2 text-[12px] font-light leading-[1.7]" style={{ color: "var(--brand-dark)", opacity: 0.76, letterSpacing: "0.02em" }}>
+                以溫潤光線與整潔動線打造安定感，讓每一次護理都能更專注、更放鬆。
+              </p>
             </div>
           </div>
-          {/* Bottom: narrow + wide */}
-          <div className="grid gap-2" style={{ gridTemplateColumns: "2fr 3fr", height: 240 }}>
-            <div className="overflow-hidden rounded-2xl">
-              <Image src="/img/Page 12-3.jpg" alt="肌膚檢測儀器" width={300} height={450}
-                className="w-full h-full object-cover object-bottom" />
+
+          <div className="grid grid-cols-[1.05fr_0.95fr] gap-3 mb-3">
+            <div className="overflow-hidden rounded-[22px]" style={{ aspectRatio: "3 / 4" }}>
+              <Image
+                src="/img/Page 12-1.jpg"
+                alt="歡迎茶飲"
+                width={400}
+                height={533}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="overflow-hidden rounded-2xl">
-              <Image src="/img/Page 12-4.jpg" alt="舒適候診空間" width={500} height={450}
-                className="w-full h-full object-cover object-center" />
+            <div className="overflow-hidden rounded-[22px]" style={{ aspectRatio: "3 / 4" }}>
+              <Image
+                src="/img/Page 12-3.jpg"
+                alt="肌膚檢測儀器"
+                width={300}
+                height={450}
+                className="w-full h-full object-cover"
+              />
             </div>
+          </div>
+
+          <div className="overflow-hidden rounded-[24px]" style={{ aspectRatio: "16 / 10" }}>
+            <Image
+              src="/img/Page 12-4.jpg"
+              alt="舒適候診空間"
+              width={500}
+              height={312}
+              className="w-full h-full object-cover object-center"
+            />
           </div>
         </div>
 
@@ -1867,46 +1900,50 @@ export default function Page() {
           className="hidden sm:grid"
           data-reveal="fade"
           style={{
-            gridTemplateColumns: "3fr 3fr 4fr",
-            gridTemplateRows: "1fr 1fr",
-            gridTemplateAreas: `"text tea  bed" "mach lounge lounge"`,
-            height: "100vh",
-            gap: 2,
+            gridTemplateColumns: "1.2fr 1.2fr 1.65fr",
+            gridTemplateRows: "0.9fr 1.1fr",
+            gridTemplateAreas: `"text tea bed" "mach lounge bed"`,
+            minHeight: "100vh",
+            gap: 14,
+            padding: 14,
           }}
         >
           {/* Text panel */}
           <div
-            className="flex flex-col justify-center px-10 lg:px-12"
-            style={{ gridArea: "text", backgroundColor: "var(--brand-cream)" }}
+            className="flex flex-col justify-center rounded-[34px] px-10 lg:px-12"
+            style={{ gridArea: "text", backgroundColor: "rgba(255,255,255,0.5)" }}
           >
+            <p className="text-[11px] uppercase font-light mb-5" style={{ color: "var(--brand-gold)", letterSpacing: "0.28em" }}>
+              Environmental Introduction
+            </p>
             <h2 className="text-3xl lg:text-6xl font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>
               環境介紹
             </h2>
-            <p className="mt-3 text-sm md:text-2xl italic" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em", fontFamily: "serif" }}>
-              Environmental Introduction
+            <p className="mt-4 text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.78, letterSpacing: "0.03em" }}>
+              以安定、乾淨、柔和的空間語彙，讓顧客從入店開始就能慢下來，專心感受每一次護理。
             </p>
           </div>
 
           {/* Tea photo */}
-          <div className="overflow-hidden" style={{ gridArea: "tea" }}>
+          <div className="overflow-hidden rounded-[34px]" style={{ gridArea: "tea" }}>
             <Image src="/img/Page 12-1.jpg" alt="歡迎茶飲" width={640} height={640}
               className="w-full h-full object-cover" />
           </div>
 
           {/* Treatment bed photo */}
-          <div className="overflow-hidden" style={{ gridArea: "bed" }}>
+          <div className="overflow-hidden rounded-[34px]" style={{ gridArea: "bed" }}>
             <Image src="/img/Page 12-2.jpg" alt="護膚床" width={800} height={640}
               className="w-full h-full object-cover" />
           </div>
 
           {/* Skin analysis machine */}
-          <div className="overflow-hidden" style={{ gridArea: "mach" }}>
+          <div className="overflow-hidden rounded-[34px]" style={{ gridArea: "mach" }}>
             <Image src="/img/Page 12-3.jpg" alt="肌膚檢測儀器" width={480} height={640}
               className="w-full h-full object-cover object-bottom" />
           </div>
 
           {/* Lounge */}
-          <div className="overflow-hidden" style={{ gridArea: "lounge" }}>
+          <div className="overflow-hidden rounded-[34px]" style={{ gridArea: "lounge" }}>
             <Image src="/img/Page 12-4.jpg" alt="舒適候診空間" width={1200} height={640}
               className="w-full h-full object-cover object-center" />
           </div>
