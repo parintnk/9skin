@@ -56,6 +56,24 @@ body {
 .marquee-outer:hover .marquee-track-right {
   animation-play-state: paused;
 }
+.kol-scroll-row {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  cursor: grab;
+}
+.kol-scroll-row::-webkit-scrollbar {
+  display: none;
+}
+.kol-scroll-row:active {
+  cursor: grabbing;
+}
+.kol-scroll-row:hover .marquee-track-left,
+.kol-scroll-row:hover .marquee-track-right,
+.kol-scroll-row.is-interacting .marquee-track-left,
+.kol-scroll-row.is-interacting .marquee-track-right {
+  animation-play-state: paused;
+}
 .marquee-outer {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
   mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
