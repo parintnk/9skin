@@ -238,6 +238,19 @@ export default function Page() {
   const [activeSection, setActiveSection] = useState(0);
   const [scrollPct, setScrollPct] = useState(0);
   const [isKolInteracting, setIsKolInteracting] = useState(false);
+  const [s13Index, setS13Index] = useState(0);
+  const s13Images = [
+    { src: "/img/Page 12-2.jpg", alt: "護膚床", label: "Main Treatment Room", title: "舒適放鬆的護膚空間", desc: "以溫潤光線與整潔動線打造安定感，讓每一次護理都能更專注、更放鬆。" },
+    { src: "/img/Page 12-1.jpg", alt: "歡迎茶飲", label: "Welcome Tea", title: "入店迎賓的暖心一刻", desc: "以溫熱的茶香開啟每一次造訪，讓您從踏入門的瞬間就能放鬆心情。" },
+    { src: "/img/Page 12-3.jpg", alt: "肌膚檢測儀器", label: "Skin Analysis", title: "精準分析，量身護理", desc: "透過專業檢測儀器，深入了解肌膚狀態，為每位顧客規劃最合適的保養方案。" },
+    { src: "/img/Page 12-4.jpg", alt: "舒適候診空間", label: "Lounge", title: "靜謐候診空間", desc: "柔和色調與舒適座椅，為您打造如家一般的放鬆氛圍，靜候您的專屬時光。" },
+  ];
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setS13Index((i) => (i + 1) % s13Images.length);
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, [s13Images.length]);
   const kolResumeTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -1833,66 +1846,74 @@ export default function Page() {
       {/* ── S13 · Environmental Introduction ── */}
       <section style={{ backgroundColor: "var(--brand-cream)" }}>
 
-        {/* Mobile layout */}
-        <div className="sm:hidden px-5 py-12">
-          <div className="text-center mb-7" data-reveal="fade">
+        {/* Mobile layout — gallery with arrows + thumbnails */}
+        <div className="sm:hidden flex flex-col px-4 py-10">
+          <div className="text-center mb-4" data-reveal="fade">
+            <p className="text-[10px] uppercase font-light mb-1" style={{ color: "var(--brand-gold)", letterSpacing: "0.26em" }}>
+              Environmental Introduction
+            </p>
             <h2 className="text-3xl font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>環境介紹</h2>
-            <p className="mt-2 text-sm italic" style={{ color: "var(--brand-muted)", letterSpacing: "0.06em", fontFamily: "serif" }}>Environmental Introduction</p>
           </div>
 
-          <div data-reveal className="rounded-[28px] p-2 mb-3" style={{ backgroundColor: "rgba(255,255,255,0.7)", boxShadow: "0 10px 30px rgba(56,50,42,0.08)" }}>
-            <div className="overflow-hidden rounded-[22px]" style={{ aspectRatio: "4 / 2" }}>
+          {/* Main image with arrows */}  
+          <div className="relative w-full rounded-3xl overflow-hidden" style={{ aspectRatio: "16 / 9", backgroundColor: "rgba(255,255,255,0.4)" }}>
+            {s13Images.map((item, i) => (
               <Image
-                src="/img/Page 12-2.jpg"
-                alt="護膚床"
+                key={i}
+                src={item.src}
+                alt={item.alt}
                 width={800}
                 height={1000}
-                className="w-full h-auto object-cover object-center"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                style={{ opacity: s13Index === i ? 1 : 0 }}
               />
-            </div>
-            <div className="px-2 pt-4 pb-2">
-              <p className="text-[11px] uppercase font-light" style={{ color: "var(--brand-gold)", letterSpacing: "0.24em" }}>
-                Main Treatment Room
-              </p>
-              <p className="mt-2 text-[15px] font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.02em" }}>
-                舒適放鬆的護膚空間
-              </p>
-              <p className="mt-2 text-[12px] font-light leading-[1.7]" style={{ color: "var(--brand-dark)", opacity: 0.76, letterSpacing: "0.02em" }}>
-                以溫潤光線與整潔動線打造安定感，讓每一次護理都能更專注、更放鬆。
-              </p>
+            ))}
+
+            <div
+              className="absolute bottom-3 right-3 px-3 py-1 rounded-full text-[11px] font-medium"
+              style={{ backgroundColor: "rgba(0,0,0,0.55)", color: "#fff", letterSpacing: "0.08em" }}
+            >
+              {s13Index + 1} / {s13Images.length}
             </div>
           </div>
 
-          <div className="grid grid-cols-[1.05fr_0.95fr] gap-3 mb-3">
-            <div className="overflow-hidden rounded-[22px]" style={{ aspectRatio: "3 / 4" }}>
-              <Image
-                src="/img/Page 12-1.jpg"
-                alt="歡迎茶飲"
-                width={400}
-                height={533}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="overflow-hidden rounded-[22px]" style={{ aspectRatio: "3 / 4" }}>
-              <Image
-                src="/img/Page 12-3.jpg"
-                alt="肌膚檢測儀器"
-                width={300}
-                height={450}
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* Thumbnails */}
+          <div className="grid grid-cols-4 gap-2 mt-3">
+            {s13Images.map((item, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setS13Index(i)}
+                aria-label={item.alt}
+                className="aspect-[4/3] overflow-hidden rounded-xl transition-all"
+                style={{
+                  outline: s13Index === i ? "2px solid var(--brand-dark)" : "2px solid transparent",
+                  outlineOffset: 2,
+                  opacity: s13Index === i ? 1 : 0.75,
+                }}
+              >
+                <Image src={item.src} alt={item.alt} width={200} height={150}
+                  className="w-full h-full object-cover" />
+              </button>
+            ))}
           </div>
 
-          <div className="overflow-hidden rounded-[24px]" style={{ aspectRatio: "16 / 10" }}>
-            <Image
-              src="/img/Page 12-4.jpg"
-              alt="舒適候診空間"
-              width={500}
-              height={312}
-              className="w-full h-full object-cover object-center"
-            />
+          {/* Caption card */}
+          <div className="mt-5 rounded-2xl px-5 py-5" style={{ backgroundColor: "rgba(255,255,255,0.55)" }}>
+            <p className="text-[10px] uppercase font-light" style={{ color: "var(--brand-gold)", letterSpacing: "0.26em" }}>
+              {s13Images[s13Index].label}
+            </p>
+            <p className="mt-2 text-[16px] font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>
+              {s13Images[s13Index].title}
+            </p>
+            <p className="mt-2 text-[12px] font-light leading-[1.8]" style={{ color: "var(--brand-dark)", opacity: 0.78 }}>
+              {s13Images[s13Index].desc}
+            </p>
           </div>
+
+          <p className="mt-6 text-center text-[12px] font-light leading-[1.9] px-2" style={{ color: "var(--brand-dark)", opacity: 0.7 }}>
+            以安定、乾淨、柔和的空間語彙，讓顧客從入店開始就能慢下來，專心感受每一次護理。
+          </p>
         </div>
 
         {/* Desktop layout */}
@@ -1900,10 +1921,10 @@ export default function Page() {
           className="hidden sm:grid"
           data-reveal="fade"
           style={{
-            gridTemplateColumns: "1.2fr 1.2fr 1.65fr",
-            gridTemplateRows: "0.9fr 1.1fr",
-            gridTemplateAreas: `"text tea bed" "mach lounge bed"`,
-            minHeight: "100vh",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gridTemplateRows: "1.15fr 0.85fr",
+            gridTemplateAreas: `"text bed bed" "tea mach lounge"`,
+            height: "100vh",
             gap: 14,
             padding: 14,
           }}
