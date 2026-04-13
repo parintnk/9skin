@@ -1855,7 +1855,7 @@ export default function Page() {
             <h2 className="text-3xl font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>環境介紹</h2>
           </div>
 
-          {/* Main image with arrows */}  
+          {/* Main image with arrows */}
           <div className="relative w-full rounded-3xl overflow-hidden" style={{ aspectRatio: "16 / 9", backgroundColor: "rgba(255,255,255,0.4)" }}>
             {s13Images.map((item, i) => (
               <Image
@@ -1887,9 +1887,10 @@ export default function Page() {
                 aria-label={item.alt}
                 className="aspect-[4/3] overflow-hidden rounded-xl transition-all"
                 style={{
-                  outline: s13Index === i ? "2px solid var(--brand-dark)" : "2px solid transparent",
+                  outline: s13Index === i ? "2px solid #F5EFE4" : "2px solid transparent",
                   outlineOffset: 2,
-                  opacity: s13Index === i ? 1 : 0.75,
+                  boxShadow: s13Index === i ? "0 0 0 4px rgba(245,239,228,0.35)" : "none",
+                  opacity: s13Index === i ? 1 : 0.7,
                 }}
               >
                 <Image src={item.src} alt={item.alt} width={200} height={150}
@@ -1898,22 +1899,6 @@ export default function Page() {
             ))}
           </div>
 
-          {/* Caption card */}
-          <div className="mt-5 rounded-2xl px-5 py-5" style={{ backgroundColor: "rgba(255,255,255,0.55)" }}>
-            <p className="text-[10px] uppercase font-light" style={{ color: "var(--brand-gold)", letterSpacing: "0.26em" }}>
-              {s13Images[s13Index].label}
-            </p>
-            <p className="mt-2 text-[16px] font-medium" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>
-              {s13Images[s13Index].title}
-            </p>
-            <p className="mt-2 text-[12px] font-light leading-[1.8]" style={{ color: "var(--brand-dark)", opacity: 0.78 }}>
-              {s13Images[s13Index].desc}
-            </p>
-          </div>
-
-          <p className="mt-6 text-center text-[12px] font-light leading-[1.9] px-2" style={{ color: "var(--brand-dark)", opacity: 0.7 }}>
-            以安定、乾淨、柔和的空間語彙，讓顧客從入店開始就能慢下來，專心感受每一次護理。
-          </p>
         </div>
 
         {/* Desktop layout */}
@@ -2048,112 +2033,38 @@ export default function Page() {
 
       {/* ── Footer ── */}
       <footer style={{ backgroundColor: "var(--brand-footer)" }}>
-
-        {/* ── Hero brand statement ── */}
-        <div className="max-w-6xl mx-auto px-6 pt-16 pb-10 text-center">
-          <p className="text-xs tracking-[0.35em] uppercase mb-5" style={{ color: "var(--brand-footer-text)", opacity: 0.45 }}>
-            Since 2021 · Taipei · Kaohsiung
-          </p>
-          <h2
-            className="text-5xl sm:text-7xl lg:text-8xl font-extralight"
-            style={{ color: "#E8E2DA", letterSpacing: "0.12em", lineHeight: 1.1 }}
-          >
+        <div className="max-w-4xl mx-auto px-6 py-10 text-center">
+          <h2 className="text-2xl sm:text-3xl font-light" style={{ color: "#E8E2DA", letterSpacing: "0.18em" }}>
             玖膚工作室
           </h2>
-          <p className="mt-4 text-sm sm:text-base font-light italic tracking-widest" style={{ color: "var(--brand-footer-text)", opacity: 0.55, fontFamily: "serif" }}>
-            幫助每個人提升顏值 · 增加價值 · 讓你遇見最好的自己
-          </p>
-        </div>
 
-        {/* ── Thin divider ── */}
-        <div className="max-w-6xl mx-auto px-6">
-          <div style={{ height: 1, backgroundColor: "rgba(255,255,255,0.1)" }} />
-        </div>
-
-        {/* ── 3-col info grid ── */}
-        <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6">
-
-          {/* Taipei */}
-          <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase mb-5" style={{ color: "#E8E2DA", opacity: 0.4 }}>
-              台北店 · Taipei
-            </p>
-            <ul className="space-y-2.5 text-sm font-light" style={{ color: "var(--brand-footer-text)", opacity: 0.75, lineHeight: 1.7 }}>
-              <li>松江南京站步行 3 分鐘</li>
-              <li>週一至週日 10:00 – 20:00</li>
-            </ul>
-          </div>
-
-          {/* Kaohsiung */}
-          <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase mb-5" style={{ color: "#E8E2DA", opacity: 0.4 }}>
-              高雄店 · Kaohsiung
-            </p>
-            <ul className="space-y-2.5 text-sm font-light" style={{ color: "var(--brand-footer-text)", opacity: 0.75, lineHeight: 1.7 }}>
-              <li>巨蛋站步行 6 分鐘</li>
-              <li>週一至週日 10:00 – 20:00</li>
-            </ul>
-          </div>
-
-          {/* Book Now */}
-          <div className="flex flex-col gap-5">
-            <p className="text-[10px] tracking-[0.3em] uppercase" style={{ color: "#E8E2DA", opacity: 0.4 }}>
-              立即預約 · Book Now
-            </p>
+          <div className="mt-5 flex items-center justify-center gap-5">
             <a
               href="https://line.me/R/ti/p/@9skin"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 self-start px-6 py-3 text-sm font-light tracking-wider transition-all hover:opacity-80"
-              style={{
-                border: "1px solid rgba(232,226,218,0.35)",
-                color: "#E8E2DA",
-                letterSpacing: "0.12em",
-              }}
+              aria-label="LINE"
+              className="transition-opacity hover:opacity-60"
+              style={{ color: "var(--brand-footer-text)", opacity: 0.7 }}
             >
-              <SiLine size={14} />
-              LINE 預約
+              <SiLine size={20} />
             </a>
-            {/* Social icons */}
-            <div className="flex items-center gap-4 mt-1">
-              <a
-                href="https://line.me/R/ti/p/@9skin"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LINE"
-                className="transition-opacity hover:opacity-60"
-                style={{ color: "var(--brand-footer-text)", opacity: 0.55 }}
-              >
-                <SiLine size={18} />
-              </a>
-              <a
-                href="https://www.instagram.com/9skin_999/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="transition-opacity hover:opacity-60"
-                style={{ color: "var(--brand-footer-text)", opacity: 0.55 }}
-              >
-                <SiInstagram size={18} />
-              </a>
-            </div>
+            <a
+              href="https://www.instagram.com/9skin_999/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="transition-opacity hover:opacity-60"
+              style={{ color: "var(--brand-footer-text)", opacity: 0.7 }}
+            >
+              <SiInstagram size={20} />
+            </a>
           </div>
 
+          <p className="mt-6 text-[11px] tracking-[0.2em]" style={{ color: "var(--brand-footer-text)", opacity: 0.4 }}>
+            © {new Date().getFullYear()} 9skin Studio · 台北 · 高雄
+          </p>
         </div>
-
-        {/* ── Bottom bar ── */}
-        <div className="max-w-6xl mx-auto px-6">
-          <div style={{ height: 1, backgroundColor: "rgba(255,255,255,0.07)" }} />
-        </div>
-        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span className="text-[11px] tracking-wider" style={{ color: "var(--brand-footer-text)", opacity: 0.35 }}>
-            © {new Date().getFullYear()} 玖膚工作室 9skin Studio. All rights reserved.
-          </span>
-          <span className="text-[11px] tracking-[0.2em]" style={{ color: "var(--brand-footer-text)", opacity: 0.3 }}>
-            台北 · 高雄
-          </span>
-        </div>
-
       </footer>
 
       {/* ── Section nav dots ── */}
