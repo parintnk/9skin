@@ -34,7 +34,7 @@ export default function Section11KOL({ onOpenLightbox }: { onOpenLightbox: (imag
       <div className="max-w-6xl mx-auto px-6 sm:px-10 mb-6 sm:mb-20">
 
         {/* Big heading */}
-        <div data-reveal className="text-center mb-6 sm:mb-20">
+        <div data-reveal className="hidden sm:block text-center mb-6 sm:mb-20">
           <p className="text-[11px] lg:text-[13px] font-light tracking-[0.28em] uppercase mb-6" style={{ color: "var(--brand-muted)" }}>
             KOL Reviews
           </p>
@@ -50,10 +50,10 @@ export default function Section11KOL({ onOpenLightbox }: { onOpenLightbox: (imag
         </div>
 
         {/* Featured block: 2 portrait cards + text */}
-        <div className="flex flex-row lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16">
+        <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 lg:gap-16">
 
-          {/* Left: cards — 1 on mobile, 2 on sm+ */}
-          <div className="flex gap-3 sm:gap-6 shrink-0">
+          {/* Left: cards — hidden on mobile, 2 on sm+ */}
+          <div className="hidden sm:flex gap-3 sm:gap-6 shrink-0">
             {[kolRow2[5], kolRow2[6]].map((img, i) => (
               <div
                 key={i}
@@ -80,26 +80,26 @@ export default function Section11KOL({ onOpenLightbox }: { onOpenLightbox: (imag
           </div>
 
           {/* Right: text */}
-          <div data-reveal data-reveal-delay="1" className="flex-1 text-left lg:text-left">
-            <p className="text-base tracking-[0.4em] mb-5" style={{ color: "var(--brand-muted)", letterSpacing: "0.3em" }}>
+          <div data-reveal data-reveal-delay="1" className="flex-1 w-full text-center sm:text-left">
+            <p className="text-base tracking-[0.4em] mb-5 hidden sm:block" style={{ color: "var(--brand-muted)", letterSpacing: "0.3em" }}>
               · · · · · · ·
             </p>
             <h3
-              className="text-xl sm:text-2xl lg:text-[1.7rem] font-light mb-4"
+              className="text-xl sm:text-2xl lg:text-[1.7rem] font-medium sm:font-light mb-4 sm:mb-4"
               style={{ letterSpacing: "0.05em" }}
             >
               KOL與顧客一致好評
             </h3>
-            <div className="w-12 h-px mb-6" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
-            <div className="space-y-4 mb-8">
-              <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+            <div className="w-10 sm:w-12 h-px mb-6 sm:mb-6 mx-auto sm:mx-0" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
+            <div className="space-y-4 mb-2 sm:mb-8">
+              <p className="text-[12px] sm:text-sm lg:text-[17px] font-light leading-[1.8] sm:leading-loose text-left sm:text-left" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                 許多美容部落客與KOL體驗後都給予高度評價，不只是因為立即的效果，更重視的是玖膚對肌膚健康的長期關注
               </p>
-              <p className="text-sm lg:text-[17px] font-light leading-loose" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
+              <p className="text-[12px] sm:text-sm lg:text-[17px] font-light leading-[1.8] sm:leading-loose text-left sm:text-left" style={{ color: "var(--brand-dark)", opacity: 0.82, letterSpacing: "0.03em" }}>
                 超過5000位顧客的信任，來自於我們對每一位客人的用心照護。每一則好評都是我們持續進步的動力
               </p>
             </div>
-            <p className="text-[11px] font-light tracking-[0.2em] uppercase" style={{ color: "var(--brand-muted)" }}>
+            <p className="text-[11px] font-light tracking-[0.2em] uppercase hidden sm:block" style={{ color: "var(--brand-muted)" }}>
               Highly positive feedback from KOLs and customers
             </p>
           </div>
