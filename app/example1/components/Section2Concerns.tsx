@@ -5,7 +5,7 @@ import { concerns } from "../data";
 
 export default function Section2Concerns() {
   return (
-    <section className="h-[100svh] min-h-[600px] py-2 sm:h-auto sm:min-h-0 sm:py-16 lg:py-20 flex flex-col justify-center overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
+    <section className="h-auto min-h-[600px] py-8 sm:h-auto sm:min-h-0 sm:py-16 lg:py-20 flex flex-col justify-center overflow-hidden" style={{ backgroundColor: "var(--brand-lighter)" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full flex flex-col items-center sm:block">
 
         <div data-reveal className="text-center mb-4 sm:mb-8">

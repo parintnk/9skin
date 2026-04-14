@@ -4,7 +4,7 @@ import Bubble from "./Bubble";
 
 export default function Section3Problems() {
   return (
-    <section className="h-[85svh] min-h-[580px] sm:h-auto sm:min-h-0 py-4 sm:py-24 lg:py-28 flex flex-col justify-center overflow-hidden sm:block" style={{ backgroundColor: "var(--brand-cream)" }}>
+    <section className="h-auto min-h-[580px] sm:h-auto sm:min-h-0 py-4 sm:py-24 lg:py-28 flex flex-col justify-center overflow-hidden sm:block" style={{ backgroundColor: "var(--brand-cream)" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-8">
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-2 mb-3 sm:mb-5">
           <h2 className="text-lg sm:text-3xl mt-5 md:mt-0 lg:text-[2.4rem] font-light leading-snug" style={{ letterSpacing: "0.03em" }}>
