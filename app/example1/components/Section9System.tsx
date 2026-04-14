@@ -14,14 +14,14 @@ export default function Section9System() {
       </div>
 
       {/* Olive card */}
-      <div data-reveal className="rounded-sm px-8 sm:px-10 lg:px-14 py-10 lg:py-12 mb-16 lg:mb-20" style={{ backgroundColor: "#404338" }}>
-        <h2 className="text-[1.25rem] sm:text-[2.2rem] lg:text-[2.8rem] font-bold text-center text-white mb-5" style={{ letterSpacing: "0.04em" }}>
+      <div data-reveal className="flex flex-col justify-center w-full rounded-2xl sm:rounded-[32px] px-6 sm:px-10 lg:px-14 py-8 lg:py-12 mb-14 lg:mb-20 min-h-[94svh] sm:min-h-0" style={{ backgroundColor: "#404338" }}>
+        <h2 className="text-[1.35rem] sm:text-[2.2rem] lg:text-[2.8rem] font-medium text-center text-white mb-4 sm:mb-5 shrink-0" style={{ letterSpacing: "0.04em" }}>
           不只是保養・而是肌膚管理系統
         </h2>
-        <p className="text-[12px] lg:text-[17px] font-light text-center leading-loose mb-10 lg:mb-12 max-w-3xl mx-auto" style={{ color: "rgba(230,225,205,0.88)", letterSpacing: "0.03em" }}>
+        <p className="text-[13px] lg:text-[17px] font-light text-center leading-[1.8] sm:leading-loose mb-7 sm:mb-10 lg:mb-12 max-w-3xl mx-auto shrink-0" style={{ color: "rgba(230,225,205,0.88)", letterSpacing: "0.03em" }}>
           我們相信，好的肌膚管理，不是一昧塗抹，而是建立肌膚的管理系統，是一個可以走一輩子的保養計畫。我們的每一堂課，都是一份顏值計畫書
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
+        <div className="flex sm:grid sm:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-10 overflow-x-auto snap-x snap-mandatory pb-4 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {[
             {
               title: "從膚況分析開始，不憑感覺保養",
@@ -36,15 +36,15 @@ export default function Section9System() {
               lines: ["不走極端課程路線", "不追求立即效果而犧牲肌膚健康", "我們重視的是長期穩定的美麗", "而非短暫的表面改善"],
             },
           ].map((col, i) => (
-            <div key={i} data-reveal data-reveal-delay={i + 1}>
-              <div className="pb-2.5 mb-4" style={{ borderBottom: "1px solid rgba(230,225,205,0.28)" }}>
-                <p className="text-[12px] lg:text-[17px] font-normal text-white" style={{ letterSpacing: "0.04em" }}>
+            <div key={i} data-reveal data-reveal-delay={i + 1} className="w-[85%] sm:w-auto shrink-0 snap-center bg-white/5 sm:bg-transparent p-5 sm:p-0 rounded-xl sm:rounded-none">
+              <div className="pb-3 sm:pb-2.5 mb-4 border-b border-white/20 sm:border-[rgba(230,225,205,0.28)]">
+                <p className="text-[14px] lg:text-[17px] font-medium sm:font-normal text-white" style={{ letterSpacing: "0.04em" }}>
                   {col.title}
                 </p>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2.5 sm:space-y-2">
                 {col.lines.map((line, j) => (
-                  <p key={j} className="text-[11px] lg:text-sm font-light leading-relaxed" style={{ color: "rgba(230,225,205,0.78)", letterSpacing: "0.02em" }}>
+                  <p key={j} className="text-[13px] lg:text-sm font-light leading-relaxed" style={{ color: "rgba(230,225,205,0.78)", letterSpacing: "0.02em" }}>
                     {line}
                   </p>
                 ))}
@@ -52,8 +52,8 @@ export default function Section9System() {
             </div>
           ))}
         </div>
-        <div className="pt-6" style={{ borderTop: "1px solid rgba(230,225,205,0.16)" }}>
-          <p className="text-[11px] lg:text-[17px] font-light leading-loose" style={{ color: "rgba(230,225,205,0.92)", letterSpacing: "0.03em" }}>
+        <div className="pt-4 sm:pt-6 border-t border-white/10 sm:border-[rgba(230,225,205,0.16)] shrink-0">
+          <p className="text-[12.5px] lg:text-[17px] font-light leading-[1.8] sm:leading-loose text-center sm:text-left" style={{ color: "rgba(230,225,205,0.92)", letterSpacing: "0.03em" }}>
             顏值，不只是皮膚好，而是你狀態穩定的證明。在9skin，我們不追求一次性的表面改變，而是用系統化的皮膚管理，陪你長期經營顏值資產，讓穩定狀態成為你最好的外在名片
           </p>
         </div>
