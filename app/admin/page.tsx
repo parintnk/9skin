@@ -51,7 +51,7 @@ export default async function AdminHome() {
             <span className="text-[10px] tracking-[0.3em]" style={{ color: "var(--a-text-muted)" }}>ADMIN</span>
           </div>
           <div className="flex items-center gap-3">
-            <Link href="/example1" target="_blank" className="a-btn a-btn-ghost text-xs">
+            <Link href="/" target="_blank" className="a-btn a-btn-ghost text-xs">
               <span>View site</span>
               <span aria-hidden>↗</span>
             </Link>

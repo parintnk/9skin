@@ -55,7 +55,7 @@ export async function publishDraft(key: SectionKey) {
   if (!row?.draft) return { ok: false, message: "No draft to publish" };
   const { error } = await supabase.from("sections").update({ published: row.draft, draft: null, updated_by: user.id }).eq("key", key);
   if (error) throw error;
-  revalidatePath("/example1");
+  revalidatePath("/");
   return { ok: true };
 }
 

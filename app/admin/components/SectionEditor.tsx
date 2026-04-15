@@ -196,7 +196,7 @@ export default function SectionEditor({
           </div>
           <iframe
             ref={iframeRef}
-            src={`/example1?preview=1${anchorFor(sectionKey)}`}
+            src={`/?preview=1${anchorFor(sectionKey)}`}
             className="bg-white"
             style={{
               width: viewport === "mobile" ? 390 : 1280,
