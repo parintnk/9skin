@@ -35,8 +35,8 @@ export default function Section11KOL({ data, onOpenLightbox }: { data: S11KOL; o
         <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 lg:gap-16">
           <div className="hidden sm:flex gap-3 sm:gap-6 shrink-0">
             {featured.map((src, i) => (
-              <div key={i} className={`overflow-hidden rounded-2xl shadow-md cursor-zoom-in ${i === 1 ? "hidden sm:block" : ""}`} onClick={() => { onOpenLightbox(row2.map(r => img(r.src)), 5 + i); }} style={{ width: "clamp(100px, 28vw, 160px)", height: "clamp(176px, 50vw, 284px)", border: "1px solid #E8E0D4", boxShadow: "0 8px 32px rgba(56,50,42,0.12)", backgroundColor: "#F5F0E8", padding: "3px" }}>
-                <Image src={img(src)} alt={`featured ${i + 1}`} width={160} height={284} className="w-full h-full object-cover rounded-xl" />
+              <div key={i} className={`overflow-hidden rounded-2xl cursor-zoom-in ${i === 1 ? "hidden sm:block" : ""}`} onClick={() => { onOpenLightbox(row2.map(r => img(r.src)), 5 + i); }} style={{ width: "clamp(100px, 28vw, 160px)", height: "clamp(176px, 50vw, 284px)" }}>
+                <Image src={img(src)} alt={`featured ${i + 1}`} width={160} height={284} className="w-full h-full object-cover rounded-2xl" />
               </div>
             ))}
           </div>
@@ -62,7 +62,7 @@ export default function Section11KOL({ data, onOpenLightbox }: { data: S11KOL; o
         <div className={`kol-scroll-row overflow-x-auto px-6 sm:px-10 ${isKolInteracting ? "is-interacting" : ""}`} onPointerDown={pauseKolAutoScroll} onTouchStart={pauseKolAutoScroll} onWheel={pauseKolAutoScroll} onScroll={pauseKolAutoScroll}>
           <div className="flex gap-3 sm:gap-4 marquee-track-left" style={{ width: "max-content" }}>
             {[...row1, ...row1].map((imgItem, i) => (
-              <div key={i} className="shrink-0 overflow-hidden rounded-xl cursor-zoom-in" style={{ height: "clamp(260px, 55vw, 420px)", width: "clamp(146px, 31vw, 236px)", backgroundColor: "#F5F0E8", padding: "2px" }} onClick={() => { onOpenLightbox(row1.map(r => img(r.src)), i % row1.length); }}>
+              <div key={i} className="shrink-0 overflow-hidden rounded-xl cursor-zoom-in" style={{ height: "clamp(260px, 55vw, 420px)", width: "clamp(146px, 31vw, 236px)" }} onClick={() => { onOpenLightbox(row1.map(r => img(r.src)), i % row1.length); }}>
                 <Image src={img(imgItem.src)} alt={imgItem.alt} width={236} height={420} className="h-full w-full object-cover rounded-lg" />
               </div>
             ))}
@@ -72,7 +72,7 @@ export default function Section11KOL({ data, onOpenLightbox }: { data: S11KOL; o
         <div className={`kol-scroll-row overflow-x-auto px-6 sm:px-10 ${isKolInteracting ? "is-interacting" : ""}`} onPointerDown={pauseKolAutoScroll} onTouchStart={pauseKolAutoScroll} onWheel={pauseKolAutoScroll} onScroll={pauseKolAutoScroll}>
           <div className="flex gap-3 sm:gap-4 marquee-track-right" style={{ width: "max-content" }}>
             {[...row2, ...row2].map((imgItem, i) => (
-              <div key={i} className="shrink-0 overflow-hidden rounded-xl cursor-zoom-in" style={{ height: "clamp(260px, 55vw, 420px)", width: "clamp(146px, 31vw, 236px)", backgroundColor: "#F5F0E8", padding: "2px" }} onClick={() => { onOpenLightbox(row2.map(r => img(r.src)), i % row2.length); }}>
+              <div key={i} className="shrink-0 overflow-hidden rounded-xl cursor-zoom-in" style={{ height: "clamp(260px, 55vw, 420px)", width: "clamp(146px, 31vw, 236px)" }} onClick={() => { onOpenLightbox(row2.map(r => img(r.src)), i % row2.length); }}>
                 <Image src={img(imgItem.src)} alt={imgItem.alt} width={236} height={420} className="h-full w-full object-cover rounded-lg" />
               </div>
             ))}

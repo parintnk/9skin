@@ -22,8 +22,8 @@ export default function Section10Results({ data, s10bData, onOpenLightbox }: { d
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
             {data.items.map((item, i) => (
               <div key={i} data-reveal="fade" data-reveal-delay={Math.min(i + 1, 5)} className="card-wrap flex flex-col group cursor-zoom-in" onClick={() => { onOpenLightbox(data.items.map(r => img(r.img)), i); }}>
-                <div className="overflow-hidden rounded-sm" style={{ aspectRatio: "1 / 1", backgroundColor: "#F0EBE0", padding: "3px" }}>
-                  <Image src={img(item.img)} alt={item.title} width={400} height={400} className="card-img w-full h-full object-cover rounded-sm" />
+                <div className="overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
+                  <Image src={img(item.img)} alt={item.title} width={400} height={400} className="card-img w-full h-full object-cover" />
                 </div>
               </div>
             ))}
