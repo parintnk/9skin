@@ -2,39 +2,10 @@
 
 import { LuChevronUp } from "react-icons/lu";
 import { SiLine } from "react-icons/si";
-import type { NavSection } from "@/lib/content/types";
 
-export default function SectionNav({ activeSection, scrollPct, sections }: { activeSection: number; scrollPct: number; sections: NavSection[] }) {
+export default function SectionNav({ scrollPct }: { scrollPct: number }) {
   return (
     <>
-      {/* ── Section nav dots ── */}
-      <nav className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3">
-        {sections.map((s, i) => (
-          <button
-            key={i}
-            onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" })}
-            className="group relative flex items-center justify-end"
-            aria-label={s.label}
-          >
-            <span
-              className="absolute right-6 opacity-0 group-hover:opacity-100 transition-opacity text-xs whitespace-nowrap px-2 py-1 rounded"
-              style={{ backgroundColor: "var(--brand-footer)", color: "#E8E2DA" }}
-            >
-              {s.label}
-            </span>
-            <span
-              className="block rounded-full transition-all"
-              style={{
-                width: activeSection === i ? 8 : 6,
-                height: activeSection === i ? 8 : 6,
-                backgroundColor: activeSection === i ? "var(--brand-dark)" : "transparent",
-                border: `1.5px solid ${activeSection === i ? "var(--brand-dark)" : "rgba(56,50,42,0.35)"}`,
-              }}
-            />
-          </button>
-        ))}
-      </nav>
-
       {/* ── Floating LINE button ── */}
       <a
         href="https://line.me/R/ti/p/@9skin"

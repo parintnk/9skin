@@ -25,7 +25,7 @@ export default function Section1Hero({ data }: { data: S1Hero }) {
           </div>
           <div className="mt-auto flex items-center justify-center">
             <div>
-              {data.paragraphs.map((p, i) => (
+              {data.paragraphsMobile.map((p, i) => (
                 <p key={i} className="text-[12px] font-light leading-loose" style={{ color: "rgba(232,226,218,0.85)", letterSpacing: "0.03em" }}>{p}</p>
               ))}
             </div>
@@ -62,13 +62,13 @@ export default function Section1Hero({ data }: { data: S1Hero }) {
           </div>
           <div className="flex flex-col gap-4 lg:gap-10 lg:flex-1 lg:justify-center">
             <div data-reveal data-reveal-delay="3" className="space-y-3">
-              {data.paragraphs.slice(0, 3).map((p, i) => (
+              {data.paragraphsDesktop.slice(0, 3).map((p, i) => (
                 <p key={i} className="text-base lg:text-[20px] font-light leading-loose">{p}</p>
               ))}
             </div>
             <div data-reveal data-reveal-delay="4" className="space-y-3">
               <div className="w-20 h-px" style={{ backgroundColor: "rgba(56,50,42,0.2)" }} />
-              {data.paragraphs.slice(3).map((p, i) => (
+              {data.paragraphsDesktop.slice(3).map((p, i) => (
                 <p key={i} className="text-base lg:text-[20px] font-light leading-loose">{p}</p>
               ))}
             </div>

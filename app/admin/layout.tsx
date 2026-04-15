@@ -1,3 +1,5 @@
+import "./admin.css";
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-screen bg-neutral-50 text-neutral-900">{children}</div>;
+  return <div className="admin-root min-h-screen">{children}</div>;
 }

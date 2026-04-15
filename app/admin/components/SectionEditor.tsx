@@ -110,39 +110,69 @@ export default function SectionEditor({
     iframeRef.current?.contentWindow?.location.reload();
   };
 
+  const statusDot = status === "saving" ? "#C48A2B" : status === "error" ? "#B44B3A" : status === "saved" ? "#3F6640" : "#A8A090";
+  const statusText = status === "saving" ? "Saving…" : status === "error" ? "Error" : status === "saved" ? (hasDraft ? "Draft saved" : "Saved") : "Ready";
+
   return (
     <div className="h-screen flex flex-col">
-      <header className="flex items-center justify-between px-4 py-3 border-b bg-white">
-        <div className="flex items-center gap-3">
-          <Link href="/admin" className="text-sm text-neutral-500 hover:text-neutral-900">← Back</Link>
-          <h1 className="text-sm font-medium">{title}</h1>
-          <span className="text-[11px] text-neutral-400">{sectionKey}</span>
-          {hasDraft && <span className="text-[11px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">draft</span>}
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] text-neutral-500 min-w-16 text-right">
-            {status === "saving" && "Saving..."}
-            {status === "saved" && "Saved"}
-            {status === "error" && <span className="text-red-600">Error</span>}
-          </span>
-          <div className="flex rounded-md border overflow-hidden text-xs">
-            <button onClick={() => setViewport("desktop")} className={`px-3 py-1 ${viewport === "desktop" ? "bg-neutral-900 text-white" : "bg-white"}`}>Desktop</button>
-            <button onClick={() => setViewport("mobile")} className={`px-3 py-1 ${viewport === "mobile" ? "bg-neutral-900 text-white" : "bg-white"}`}>Mobile</button>
+      <header className="flex items-center justify-between px-5 py-3 border-b" style={{ background: "var(--a-surface)", borderColor: "var(--a-border)" }}>
+        <div className="flex items-center gap-3 min-w-0">
+          <Link href="/admin" className="a-btn a-btn-ghost text-xs" style={{ padding: "5px 8px" }} aria-label="Back">
+            <span aria-hidden>←</span>
+          </Link>
+          <div className="flex items-center gap-2 text-xs" style={{ color: "var(--a-text-muted)" }}>
+            <Link href="/admin" className="hover:underline">Sections</Link>
+            <span>/</span>
           </div>
-          <button onClick={onDiscard} disabled={!hasDraft} className="text-xs px-3 py-1.5 border rounded hover:bg-neutral-100 disabled:opacity-40">Discard</button>
-          <button onClick={onPublish} disabled={!hasDraft} className="text-xs px-3 py-1.5 rounded text-white disabled:opacity-40" style={{ backgroundColor: "var(--brand-footer)" }}>Publish</button>
+          <h1 className="text-sm font-medium truncate">{title}</h1>
+          <span className="text-[10.5px] font-mono px-1.5 py-0.5 rounded" style={{ background: "var(--a-accent-soft)", color: "var(--a-text-muted)" }}>{sectionKey}</span>
+          {hasDraft && <span className="a-badge a-badge-draft">● draft</span>}
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="flex items-center gap-1.5 text-[11.5px]" style={{ color: "var(--a-text-muted)" }}>
+            <span style={{ width: 6, height: 6, borderRadius: 99, background: statusDot, display: "inline-block" }} />
+            {statusText}
+          </span>
+          <div className="a-segment">
+            <button onClick={() => setViewport("desktop")} className={viewport === "desktop" ? "is-active" : ""} aria-label="Desktop">
+              <span aria-hidden>🖥</span> Desktop
+            </button>
+            <button onClick={() => setViewport("mobile")} className={viewport === "mobile" ? "is-active" : ""} aria-label="Mobile">
+              <span aria-hidden>📱</span> Mobile
+            </button>
+          </div>
+          <button onClick={onDiscard} disabled={!hasDraft} className="a-btn a-btn-danger" style={{ fontSize: 12 }}>Discard</button>
+          <button onClick={onPublish} disabled={!hasDraft} className="a-btn a-btn-primary" style={{ fontSize: 12 }}>
+            Publish{hasDraft ? " draft" : ""}
+          </button>
         </div>
       </header>
-      {errorMsg && <div className="bg-red-50 border-b border-red-200 text-red-700 text-xs px-4 py-2">{errorMsg}</div>}
-      <div className="flex-1 grid grid-cols-2 overflow-hidden">
-        <div className="overflow-y-auto p-4 bg-neutral-50">
-          <JsonEditor sectionKey={sectionKey} value={value} onChange={onChange} />
+      {errorMsg && (
+        <div className="border-b px-5 py-2 text-[12px]" style={{ background: "#FAEAE7", borderColor: "#EED3CF", color: "var(--a-danger)" }}>
+          {errorMsg}
         </div>
-        <div ref={previewContainerRef} className="border-l bg-neutral-200 flex items-center justify-center overflow-hidden relative">
+      )}
+      <div className="flex-1 grid overflow-hidden" style={{ gridTemplateColumns: "minmax(380px, 42%) 1fr" }}>
+        <div className="overflow-y-auto" style={{ background: "var(--a-bg)" }}>
+          <div className="px-5 py-5 max-w-xl">
+            <div className="mb-5 pb-4 border-b" style={{ borderColor: "var(--a-border)" }}>
+              <div className="text-[11px] tracking-[0.18em] uppercase mb-1" style={{ color: "var(--a-text-muted)" }}>Editing</div>
+              <div className="text-lg font-medium">{title}</div>
+              <div className="text-[12px] mt-1" style={{ color: "var(--a-text-muted)" }}>
+                Changes autosave after a brief pause. The preview on the right updates live.
+              </div>
+            </div>
+            <JsonEditor sectionKey={sectionKey} value={value} onChange={onChange} />
+          </div>
+        </div>
+        <div ref={previewContainerRef} className="flex items-start justify-center overflow-hidden relative" style={{ background: "#ECE6DA", borderLeft: "1px solid var(--a-border)" }}>
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 text-[10.5px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.85)", color: "var(--a-text-muted)", backdropFilter: "blur(6px)" }}>
+            {viewport === "mobile" ? "390 × auto" : `1280 × scaled ${Math.round(previewScale * 100)}%`}
+          </div>
           <iframe
             ref={iframeRef}
             src={`/example1?preview=1${anchorFor(sectionKey)}`}
-            className="bg-white shadow"
+            className="bg-white"
             style={{
               width: viewport === "mobile" ? 390 : 1280,
               height: viewport === "mobile" ? "100%" : `${100 / (previewScale || 1)}%`,
@@ -152,6 +182,8 @@ export default function SectionEditor({
               top: 0,
               left: 0,
               border: "none",
+              boxShadow: viewport === "mobile" ? "0 10px 40px rgba(42,38,32,0.18)" : "none",
+              borderRadius: viewport === "mobile" ? 28 : 0,
             }}
           />
         </div>

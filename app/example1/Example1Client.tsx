@@ -30,7 +30,6 @@ export default function Example1Client({ content: initial, previewMode }: { cont
   const [content, setContent] = useState<AllContent>(initial);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
-  const [activeSection, setActiveSection] = useState(0);
   const [scrollPct, setScrollPct] = useState(0);
 
   const openLightbox = useCallback((images: string[], index: number) => {
@@ -70,23 +69,6 @@ export default function Example1Client({ content: initial, previewMode }: { cont
   }, [content]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(e => {
-          const idx = content.nav.sections.findIndex(s => s.id === e.target.id);
-          if (e.isIntersecting && idx !== -1) setActiveSection(idx);
-        });
-      },
-      { threshold: 0.3 },
-    );
-    content.nav.sections.forEach(s => {
-      const el = document.getElementById(s.id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, [content]);
-
-  useEffect(() => {
     if (!previewMode) return;
     const onMsg = (ev: MessageEvent<PreviewMessage>) => {
       const m = ev.data;
@@ -118,7 +100,7 @@ export default function Example1Client({ content: initial, previewMode }: { cont
         <Lightbox index={lightboxIndex} images={lightboxImages} setIndex={setLightboxIndex} />
       )}
       <Footer data={content.footer} />
-      <SectionNav activeSection={activeSection} scrollPct={scrollPct} sections={content.nav.sections} />
+      <SectionNav scrollPct={scrollPct} />
     </div>
   );
 }

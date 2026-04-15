@@ -5,7 +5,8 @@ export type S1Hero = {
   logo: string;
   heroImage: string;
   heading: string;
-  paragraphs: string[]; // 4 lines
+  paragraphsDesktop: string[];
+  paragraphsMobile: string[];
   locationTaipei: string; // mobile short
   locationKaohsiung: string; // mobile short
   locationTaipeiDesktop: string;
@@ -202,4 +203,4 @@ export const SECTION_LABELS: Record<SectionKey, string> = {
 };
 
 // Sections that admin cannot edit (S12 LINE reviews uses hardcoded images).
-export const UNEDITABLE_SECTIONS: string[] = ["s12_line_reviews"];
+export const UNEDITABLE_SECTIONS: string[] = ["s12_line_reviews", "nav"];

@@ -8,7 +8,13 @@ export const defaults: AllContent = {
     logo: "/img/9skin logo.png",
     heroImage: "/img/Page 1.JPG",
     heading: "「關於玖膚」",
-    paragraphs: [
+    paragraphsDesktop: [
+      "養膚,是一件深遠的事,我們陪你管理「顏值」",
+      "規劃專屬保養計畫,成為你的顏值資產顧問",
+      "在這裡,你可以慢下來,被傾聽、被理解",
+      "溫潤空間與細緻服務,讓肌膚與心一起放鬆",
+    ],
+    paragraphsMobile: [
       "養膚,是一件深遠的事,我們陪你管理「顏值」",
       "規劃專屬保養計畫,成為你的顏值資產顧問",
       "在這裡,你可以慢下來,被傾聽、被理解",
