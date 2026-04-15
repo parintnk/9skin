@@ -19,6 +19,7 @@ import Section11KOL from "./components/Section11KOL";
 import Section12LineReviews from "./components/Section12LineReviews";
 import Section13Environment from "./components/Section13Environment";
 import Footer from "./components/Footer";
+import LoadingOverlay from "./components/LoadingOverlay";
 
 type PreviewMessage = {
   type: "preview";
@@ -82,6 +83,7 @@ export default function Example1Client({ content: initial, previewMode }: { cont
 
   return (
     <div style={{ backgroundColor: "var(--brand-cream)", color: "var(--brand-dark)" }}>
+      {!previewMode && <LoadingOverlay />}
       <ScrollProgress scrollPct={scrollPct} />
       <Section1Hero data={content.s1_hero} />
       <Section2Concerns data={content.s2_concerns} />
