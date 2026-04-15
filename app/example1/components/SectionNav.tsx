@@ -33,7 +33,14 @@ export default function SectionNav({
   return (
     <>
       {/* ── Floating Contact FAB ── */}
-      <div ref={wrapRef} className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+      <div
+        ref={wrapRef}
+        className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3 transition-opacity duration-300"
+        style={{
+          opacity: scrollPct > 8 ? 1 : 0,
+          pointerEvents: scrollPct > 8 ? "auto" : "none",
+        }}
+      >
         <FabItem
           href={instagramUrl}
           label="Instagram"
