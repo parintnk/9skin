@@ -2,14 +2,14 @@
 
 import { LuChevronUp } from "react-icons/lu";
 import { SiLine } from "react-icons/si";
-import { navSections } from "../data";
+import type { NavSection } from "@/lib/content/types";
 
-export default function SectionNav({ activeSection, scrollPct }: { activeSection: number; scrollPct: number }) {
+export default function SectionNav({ activeSection, scrollPct, sections }: { activeSection: number; scrollPct: number; sections: NavSection[] }) {
   return (
     <>
       {/* ── Section nav dots ── */}
       <nav className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-3">
-        {navSections.map((s, i) => (
+        {sections.map((s, i) => (
           <button
             key={i}
             onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" })}
