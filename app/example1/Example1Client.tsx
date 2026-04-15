@@ -102,7 +102,7 @@ export default function Example1Client({ content: initial, previewMode }: { cont
         <Lightbox index={lightboxIndex} images={lightboxImages} setIndex={setLightboxIndex} />
       )}
       <Footer data={content.footer} />
-      <SectionNav scrollPct={scrollPct} />
+      <SectionNav scrollPct={scrollPct} lineUrl={content.footer.lineUrl} instagramUrl={content.footer.instagramUrl} />
     </div>
   );
 }
