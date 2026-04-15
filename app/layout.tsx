@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Serif_TC } from "next/font/google";
+import GoogleTranslateProvider from "./components/GoogleTranslateProvider";
 import "./globals.css";
 
 const notoSerifTC = Noto_Serif_TC({
@@ -92,6 +93,7 @@ export default function RootLayout({
   return (
     <html lang="zh-TW">
       <body className={`${notoSerifTC.variable} antialiased`}>
+        <GoogleTranslateProvider />
         {children}
         <script
           type="application/ld+json"

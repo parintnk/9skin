@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import PinIcon from "./PinIcon";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { img } from "@/lib/img";
 import type { S1Hero } from "@/lib/content/types";
 
@@ -14,6 +15,9 @@ export default function Section1Hero({ data }: { data: S1Hero }) {
         <Image src={img(data.heroImage)} alt="9skin" fill className="object-cover object-[center_15%] pb-12" priority />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.12) 25%, rgba(20,16,12,0.55) 100%, rgba(20,16,12,0.88) 100%)" }} />
 
+        <div className="absolute top-5 right-6 z-20">
+          <LanguageSwitcher tone="light" />
+        </div>
         <div className="relative z-10 flex flex-col flex-1 px-7 pt-12 pb-5">
           <div className="flex items-center justify-center mt-[80px]">
             <Image src={img(data.logo)} alt="9skin 玖膚" width={160} height={58} className="w-[200px] h-auto object-cover" style={{ filter: "brightness(0) invert(1)", opacity: 0.90 }} priority />
@@ -47,7 +51,10 @@ export default function Section1Hero({ data }: { data: S1Hero }) {
 
       {/* Desktop */}
       <main className="hidden lg:flex flex-1 flex-row">
-        <div className="flex flex-col px-6 sm:px-12 lg:px-14 pt-5 pb-5 sm:pt-8 sm:pb-10 lg:pt-14 lg:pb-14 flex-1">
+        <div className="relative flex flex-col px-6 sm:px-12 lg:px-14 pt-5 pb-5 sm:pt-8 sm:pb-10 lg:pt-14 lg:pb-14 flex-1">
+          <div className="absolute top-6 right-8 lg:top-10 lg:right-12">
+            <LanguageSwitcher tone="dark" />
+          </div>
           <div className="mb-4 lg:mb-20">
             <Image src={img(data.logo)} alt="9skin 玖膚" width={220} height={80} className="w-[160px] lg:w-[200px] h-auto" style={{ mixBlendMode: "multiply", filter: "brightness(0.40)" }} />
           </div>

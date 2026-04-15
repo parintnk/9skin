@@ -120,3 +120,11 @@ body {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   [data-reveal="pop"] { opacity: 1; animation: none; }
 }
+
+/* ── Google Translate: hide banner & widget ── */
+.goog-te-banner-frame,
+.skiptranslate { display: none !important; }
+body { top: 0 !important; }
+#google_translate_element { display: none !important; }
+.goog-tooltip, .goog-tooltip:hover { display: none !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }

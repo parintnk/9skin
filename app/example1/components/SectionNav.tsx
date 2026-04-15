@@ -80,7 +80,8 @@ export default function SectionNav({
             <LuX size={26} color="#38322A" />
           ) : (
             <span
-              className="relative text-[13px] leading-[1.15] tracking-[0.18em] text-center"
+              translate="no"
+              className="notranslate relative text-[13px] leading-[1.15] tracking-[0.18em] text-center"
               style={{
                 color: "#38322A",
                 fontFamily: '"Noto Serif TC", Georgia, serif',
