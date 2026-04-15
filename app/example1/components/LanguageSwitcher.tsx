@@ -17,7 +17,8 @@ function detectLang(): Lang {
 
 function deleteCookie(name: string) {
   const host = window.location.hostname;
-  ["", host, "." + host].forEach(d => {
+  const root = host.split(".").slice(-2).join(".");
+  ["", host, "." + host, root, "." + root].forEach(d => {
     let s = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
     if (d) s += `; domain=${d}`;
     document.cookie = s;
