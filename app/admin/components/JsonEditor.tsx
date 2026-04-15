@@ -23,6 +23,26 @@ function humanizeKey(key: string): string {
     .replace(/\b\w/g, c => c.toUpperCase());
 }
 
+function viewportFor(key: string): "desktop" | "mobile" | null {
+  const k = key.toLowerCase();
+  if (/desktop$|^desktop|desktop[a-z]/i.test(k)) return "desktop";
+  if (/mobile$|^mobile|mobile[a-z]/i.test(k)) return "mobile";
+  return null;
+}
+
+function ViewportPill({ viewport }: { viewport: "desktop" | "mobile" }) {
+  const isDesktop = viewport === "desktop";
+  return (
+    <span className="a-badge" style={{
+      background: isDesktop ? "#E6EEF5" : "#F1E8F0",
+      color: isDesktop ? "#3F5C73" : "#7B4F76",
+      fontSize: 9.5, padding: "1.5px 6px",
+    }}>
+      {isDesktop ? "🖥 Desktop" : "📱 Mobile"}
+    </span>
+  );
+}
+
 function setAt(obj: Value, path: Path, value: Value): Value {
   if (path.length === 0) return value;
   const [head, ...rest] = path;
@@ -68,15 +88,16 @@ function Node({
   const rawKey = path[path.length - 1];
   const key = String(rawKey ?? "");
   const displayLabel = label || humanizeKey(key);
+  const vp = viewportFor(key) ?? (typeof rawKey === "number" && parentKey ? viewportFor(parentKey) : null);
 
   if (value === null || value === undefined) {
-    return <StringField label={displayLabel} value="" onChange={set} />;
+    return <StringField label={displayLabel} viewport={vp} value="" onChange={set} />;
   }
   if (typeof value === "string") {
     const treatAsImage = isImageKey(key) || isImageKey(label) || (typeof rawKey === "number" && !!parentKey && isImageKey(parentKey));
     if (treatAsImage) {
       const imgLabel = typeof rawKey === "number" && parentKey ? `${humanizeKey(parentKey)} ${(rawKey as number) + 1}` : displayLabel;
-      return <ImageField sectionKey={sectionKey} label={imgLabel} value={value} onChange={(v) => set(v)} />;
+      return <ImageField sectionKey={sectionKey} label={imgLabel} viewport={vp} value={value} onChange={(v) => set(v)} />;
     }
     const multiline = value.length > 80 || value.includes("\n");
     return <StringField label={displayLabel} value={value} onChange={set} multiline={multiline} />;
@@ -101,9 +122,10 @@ function Node({
     return (
       <div className="a-field-group">
         <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[12px] font-medium">{displayLabel}</span>
             <span className="a-badge a-badge-muted">{value.length}</span>
+            {vp && <ViewportPill viewport={vp} />}
           </div>
           <button type="button"
             onClick={() => {
@@ -191,10 +213,10 @@ function clearStrings(v: Value): Value {
   return v;
 }
 
-function StringField({ label, value, onChange, multiline }: { label: string; value: string; onChange: (v: string) => void; multiline?: boolean }) {
+function StringField({ label, value, onChange, multiline, viewport }: { label: string; value: string; onChange: (v: string) => void; multiline?: boolean; viewport?: "desktop" | "mobile" | null }) {
   return (
     <label className="a-label">
-      <span className="a-label-text">{label}</span>
+      <span className="a-label-text flex items-center gap-2">{label}{viewport && <ViewportPill viewport={viewport} />}</span>
       {multiline ? (
         <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={3} className="a-textarea" />
       ) : (
@@ -204,13 +226,13 @@ function StringField({ label, value, onChange, multiline }: { label: string; val
   );
 }
 
-function ImageField({ sectionKey, label, value, onChange }: { sectionKey: SectionKey; label: string; value: string; onChange: (v: string) => void }) {
+function ImageField({ sectionKey, label, value, onChange, viewport }: { sectionKey: SectionKey; label: string; value: string; onChange: (v: string) => void; viewport?: "desktop" | "mobile" | null }) {
   const [uploading, setUploading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const resolved = value ? img(value) : "";
   return (
     <div className="a-label">
-      <span className="a-label-text">{label}</span>
+      <span className="a-label-text flex items-center gap-2">{label}{viewport && <ViewportPill viewport={viewport} />}</span>
       <div className="flex items-start gap-3 p-2.5 rounded-lg" style={{ background: "var(--a-surface)", border: "1px solid var(--a-border)" }}>
         {resolved ? (
           // eslint-disable-next-line @next/next/no-img-element

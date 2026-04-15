@@ -36,10 +36,23 @@ export default function SectionEditor({
   const [hasDraft, setHasDraft] = useState(initialHasDraft);
   const [viewport, setViewport] = useState<"desktop" | "mobile">("desktop");
   const [previewScale, setPreviewScale] = useState(1);
+  const [confirmDiscard, setConfirmDiscard] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const previewContainerRef = useRef<HTMLDivElement | null>(null);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previewReady = useRef(false);
+  const isDirty = status === "saving";
+
+  // Warn before leaving with unsaved changes (debounced save still pending)
+  useEffect(() => {
+    if (!isDirty) return;
+    const handler = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [isDirty]);
 
   // Listen for iframe ready, then send initial state.
   useEffect(() => {
@@ -72,23 +85,32 @@ export default function SectionEditor({
     iframeRef.current.contentWindow.postMessage({ type: "preview", section: sectionKey, data }, "*");
   }, [sectionKey]);
 
+  const pendingValueRef = useRef<unknown>(initialValue);
+
+  const flushSave = useCallback(async () => {
+    if (saveTimer.current) {
+      clearTimeout(saveTimer.current);
+      saveTimer.current = null;
+    }
+    try {
+      await saveDraft(sectionKey, pendingValueRef.current);
+      setStatus("saved");
+      setHasDraft(true);
+    } catch (e) {
+      setStatus("error");
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
+    }
+  }, [sectionKey]);
+
   const onChange = useCallback((next: unknown) => {
     setValue(next);
+    pendingValueRef.current = next;
     if (previewReady.current) postToPreview(next);
     setStatus("saving");
     setErrorMsg(null);
     if (saveTimer.current) clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(async () => {
-      try {
-        await saveDraft(sectionKey, next);
-        setStatus("saved");
-        setHasDraft(true);
-      } catch (e) {
-        setStatus("error");
-        setErrorMsg(e instanceof Error ? e.message : "Save failed");
-      }
-    }, 800);
-  }, [sectionKey, postToPreview]);
+    saveTimer.current = setTimeout(() => { flushSave(); }, 800);
+  }, [postToPreview, flushSave]);
 
   const onPublish = async () => {
     setStatus("saving");
@@ -104,10 +126,13 @@ export default function SectionEditor({
   };
 
   const onDiscard = async () => {
-    if (!confirm("Discard draft and revert to published?")) return;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
     await discardDraft(sectionKey);
     setHasDraft(false);
+    setConfirmDiscard(false);
     iframeRef.current?.contentWindow?.location.reload();
+    // Reload editor to fetch the published value
+    window.location.reload();
   };
 
   const statusDot = status === "saving" ? "#C48A2B" : status === "error" ? "#B44B3A" : status === "saved" ? "#3F6640" : "#A8A090";
@@ -141,7 +166,7 @@ export default function SectionEditor({
               <span aria-hidden>📱</span> Mobile
             </button>
           </div>
-          <button onClick={onDiscard} disabled={!hasDraft} className="a-btn a-btn-danger" style={{ fontSize: 12 }}>Discard</button>
+          <button onClick={() => setConfirmDiscard(true)} disabled={!hasDraft} className="a-btn a-btn-danger" style={{ fontSize: 12 }}>Discard</button>
           <button onClick={onPublish} disabled={!hasDraft} className="a-btn a-btn-primary" style={{ fontSize: 12 }}>
             Publish{hasDraft ? " draft" : ""}
           </button>
@@ -188,6 +213,22 @@ export default function SectionEditor({
           />
         </div>
       </div>
+      {confirmDiscard && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-6" style={{ background: "rgba(42,38,32,0.45)", backdropFilter: "blur(2px)" }} onClick={() => setConfirmDiscard(false)}>
+          <div onClick={(e) => e.stopPropagation()} className="a-card p-6 max-w-sm w-full" style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.25)" }}>
+            <h3 className="text-base font-medium mb-1">Discard draft?</h3>
+            <p className="text-[13px] mb-5" style={{ color: "var(--a-text-muted)" }}>
+              Unsaved changes will be lost and the section will revert to the published version. This can&apos;t be undone.
+            </p>
+            <div className="flex justify-end gap-2">
+              <button onClick={() => setConfirmDiscard(false)} className="a-btn">Cancel</button>
+              <button onClick={onDiscard} className="a-btn a-btn-primary" style={{ background: "var(--a-danger)", borderColor: "var(--a-danger)" }}>
+                Discard draft
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
