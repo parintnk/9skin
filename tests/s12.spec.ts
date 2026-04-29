@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("S12 – LINE Customer Reviews", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/example1");
+    await page.goto("/");
     await page.waitForLoadState("networkidle");
   });
 

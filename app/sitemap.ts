@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://9skin999.com";
+const BUILD_TIME = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   return [
-    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE_URL}/`, lastModified: BUILD_TIME, changeFrequency: "weekly", priority: 1 },
   ];
 }

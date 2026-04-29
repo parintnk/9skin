@@ -27,7 +27,7 @@ type PreviewMessage = {
   data: unknown;
 };
 
-export default function Example1Client({ content: initial, previewMode }: { content: AllContent; previewMode: boolean }) {
+export default function LandingClient({ content: initial, previewMode }: { content: AllContent; previewMode: boolean }) {
   const [content, setContent] = useState<AllContent>(initial);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
