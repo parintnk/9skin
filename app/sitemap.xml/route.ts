@@ -78,7 +78,7 @@ export function GET(_req: NextRequest) {
   const lastmod = BUILD_TIME.toISOString().slice(0, 10);
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemaps-image/0.9">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>${SITE_URL}/</loc>
     <lastmod>${lastmod}</lastmod>
