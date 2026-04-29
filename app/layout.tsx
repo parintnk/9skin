@@ -67,7 +67,8 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BeautySalon",
-  name: SITE_NAME,
+  name: "9skin",
+  alternateName: "玖膚",
   url: SITE_URL,
   image: OG_IMAGE,
   description: SITE_DESC,
@@ -76,13 +77,13 @@ const jsonLd = {
   location: [
     {
       "@type": "Place",
-      name: "9skin 玖膚 台北松江南京店",
+      name: "9skin 台北松江南京店",
       address: { "@type": "PostalAddress", addressLocality: "台北市", addressRegion: "TW", addressCountry: "TW" },
       hasMap: "https://maps.google.com/?q=松江南京站",
     },
     {
       "@type": "Place",
-      name: "9skin 玖膚 高雄巨蛋店",
+      name: "9skin 高雄巨蛋店",
       address: { "@type": "PostalAddress", addressLocality: "高雄市", addressRegion: "TW", addressCountry: "TW" },
       hasMap: "https://maps.google.com/?q=高雄巨蛋站",
     },
