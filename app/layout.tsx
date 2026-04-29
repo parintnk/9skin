@@ -51,13 +51,6 @@ export const metadata: Metadata = {
     description: SITE_DESC,
     images: [OG_IMAGE],
   },
-  icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
-    apple: "/img/9skin%20logo.png",
-  },
   category: "beauty",
 };
 
