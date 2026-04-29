@@ -13,7 +13,7 @@ const notoSerifTC = Noto_Serif_TC({
   weight: ["300", "400", "500"],
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://9skin999.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.9skin999.com";
 const SITE_NAME = "9skin 玖膚";
 const SITE_TITLE = "9skin 玖膚｜專業養膚．肌膚資產管理";
 const SITE_DESC = "9skin 玖膚 — 養膚是一件深遠的事。我們陪你規劃專屬保養計畫，從痘痘、敏感、毛孔到輪廓緊緻，全方位深層調理。台北松江南京、高雄巨蛋雙店服務。";
