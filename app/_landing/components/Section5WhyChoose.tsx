@@ -94,22 +94,44 @@ export default function Section5WhyChoose({ data }: { data: S5WhyChoose }) {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row, ri) => (
-                <tr key={ri}>
-                  {row.cells.map((lines, ci) => {
-                    const isCenter = cards[ci]?.featured;
-                    return (
-                      <td key={ci} className="px-5 lg:px-7 py-7 text-center align-middle" style={{ border: "1px solid rgba(56,50,42,0.12)", backgroundColor: isCenter ? "rgba(74,72,64,0.05)" : "transparent" }}>
-                        {lines.map((line, li) => (
-                          <p key={li} className="leading-loose" style={{ fontSize: "14px", letterSpacing: "0.03em", color: "var(--brand-dark)", opacity: isCenter ? 0.9 : 0.78, fontWeight: 300 }}>
-                            {line}
-                          </p>
-                        ))}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
+              {rows.map((row, ri) => {
+                const maxLinesInRow = Math.max(...row.cells.map(c => c.length));
+                return (
+                  <tr key={ri}>
+                    {row.cells.map((lines, ci) => {
+                      const isCenter = cards[ci]?.featured;
+                      return (
+                        <td key={ci} className="px-5 lg:px-7 py-7 text-center align-middle" style={{ border: "1px solid rgba(56,50,42,0.12)", backgroundColor: isCenter ? "rgba(74,72,64,0.05)" : "transparent" }}>
+                          {ri === 2 ? (
+                            <>
+                              {lines.length > 0 && (
+                                <p className="leading-loose" style={{ fontSize: "14px", letterSpacing: "0.03em", color: "var(--brand-dark)", opacity: isCenter ? 0.9 : 0.78, fontWeight: 300 }}>
+                                  {lines[0]}
+                                </p>
+                              )}
+                              {lines.length > 1 && (
+                                <div className="inline-block text-left mt-1">
+                                  {lines.slice(1).map((line, li) => (
+                                    <p key={li + 1} className="leading-loose" style={{ fontSize: "14px", letterSpacing: "0.03em", color: "var(--brand-dark)", opacity: isCenter ? 0.9 : 0.78, fontWeight: 300 }}>
+                                      {line}
+                                    </p>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            lines.map((line, li) => (
+                              <p key={li} className="leading-loose" style={{ fontSize: "14px", letterSpacing: "0.03em", color: "var(--brand-dark)", opacity: isCenter ? 0.9 : 0.78, fontWeight: 300 }}>
+                                {line}
+                              </p>
+                            ))
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
