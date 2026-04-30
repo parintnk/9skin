@@ -38,7 +38,7 @@ export default function Section9System({ data }: { data: S9System }) {
       </div>
 
       <div data-reveal className="mb-16 lg:mb-24 px-2 sm:px-0">
-        <h2 className="text-[1.5rem] sm:text-[2rem] lg:text-[2.2rem] text-center mb-5 lg:mb-6" style={{ color: "var(--brand-dark)", letterSpacing: "0.06em", fontWeight: 400 }}>
+        <h2 className="text-[1.5rem] sm:text-[2rem] lg:text-[2.2rem] text-center mb-5 lg:mb-0" style={{ color: "var(--brand-dark)", letterSpacing: "0.06em", fontWeight: 400 }}>
           {data.cardHeading}
         </h2>
         {/* <p className="text-[13px] sm:text-[14px] lg:text-[15px] font-light text-center leading-[2] sm:leading-[2.2] max-w-4xl mx-auto mb-10 sm:mb-12" style={{ color: "var(--brand-dark)", opacity: 0.75, letterSpacing: "0.04em" }}>
@@ -133,6 +133,14 @@ export default function Section9System({ data }: { data: S9System }) {
             <StepBlock step={data.step910} />
           </div>
         </div>
+      </div>
+
+      {/* Cycle conclusion banner */}
+      <div className="mt-16 sm:mt-24 lg:mt-28 -mx-8 sm:-mx-12 lg:-mx-14 relative flex justify-center items-center py-2 sm:py-3" data-reveal>
+        <div className="absolute inset-0 w-full h-full" style={{ background: "linear-gradient(90deg, rgba(118,122,101,0) 0%, rgba(118,122,101,0.6) 20%, rgba(118,122,101,0.85) 50%, rgba(118,122,101,0.6) 80%, rgba(118,122,101,0) 100%)" }} />
+        <p className="relative text-[8px] sm:text-[14px] lg:text-[16px] font-light text-white z-10 px-6 text-center leading-relaxed" style={{ letterSpacing: "0.08em", textShadow: "0 1px 4px rgba(0,0,0,0.15)" }}>
+          這五個會自然形成一個循環：健康 → 平整 → 光澤 → 防護 → 穩定 → 回到更高階的健康
+        </p>
       </div>
     </section>
   );
