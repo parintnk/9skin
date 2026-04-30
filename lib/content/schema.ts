@@ -139,11 +139,11 @@ export const s9Schema = z.object({
   circleTitle2: z.string(),
   circleSubtitle: z.string(),
   circleImage: z.string().optional(),
-  step12: s9Step,
-  step34: s9Step,
-  step56: s9Step,
-  step78: s9Step,
-  step910: s9Step,
+  step1: s9Step,
+  step2: s9Step,
+  step3: s9Step,
+  step4: s9Step,
+  step5: s9Step,
 });
 
 export const s10Schema = z.object({
