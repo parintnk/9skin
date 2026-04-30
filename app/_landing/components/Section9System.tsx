@@ -37,34 +37,38 @@ export default function Section9System({ data }: { data: S9System }) {
         <div className="h-px flex-1" style={{ backgroundColor: "rgba(56,50,42,0.18)" }} />
       </div>
 
-      <div data-reveal className="flex flex-col justify-center w-full rounded-2xl sm:rounded-[32px] px-6 sm:px-10 lg:px-14 py-8 lg:py-12 mb-14 lg:mb-20 min-h-[94svh] sm:min-h-0" style={{ backgroundColor: "#404338" }}>
-        <h2 className="text-[1.35rem] sm:text-[2.2rem] lg:text-[2.8rem] font-medium text-center text-white mb-4 sm:mb-5 shrink-0" style={{ letterSpacing: "0.04em" }}>{data.cardHeading}</h2>
-        <p className="text-[13px] lg:text-[17px] font-light text-center leading-[1.8] sm:leading-loose mb-7 sm:mb-10 lg:mb-12 max-w-3xl mx-auto shrink-0" style={{ color: "rgba(230,225,205,0.88)", letterSpacing: "0.03em" }}>{data.cardSubheading}</p>
-        <div className="flex sm:grid sm:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-10 overflow-x-auto snap-x snap-mandatory pb-4 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <div data-reveal className="mb-16 lg:mb-24 px-2 sm:px-0">
+        <h2 className="text-[1.5rem] sm:text-[2rem] lg:text-[2.2rem] text-center mb-5 lg:mb-6" style={{ color: "var(--brand-dark)", letterSpacing: "0.06em", fontWeight: 400 }}>
+          {data.cardHeading}
+        </h2>
+        {/* <p className="text-[13px] sm:text-[14px] lg:text-[15px] font-light text-center leading-[2] sm:leading-[2.2] max-w-4xl mx-auto mb-10 sm:mb-12" style={{ color: "var(--brand-dark)", opacity: 0.75, letterSpacing: "0.04em" }}>
+          {data.cardSubheading}
+        </p> */}
+
+        {/* <div className="flex sm:grid sm:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-10 overflow-x-auto snap-x snap-mandatory pb-4 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {data.pillars.map((col, i) => (
-            <div key={i} data-reveal data-reveal-delay={i + 1} className="w-[85%] sm:w-auto shrink-0 snap-center bg-white/5 sm:bg-transparent p-5 sm:p-0 rounded-xl sm:rounded-none">
-              <div className="pb-3 sm:pb-2.5 mb-4 border-b border-white/20 sm:border-[rgba(230,225,205,0.28)]">
-                <p className="text-[14px] lg:text-[17px] font-medium sm:font-normal text-white" style={{ letterSpacing: "0.04em" }}>{col.title}</p>
+            <div key={i} data-reveal data-reveal-delay={i + 1} className="w-[85%] sm:w-auto shrink-0 snap-center bg-[rgba(56,50,42,0.03)] sm:bg-transparent p-5 sm:p-0 rounded-xl sm:rounded-none">
+              <div className="pb-3 sm:pb-2.5 mb-4 border-b border-[rgba(56,50,42,0.1)]">
+                <p className="text-[14px] lg:text-[17px] font-medium sm:font-normal" style={{ color: "var(--brand-dark)", letterSpacing: "0.04em" }}>{col.title}</p>
               </div>
               <div className="space-y-2.5 sm:space-y-2">
                 {col.lines.map((line, j) => (
-                  <p key={j} className="text-[13px] lg:text-sm font-light leading-relaxed" style={{ color: "rgba(230,225,205,0.78)", letterSpacing: "0.02em" }}>{line}</p>
+                  <p key={j} className="text-[13px] lg:text-sm font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: 0.8, letterSpacing: "0.02em" }}>{line}</p>
                 ))}
               </div>
             </div>
           ))}
-        </div>
-        <div className="pt-4 sm:pt-6 border-t border-white/10 sm:border-[rgba(230,225,205,0.16)] shrink-0">
-          <p className="text-[12.5px] lg:text-[17px] font-light leading-[1.8] sm:leading-loose text-center sm:text-left" style={{ color: "rgba(230,225,205,0.92)", letterSpacing: "0.03em" }}>{data.cardFooter}</p>
+        </div> */}
+        <div className="pt-4">
+          <p className="text-[12.5px] lg:text-[17px] font-light leading-[1.8] sm:leading-loose text-center" style={{ color: "var(--brand-dark)", opacity: 0.9, letterSpacing: "0.03em" }}>{data.cardFooter}</p>
         </div>
       </div>
 
       {/* Mobile diagram */}
       <div className="lg:hidden">
-        <div className="flex justify-center mb-5" data-reveal>
+        <div className="flex justify-center mb-3" data-reveal>
           <div className="text-center max-w-[260px] px-2">
             <StepBlockMobile step={data.step12} showArrow={false} />
-            <div className="w-2 h-2 rounded-full mx-auto mt-3" style={{ backgroundColor: "#404338" }} />
           </div>
         </div>
         <div className="flex items-center gap-2 justify-center">
@@ -84,14 +88,12 @@ export default function Section9System({ data }: { data: S9System }) {
           </div>
           <div className="flex-1" data-reveal data-reveal-delay={2}><StepBlockMobile step={data.step34} /></div>
         </div>
-        <div className="flex gap-2 mt-4 justify-center">
+        <div className="flex gap-2 mt-1 justify-center">
           <div className="flex-1 text-right" data-reveal data-reveal-delay={3}>
-            <div className="w-2 h-2 rounded-full ml-auto mb-3" style={{ backgroundColor: "#404338" }} />
             <StepBlockMobile step={data.step78} />
           </div>
           <div className="shrink-0" style={{ width: 40 }} />
           <div className="flex-1" data-reveal data-reveal-delay={4}>
-            <div className="w-2 h-2 rounded-full mb-3" style={{ backgroundColor: "#404338" }} />
             <StepBlockMobile step={data.step910} />
           </div>
         </div>
@@ -102,7 +104,6 @@ export default function Section9System({ data }: { data: S9System }) {
         <div className="flex justify-center mb-6">
           <div className="text-center max-w-[260px]">
             <StepBlock step={data.step12} showArrow={false} />
-            <div className="w-2.5 h-2.5 rounded-full mx-auto mt-5" style={{ backgroundColor: "#404338" }} />
           </div>
         </div>
         <div className="flex items-center gap-10 max-w-5xl mx-auto">
@@ -125,12 +126,10 @@ export default function Section9System({ data }: { data: S9System }) {
         </div>
         <div className="flex gap-10 max-w-5xl mx-auto mt-6">
           <div className="flex-1 text-right">
-            <div className="w-2.5 h-2.5 rounded-full ml-auto mb-5" style={{ backgroundColor: "#404338" }} />
             <StepBlock step={data.step78} />
           </div>
           <div className="shrink-0" style={{ width: 300 }} />
           <div className="flex-1">
-            <div className="w-2.5 h-2.5 rounded-full mb-5" style={{ backgroundColor: "#404338" }} />
             <StepBlock step={data.step910} />
           </div>
         </div>
