@@ -4,6 +4,7 @@ import type { S9System, S9Step } from "@/lib/content/types";
 import { img } from "@/lib/img";
 
 function StepBlock({ step, align = "left", showArrow = true }: { step: S9Step; align?: "left" | "right" | "center"; showArrow?: boolean }) {
+  if (!step) return null;
   return (
     <>
       <p className="inline-block text-[11px] tracking-[0.28em] font-light mb-1.5 px-2.5 py-0.5 rounded-full" style={{ color: "var(--brand-footer-text)", backgroundColor: "#404338" }}>{step.label}</p>
@@ -17,6 +18,7 @@ function StepBlock({ step, align = "left", showArrow = true }: { step: S9Step; a
 }
 
 function StepBlockMobile({ step, showArrow = true }: { step: S9Step; showArrow?: boolean }) {
+  if (!step) return null;
   return (
     <>
       <p className="inline-block text-[8px] tracking-[0.24em] font-light mb-1 px-1.5 py-0.5 rounded-full" style={{ color: "var(--brand-footer-text)", backgroundColor: "#404338" }}>{step.label}</p>
@@ -30,6 +32,12 @@ function StepBlockMobile({ step, showArrow = true }: { step: S9Step; showArrow?:
 }
 
 export default function Section9System({ data }: { data: S9System }) {
+  const step1 = data.step1 || (data as any).step12;
+  const step2 = data.step2 || (data as any).step34;
+  const step3 = data.step3 || (data as any).step56;
+  const step4 = data.step4 || (data as any).step78;
+  const step5 = data.step5 || (data as any).step910;
+
   return (
     <section id="s9" className="py-8 sm:py-20 lg:py-24 px-8 sm:px-12 lg:px-14" style={{ backgroundColor: "var(--brand-lighter)" }}>
       <div className="flex items-center gap-4 mb-12">
@@ -69,11 +77,11 @@ export default function Section9System({ data }: { data: S9System }) {
       <div className="lg:hidden">
         <div className="flex justify-center mb-3" data-reveal>
           <div className="text-center max-w-[260px] px-2">
-            <StepBlockMobile step={data.step12} showArrow={false} />
+            <StepBlockMobile step={step1} showArrow={false} />
           </div>
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <div className="flex-1 text-right" data-reveal data-reveal-delay={1}><StepBlockMobile step={data.step56} /></div>
+          <div className="flex-1 text-right" data-reveal data-reveal-delay={1}><StepBlockMobile step={step3} /></div>
           <div className="shrink-0 relative" style={{ width: 120, height: 120 }} data-reveal>
             <div className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden" style={{ border: "1.5px solid rgba(80,80,56,0.4)" }}>
               {data.circleImage && (
@@ -90,15 +98,15 @@ export default function Section9System({ data }: { data: S9System }) {
             <div className="absolute w-2 h-2 rounded-full" style={{ top: "calc(91% - 4px)", left: "calc(79% - 4px)", backgroundColor: "#404338" }} />
             <div className="absolute w-2 h-2 rounded-full" style={{ top: "calc(91% - 4px)", left: "calc(23% - 4px)", backgroundColor: "#404338" }} />
           </div>
-          <div className="flex-1" data-reveal data-reveal-delay={2}><StepBlockMobile step={data.step34} /></div>
+          <div className="flex-1" data-reveal data-reveal-delay={2}><StepBlockMobile step={step2} /></div>
         </div>
         <div className="flex gap-2 mt-1 justify-center">
           <div className="flex-1 text-right" data-reveal data-reveal-delay={3}>
-            <StepBlockMobile step={data.step78} />
+            <StepBlockMobile step={step4} />
           </div>
           <div className="shrink-0" style={{ width: 40 }} />
           <div className="flex-1" data-reveal data-reveal-delay={4}>
-            <StepBlockMobile step={data.step910} />
+            <StepBlockMobile step={step5} />
           </div>
         </div>
       </div>
@@ -107,11 +115,11 @@ export default function Section9System({ data }: { data: S9System }) {
       <div className="hidden lg:block">
         <div className="flex justify-center mb-6">
           <div className="text-center max-w-[260px]">
-            <StepBlock step={data.step12} showArrow={false} />
+            <StepBlock step={step1} showArrow={false} />
           </div>
         </div>
         <div className="flex items-center gap-10 max-w-5xl mx-auto">
-          <div className="flex-1 text-right"><StepBlock step={data.step56} /></div>
+          <div className="flex-1 text-right"><StepBlock step={step3} /></div>
           <div className="shrink-0 relative" style={{ width: 300, height: 300 }}>
             <div className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden" style={{ border: "1.5px solid rgba(80,80,56,0.4)" }}>
               {data.circleImage && (
@@ -129,15 +137,15 @@ export default function Section9System({ data }: { data: S9System }) {
             <div className="absolute w-3 h-3 rounded-full" style={{ top: "calc(91% - 6px)", left: "calc(79% - 6px)", backgroundColor: "#404338" }} />
             <div className="absolute w-3 h-3 rounded-full" style={{ top: "calc(91% - 6px)", left: "calc(23% - 6px)", backgroundColor: "#404338" }} />
           </div>
-          <div className="flex-1"><StepBlock step={data.step34} /></div>
+          <div className="flex-1"><StepBlock step={step2} /></div>
         </div>
         <div className="flex gap-10 max-w-5xl mx-auto mt-6">
           <div className="flex-1 text-right">
-            <StepBlock step={data.step78} />
+            <StepBlock step={step4} />
           </div>
           <div className="shrink-0" style={{ width: 300 }} />
           <div className="flex-1">
-            <StepBlock step={data.step910} />
+            <StepBlock step={step5} />
           </div>
         </div>
       </div>

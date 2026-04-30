@@ -94,11 +94,11 @@ export type S9System = {
   circleTitle2: string;
   circleSubtitle: string;
   circleImage?: string;
-  step12: S9Step;
-  step34: S9Step;
-  step56: S9Step;
-  step78: S9Step;
-  step910: S9Step;
+  step1: S9Step;
+  step2: S9Step;
+  step3: S9Step;
+  step4: S9Step;
+  step5: S9Step;
 };
 
 export type S10BA = { img: string; title: string };

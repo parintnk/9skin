@@ -51,7 +51,7 @@ export default function SectionNav({
         />
         <FabItem
           href={lineUrl}
-          label="LINE"
+          label="我要預約"
           show={open}
           delay={60}
           bg="#06C755"
