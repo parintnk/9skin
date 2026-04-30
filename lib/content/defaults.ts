@@ -177,6 +177,7 @@ export const defaults: AllContent = {
     circleTitle1: "韓式完整11步驟",
     circleTitle2: "120分鐘極致呵護",
     circleSubtitle: "120 minutes of ultimate care",
+    circleImage: "",
     step12: { label: "STEP 1–2", title: "美容師專業肌膚檢測", desc: "深度分析膚況，了解肌膚耐受度與潛在問題，搭配溫和洗卸，徹底清潔表面贓汙，保護肌膚屏障，不造成刺激" },
     step34: { label: "STEP 3–4", title: "毛孔軟化", arrow: "→ 水飛梭深層清潔", desc: "軟化角質與毛孔，搭配水飛梭去除深層贓污與老廢角質，改善毛孔塞塞，使肌膚呼吸更順暢" },
     step56: { label: "STEP 5–6", title: "專業手工針清", arrow: "→ 韓國醫美級護膚", desc: "溫柔無痛清除粉刺與塞塞毛孔，搭配高濃度營養護理，立即補充肌膚所需，提升水潤與光澤感" },

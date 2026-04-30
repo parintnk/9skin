@@ -1,6 +1,7 @@
 "use client";
 
 import type { S9System, S9Step } from "@/lib/content/types";
+import { img } from "@/lib/img";
 
 function StepBlock({ step, align = "left", showArrow = true }: { step: S9Step; align?: "left" | "right" | "center"; showArrow?: boolean }) {
   return (
@@ -74,8 +75,11 @@ export default function Section9System({ data }: { data: S9System }) {
         <div className="flex items-center gap-2 justify-center">
           <div className="flex-1 text-right" data-reveal data-reveal-delay={1}><StepBlockMobile step={data.step56} /></div>
           <div className="shrink-0 relative" style={{ width: 120, height: 120 }} data-reveal>
-            <div className="w-full h-full rounded-full flex items-center justify-center" style={{ border: "1.5px solid rgba(80,80,56,0.4)" }}>
-              <div className="text-center px-2">
+            <div className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden" style={{ border: "1.5px solid rgba(80,80,56,0.4)" }}>
+              {data.circleImage && (
+                <img src={img(data.circleImage)} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover pointer-events-none" style={{ zIndex: 0, opacity: 0.45 }} />
+              )}
+              <div className="text-center px-2 relative" style={{ zIndex: 1 }}>
                 <p className="text-[11px] font-bold leading-snug" style={{ letterSpacing: "0.04em" }}>{data.circleTitle1}</p>
                 <p className="text-[11px] font-bold leading-snug mt-0.5" style={{ letterSpacing: "0.04em" }}>{data.circleTitle2}</p>
               </div>
@@ -109,8 +113,11 @@ export default function Section9System({ data }: { data: S9System }) {
         <div className="flex items-center gap-10 max-w-5xl mx-auto">
           <div className="flex-1 text-right"><StepBlock step={data.step56} /></div>
           <div className="shrink-0 relative" style={{ width: 300, height: 300 }}>
-            <div className="w-full h-full rounded-full flex items-center justify-center" style={{ border: "1.5px solid rgba(80,80,56,0.4)" }}>
-              <div className="text-center px-10">
+            <div className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden" style={{ border: "1.5px solid rgba(80,80,56,0.4)" }}>
+              {data.circleImage && (
+                <img src={img(data.circleImage)} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover pointer-events-none" style={{ zIndex: 0, opacity: 0.45 }} />
+              )}
+              <div className="text-center px-10 relative" style={{ zIndex: 1 }}>
                 <p className="text-lg font-bold leading-snug" style={{ letterSpacing: "0.04em" }}>{data.circleTitle1}</p>
                 <p className="text-lg font-bold leading-snug" style={{ letterSpacing: "0.04em" }}>{data.circleTitle2}</p>
                 <p className="text-[11px] font-light mt-3 tracking-widest" style={{ color: "var(--brand-muted)" }}>{data.circleSubtitle}</p>

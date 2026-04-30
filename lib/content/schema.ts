@@ -138,6 +138,7 @@ export const s9Schema = z.object({
   circleTitle1: z.string(),
   circleTitle2: z.string(),
   circleSubtitle: z.string(),
+  circleImage: z.string().optional(),
   step12: s9Step,
   step34: s9Step,
   step56: s9Step,

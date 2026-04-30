@@ -15,7 +15,11 @@ export default async function EditorPage({ params }: { params: Promise<{ section
   const supabase = await createClient();
   const { data: row } = await supabase.from("sections").select("published, draft").eq("key", key).maybeSingle();
 
-  const initial = row?.draft ?? row?.published ?? (defaults as Record<string, unknown>)[key];
+  const fallback = (defaults as Record<string, unknown>)[key];
+  const stored = row?.draft ?? row?.published;
+  const initial = stored && typeof stored === "object" && !Array.isArray(stored)
+    ? { ...(fallback as Record<string, unknown>), ...(stored as Record<string, unknown>) }
+    : (stored ?? fallback);
 
   return (
     <SectionEditor

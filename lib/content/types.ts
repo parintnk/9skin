@@ -93,6 +93,7 @@ export type S9System = {
   circleTitle1: string;
   circleTitle2: string;
   circleSubtitle: string;
+  circleImage?: string;
   step12: S9Step;
   step34: S9Step;
   step56: S9Step;
