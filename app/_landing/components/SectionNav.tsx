@@ -64,28 +64,28 @@ export default function SectionNav({
           aria-expanded={open}
           className="relative w-[68px] h-[68px] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 group"
           style={{
-            background: "radial-gradient(circle at 30% 25%, #FBF7EF 0%, #EFE7D6 60%, #E2D7C0 100%)",
-            boxShadow: "0 10px 28px rgba(122,114,100,0.28), 0 2px 6px rgba(56,50,42,0.12), inset 0 1px 0 rgba(255,255,255,0.7)",
+            background: "radial-gradient(circle at 30% 25%, #565A4C 0%, #404338 60%, #303228 100%)",
+            boxShadow: "0 10px 28px rgba(64,67,56,0.35), 0 2px 6px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.15)",
           }}
         >
           <span
             aria-hidden
             className="absolute inset-[3px] rounded-full pointer-events-none transition-opacity duration-300"
             style={{
-              border: "1px solid rgba(201,169,110,0.55)",
+              border: "1px solid rgba(255,255,255,0.15)",
               opacity: open ? 0 : 1,
             }}
           />
           {open ? (
-            <LuX size={26} color="#38322A" />
+            <LuX size={26} color="#FBF7EF" />
           ) : (
             <span
               translate="no"
               className="notranslate relative text-[13px] leading-[1.15] tracking-[0.18em] text-center"
               style={{
-                color: "#38322A",
+                color: "#FBF7EF",
                 fontFamily: '"Noto Serif TC", Georgia, serif',
-                fontWeight: 500,
+                fontWeight: 400,
               }}
             >
               我要<br />預約
