@@ -23,12 +23,12 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value: [
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://*.gstatic.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://*.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com",
               "style-src 'self' 'unsafe-inline' https://translate.googleapis.com https://www.gstatic.com https://fonts.googleapis.com",
               "font-src 'self' data: https://fonts.gstatic.com",
               "img-src 'self' data: blob: https: http:",
               "frame-src 'self' https://translate.google.com https://translate.googleapis.com",
-              "connect-src 'self' https://translate.googleapis.com https://translate-pa.googleapis.com https://*.supabase.co wss://*.supabase.co",
+              "connect-src 'self' https://translate.googleapis.com https://translate-pa.googleapis.com https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
             ].join("; "),
           },
         ],
