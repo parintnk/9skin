@@ -138,11 +138,14 @@ export type S13Environment = {
   images: { src: string; alt: string }[]; // 4
 };
 
+export type FooterHour = { label: string; time: string };
 export type FooterContent = {
   brand: string;
   lineUrl: string;
   instagramUrl: string;
   copyright: string;
+  hoursHeading?: string;
+  hours?: FooterHour[];
 };
 
 export type NavSection = { id: string; label: string };

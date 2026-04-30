@@ -259,6 +259,11 @@ export const defaults: AllContent = {
     lineUrl: "https://line.me/R/ti/p/@9skin",
     instagramUrl: "https://www.instagram.com/9skin_999/",
     copyright: "9skin Studio · 台北 · 高雄",
+    hoursHeading: "營業時間",
+    hours: [
+      { label: "台北店", time: "週一～週日 11:00–21:00" },
+      { label: "高雄店", time: "週一～週日 11:00–21:00" },
+    ],
   },
 
   nav: {

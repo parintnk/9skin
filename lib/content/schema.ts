@@ -187,6 +187,8 @@ export const footerSchema = z.object({
   lineUrl: z.string(),
   instagramUrl: z.string(),
   copyright: z.string(),
+  hoursHeading: z.string().optional(),
+  hours: z.array(z.object({ label: z.string(), time: z.string() })).optional(),
 });
 
 export const navSchema = z.object({
