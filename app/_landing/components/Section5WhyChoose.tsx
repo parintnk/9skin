@@ -23,20 +23,20 @@ function S5Carousel({ cards }: { cards: S5WhyChoose["columns"] }) {
 
   return (
     <>
-      <div ref={s5Ref} className="s5-carousel sm:hidden flex overflow-x-auto gap-3 px-4" style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingTop: "2vh", paddingBottom: "2vh" }}>
+      <div ref={s5Ref} className="s5-carousel sm:hidden flex overflow-x-auto gap-2 px-4" style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none", paddingTop: "2vh", paddingBottom: "2vh" }}>
         {cards.map((col, i) => (
-          <div key={col.label} data-reveal data-reveal-delay={i + 1} className="shrink-0 overflow-hidden rounded-2xl transition-all duration-300" style={{ width: "68vw", scrollSnapAlign: "center", border: col.featured ? "2px solid var(--brand-gold)" : "1px solid rgba(56,50,42,0.12)", boxShadow: i === s5Active ? "0 8px 32px rgba(56,50,42,0.15)" : "0 2px 12px rgba(56,50,42,0.05)", transform: i === s5Active ? "scale(1)" : "scale(0.92)", opacity: i === s5Active ? 1 : 0.6 }}>
-            <div className="py-4 px-5 text-center" style={{ backgroundColor: col.dark ? "var(--brand-footer)" : "var(--brand-light)", color: col.dark ? "var(--brand-footer-text)" : "var(--brand-dark)" }}>
+          <div key={col.label} data-reveal data-reveal-delay={i + 1} className="shrink-0 overflow-hidden rounded-2xl transition-all duration-300" style={{ width: "56vw", scrollSnapAlign: "center", border: col.featured ? "2px solid var(--brand-gold)" : "1px solid rgba(56,50,42,0.12)", boxShadow: i === s5Active ? "0 8px 32px rgba(56,50,42,0.15)" : "0 2px 12px rgba(56,50,42,0.05)", transform: i === s5Active ? "scale(1)" : "scale(0.92)", opacity: i === s5Active ? 1 : 0.6 }}>
+            <div className="py-5 px-4 text-center" style={{ backgroundColor: col.dark ? "var(--brand-footer)" : "var(--brand-light)", color: col.dark ? "var(--brand-footer-text)" : "var(--brand-dark)" }}>
               <p className="text-base font-light tracking-widest">{col.label}</p>
             </div>
-            <div style={{ backgroundColor: col.featured ? "rgba(74,72,64,0.04)" : "transparent" }}>
+            <div style={{ backgroundColor: col.featured ? "rgba(74,72,64,0.04)" : "transparent", paddingBottom: "0.5rem" }}>
               {col.rows.map((row, ri) => (
                 <div key={row.label}>
                   {ri > 0 && (<div className="mx-5" style={{ height: 1, backgroundColor: "rgba(56,50,42,0.1)" }} />)}
-                  <div className="px-5 py-3">
-                    <p className="text-[10px] tracking-[0.2em] uppercase mb-1.5 font-light" style={{ color: "var(--brand-gold)" }}>{row.label}</p>
+                  <div className="px-5 py-4">
+                    <p className="text-[10px] tracking-[0.2em] uppercase mb-2 font-light" style={{ color: "var(--brand-gold)" }}>{row.label}</p>
                     {row.lines.map((line, li) => (
-                      <p key={li} className="text-[12px] font-light leading-relaxed" style={{ color: "var(--brand-dark)", opacity: col.featured ? 0.9 : 0.78 }}>{line}</p>
+                      <p key={li} className="text-[12px] font-light leading-relaxed mb-0.5" style={{ color: "var(--brand-dark)", opacity: col.featured ? 0.9 : 0.78 }}>{line}</p>
                     ))}
                   </div>
                 </div>
