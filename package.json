@@ -2,6 +2,12 @@
   "name": "9skin",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    "Chrome >= 87",
+    "Edge >= 88",
+    "Firefox >= 78",
+    "Safari >= 14"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

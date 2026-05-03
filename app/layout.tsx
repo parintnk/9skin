@@ -1,16 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Serif_TC } from "next/font/google";
-import Script from "next/script";
 import GoogleTranslateProvider from "./components/GoogleTranslateProvider";
+import Analytics from "./components/Analytics";
 import "./globals.css";
 
 const GTM_ID = "GTM-WP39DXVH";
-const GA_ID = "G-6FL7Q6B68M";
 
 const notoSerifTC = Noto_Serif_TC({
   variable: "--font-noto-serif-tc",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400"],
+  display: "swap",
+  preload: true,
+  fallback: ["ui-serif", "Georgia", "Cambria", "Times New Roman", "serif"],
+  adjustFontFallback: false,
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.9skin999.com";
@@ -94,40 +97,11 @@ export default function RootLayout({
   return (
     <html lang="zh-TW">
       <head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link
           rel="preload"
           as="image"
           href="/img/Page%201.JPG"
           fetchPriority="high"
-        />
-        <Script
-          id="gtm-script"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`,
-          }}
-        />
-        <Script
-          id="ga-loader"
-          strategy="lazyOnload"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        />
-        <Script
-          id="ga-init"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_ID}');`,
-          }}
         />
       </head>
       <body className={`${notoSerifTC.variable} antialiased`}>
@@ -139,6 +113,7 @@ gtag('config', '${GA_ID}');`,
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <Analytics />
         <GoogleTranslateProvider />
         {children}
         <script
