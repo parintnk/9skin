@@ -27,7 +27,7 @@ export default function Section2Concerns({ data }: { data: S2Concerns }) {
           {concerns.map((c, i) => (
             <div key={i} data-reveal data-reveal-delay={i + 1} className="flex flex-col gap-3">
               <div className="card-wrap relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: "543/280", boxShadow: "0 4px 20px rgba(56,50,42,0.10)" }}>
-                <Image src={img(c.img)} alt={c.title} fill className="card-img object-cover" />
+                <Image src={img(c.img)} alt={c.title} fill sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 0px" className="card-img object-cover" />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.45) 0%, rgba(30,24,18,0) 55%)" }} />
                 <div className="absolute inset-0 flex flex-col justify-end px-5 pb-4">
                   <p className="text-white font-normal text-base lg:text-lg leading-snug mb-1" style={{ letterSpacing: "0.04em" }}>{c.title}</p>
@@ -49,7 +49,7 @@ export default function Section2Concerns({ data }: { data: S2Concerns }) {
                   {i + 1}
                 </span>
                 <div className="absolute z-10 rounded-full overflow-hidden" style={{ top: "-16px", right: "-10px", width: "60px", height: "60px", border: "3px solid var(--brand-lighter)" }}>
-                  <Image src={img(c.img)} alt={c.title} fill className="object-cover object-center" />
+                  <Image src={img(c.img)} alt={c.title} fill sizes="60px" className="object-cover object-center" />
                 </div>
                 <div className="text-center mb-2 px-2 relative z-0">
                   <h3 className="text-[13px] font-medium leading-[1.4] tracking-widest" style={{ color: "var(--brand-dark)", opacity: 0.9 }}>{c.title}</h3>

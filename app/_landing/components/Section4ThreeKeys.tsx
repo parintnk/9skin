@@ -24,7 +24,7 @@ export default function Section4ThreeKeys({ data }: { data: S4ThreeKeys }) {
         </div>
         <div className="flex flex-row flex-1">
           <div className="relative w-[44%] xl:w-[46%]" style={{ minHeight: 520 }}>
-            <Image src={img(data.desktopImage)} alt="水煮蛋肌" fill className="object-cover object-center" />
+            <Image src={img(data.desktopImage)} alt="水煮蛋肌" fill sizes="(min-width: 1280px) 46vw, (min-width: 1024px) 44vw, 0px" className="object-cover object-center" />
           </div>
           <div className="flex-1 flex flex-col justify-center gap-12 px-14 py-16">
             {steps.map((step, i) => (
@@ -48,7 +48,7 @@ export default function Section4ThreeKeys({ data }: { data: S4ThreeKeys }) {
       </section>
 
       <section id="s4-mobile" className="lg:hidden relative min-h-screen flex flex-col overflow-hidden">
-        <Image src={img(data.mobileBg)} style={{ mixBlendMode: "multiply", filter: "brightness(0.70)", opacity: 0.4 }} alt="水煮蛋肌" fill className="object-cover object-center" />
+        <Image src={img(data.mobileBg)} style={{ mixBlendMode: "multiply", filter: "brightness(0.70)", opacity: 0.4 }} alt="" aria-hidden fill sizes="100vw" className="object-cover object-center" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(255,252,247,0.55) 0%, rgba(255,252,247,0.40) 40%, rgba(255,252,247,0.60) 100%)" }} />
         <div className="relative z-10 flex flex-col flex-1 px-6 sm:px-10 py-10 sm:py-14">
           <div data-reveal className="mb-6 sm:mb-10">

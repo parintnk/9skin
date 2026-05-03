@@ -33,7 +33,7 @@ export default function Section8Mission({ data }: { data: S8Mission }) {
 
         <div data-reveal className="flex flex-col sm:flex-row gap-0 flex-1 relative w-full">
           <div className="hidden sm:block relative sm:w-[42%] shrink-0 overflow-hidden" style={{ minHeight: 200, borderRadius: "2px 0 0 0" }}>
-            <Image src={img(data.salonImage)} alt="玖膚空間" fill className="object-cover object-center" />
+            <Image src={img(data.salonImage)} alt="玖膚空間" fill sizes="(min-width: 640px) 42vw, 0px" className="object-cover object-center" />
           </div>
           <div className="flex-1 relative rounded-2xl sm:rounded-none overflow-hidden w-full">
             <div className="absolute inset-0 bg-white/60 sm:bg-white/72 backdrop-blur-xl border border-white/80 sm:border-0 rounded-2xl sm:rounded-none shadow-[0_8px_32px_rgba(0,0,0,0.04)] sm:shadow-[0_12px_28px_rgba(30,24,18,0.06)]" />
@@ -55,11 +55,11 @@ export default function Section8Mission({ data }: { data: S8Mission }) {
 
       <div className="lg:hidden w-full px-6 pb-12 pt-2">
         <div className="relative overflow-hidden w-full rounded-[24px] h-[40vh] min-h-[320px] max-h-[480px]" style={{ boxShadow: "0 14px 40px rgba(30,24,18,0.08)" }}>
-          <Image src={img(data.studioImage)} alt="玖膚工作室" fill className="object-cover object-[center_30%]" />
+          <Image src={img(data.studioImage)} alt="玖膚工作室" fill sizes="(min-width: 1024px) 0px, 100vw" className="object-cover object-[center_30%]" />
         </div>
       </div>
       <div className="hidden lg:block relative lg:w-[34%] xl:w-[36%]" style={{ minHeight: 640 }}>
-        <Image src={img(data.studioImage)} alt="玖膚工作室" fill className="object-cover object-center" />
+        <Image src={img(data.studioImage)} alt="玖膚工作室" fill sizes="(min-width: 1280px) 36vw, (min-width: 1024px) 34vw, 0px" className="object-cover object-center" />
       </div>
     </section>
   );

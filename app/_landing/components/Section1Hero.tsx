@@ -12,7 +12,7 @@ export default function Section1Hero({ data }: { data: S1Hero }) {
 
       {/* Mobile */}
       <div className="lg:hidden relative flex flex-col" style={{ minHeight: "100svh" }}>
-        <Image src={img(data.heroImage)} alt="9skin" fill className="object-cover object-[center_15%] pb-12" priority />
+        <Image src={img(data.heroImage)} alt="9skin" fill sizes="100vw" className="object-cover object-[center_15%] pb-12" priority fetchPriority="high" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0.12) 25%, rgba(20,16,12,0.55) 100%, rgba(20,16,12,0.88) 100%)" }} />
 
         <div className="absolute top-5 right-6 z-20">
@@ -83,7 +83,7 @@ export default function Section1Hero({ data }: { data: S1Hero }) {
         </div>
 
         <div className="hidden lg:block relative lg:w-[32%] xl:w-[34%]">
-          <Image src={img(data.heroImage)} alt="9skin" fill className="object-cover object-[center_15%]" priority />
+          <Image src={img(data.heroImage)} alt="9skin" fill sizes="(min-width: 1024px) 34vw, 100vw" className="object-cover object-[center_15%]" priority fetchPriority="high" />
         </div>
       </main>
 

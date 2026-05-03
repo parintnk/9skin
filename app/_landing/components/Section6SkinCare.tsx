@@ -8,7 +8,7 @@ export default function Section6SkinCare({ data }: { data: S6SkinCare }) {
   return (
     <section id="s6" className="flex flex-col lg:flex-row" style={{ backgroundColor: "var(--brand-lighter)" }}>
       <div className="hidden lg:block relative lg:w-[38%] xl:w-[40%]" style={{ minHeight: 700 }}>
-        <Image src={img(data.image)} alt={data.subtitleZh} fill className="object-cover object-[center_15%]" />
+        <Image src={img(data.image)} alt={data.subtitleZh} fill sizes="(min-width: 1280px) 40vw, (min-width: 1024px) 38vw, 0px" className="object-cover object-[center_15%]" />
       </div>
       <div className="flex-1 flex flex-col px-6 sm:px-12 lg:px-14 py-6 sm:py-14 lg:py-16">
         <div className="flex items-center gap-4 mb-4 sm:mb-8">

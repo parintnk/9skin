@@ -33,7 +33,7 @@ export default function Section7Transformation({ data }: { data: S7Transformatio
         {cards.map((item, i) => (
           <div key={i} data-reveal data-reveal-delay={i + 1} className="flex flex-col rounded-[28px] p-2" style={{ backgroundColor: "rgba(216, 211, 211, 0.72)", border: "1px solid rgba(56,50,42,0.08)", boxShadow: "0 10px 30px rgba(56,50,42,0.08)", backdropFilter: "blur(10px)" }}>
             <div className="card-wrap relative w-full overflow-hidden rounded-[22px]" style={{ aspectRatio: "0.84 / 1" }}>
-              <Image src={img(item.img)} alt={item.alt} fill className="card-img object-cover object-center" />
+              <Image src={img(item.img)} alt={item.alt} fill sizes="(min-width: 640px) 0px, 50vw" className="card-img object-cover object-center" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(56,50,42,0.18) 0%, rgba(56,50,42,0) 45%)" }} />
             </div>
             <div className="px-2 pt-3 pb-2">
@@ -56,7 +56,7 @@ export default function Section7Transformation({ data }: { data: S7Transformatio
         {cards.map((item, i) => (
           <div key={i} data-reveal data-reveal-delay={i + 1} className="flex flex-col" style={{ borderLeft: i % 2 === 0 ? "none" : "1px solid rgba(56,50,42,0.12)" }}>
             <div className="card-wrap relative w-full overflow-hidden" style={{ aspectRatio: "3/4" }}>
-              <Image src={img(item.img)} alt={item.alt} fill className="card-img object-cover object-center" />
+              <Image src={img(item.img)} alt={item.alt} fill sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 0px" className="card-img object-cover object-center" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,24,18,0.35) 0%, transparent 50%)" }} />
               <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-5 pb-4">
                 <p className="text-white text-sm lg:text-base font-light tracking-widest">{item.label}</p>
